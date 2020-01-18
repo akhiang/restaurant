@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2019 at 05:36 AM
+-- Generation Time: Jan 18, 2020 at 03:19 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.1.30
 
@@ -93,7 +93,8 @@ INSERT INTO `tbl_menu` (`id`, `kode_menu`, `nama_menu`, `jenis`, `harga`, `stok`
 (14, 'M014', 'Es Jeruk Kecil', 'Minuman', '3000', 0, 'menu_esjrkkcl.jpg'),
 (15, 'M015', 'Mineral', 'Minuman', '3000', 0, 'menu_mineral.jpeg'),
 (16, 'M016', 'Mie Kuning', 'Makanan', '2000', 0, 'menu_miekuning.jpeg'),
-(17, 'M017', 'Mie Putih', 'Makanan', '3000', 0, 'menu_mieputih.jpeg');
+(17, 'M017', 'Mie Putih', 'Makanan', '3000', 0, 'menu_mieputih.jpeg'),
+(100, 'M018', 'Test', 'Makanan', '30000', 2, '');
 
 -- --------------------------------------------------------
 
@@ -153,13 +154,32 @@ INSERT INTO `tbl_user` (`id`, `username`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_bills`
+--
+
+CREATE TABLE `tb_bills` (
+  `id` int(11) NOT NULL,
+  `order_number` varchar(50) NOT NULL,
+  `tgl` date NOT NULL,
+  `waktu` time NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_cart`
 --
 
 CREATE TABLE `tb_cart` (
+  `id` int(11) NOT NULL,
+  `tipe_pesanan_id` int(11) NOT NULL,
   `kode_meja` int(11) NOT NULL,
-  `tgl` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `tgl` date NOT NULL,
+  `waktu` time NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `tax` int(11) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -170,12 +190,20 @@ CREATE TABLE `tb_cart` (
 --
 
 CREATE TABLE `tb_cart_detail` (
-  `kode_meja` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `kode_menu` varchar(4) NOT NULL,
   `nama_menu` varchar(30) NOT NULL,
   `qty` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_cart_detail`
+--
+
+INSERT INTO `tb_cart_detail` (`user_id`, `kode_menu`, `nama_menu`, `qty`, `harga`, `id`) VALUES
+(3, 'M001', 'Bakso Urat', 1, 15000, 20);
 
 -- --------------------------------------------------------
 
@@ -195,9 +223,9 @@ CREATE TABLE `tb_meja` (
 
 INSERT INTO `tb_meja` (`kode_meja`, `nama_meja`, `status`) VALUES
 (1, 'M01', 0),
-(2, 'M02', 0),
-(3, 'M03', 0),
-(4, 'M04', 0),
+(2, 'M02', 1),
+(3, 'M03', 1),
+(4, 'M04', 1),
 (5, 'M05', 1),
 (6, 'M06', 1),
 (7, 'M07', 1),
@@ -213,25 +241,29 @@ INSERT INTO `tb_meja` (`kode_meja`, `nama_meja`, `status`) VALUES
 --
 
 CREATE TABLE `tb_order` (
-  `no_transaksi` varchar(50) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `order_number` varchar(50) NOT NULL,
+  `paid` tinyint(1) NOT NULL,
+  `tipe_pesanan_id` int(11) NOT NULL,
   `kode_meja` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `tgl` date NOT NULL,
   `waktu` time NOT NULL,
   `subtotal` int(11) NOT NULL,
   `tax` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  `total` int(11) NOT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_order`
 --
 
-INSERT INTO `tb_order` (`no_transaksi`, `kode_meja`, `user_id`, `tgl`, `waktu`, `subtotal`, `tax`, `total`) VALUES
-('00001', 1, 4, '2019-12-02', '11:59:12', 38000, 3800, 41800),
-('00002', 2, 4, '2019-12-02', '11:20:39', 12000, 1200, 13200),
-('00003', 4, 4, '2019-12-03', '12:09:57', 33000, 3300, 36300),
-('00004', 3, 4, '2019-12-05', '05:26:02', 68000, 6800, 74800);
+INSERT INTO `tb_order` (`order_id`, `order_number`, `paid`, `tipe_pesanan_id`, `kode_meja`, `user_id`, `tgl`, `waktu`, `subtotal`, `tax`, `total`, `deleted`) VALUES
+(52, '00001', 0, 2, 0, 4, '2020-01-15', '11:45:25', 19000, 1900, 20900, 0),
+(53, '00002', 0, 1, 1, 4, '2020-01-16', '01:30:07', 21000, 2100, 23100, 0),
+(54, '00003', 0, 2, 0, 4, '2020-01-16', '03:43:43', 40000, 4000, 44000, 0),
+(55, '00004', 0, 2, 0, 4, '2020-01-16', '03:45:03', 17000, 1700, 18700, 0);
 
 -- --------------------------------------------------------
 
@@ -240,30 +272,61 @@ INSERT INTO `tb_order` (`no_transaksi`, `kode_meja`, `user_id`, `tgl`, `waktu`, 
 --
 
 CREATE TABLE `tb_order_detail` (
-  `no_transaksi` varchar(50) NOT NULL,
+  `order_number` varchar(50) NOT NULL,
   `kode_menu` varchar(10) NOT NULL,
-  `nama_menu` varchar(30) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_order_detail_temp`
+--
+
+CREATE TABLE `tb_order_detail_temp` (
+  `order_number` varchar(50) NOT NULL,
+  `kode_menu` varchar(10) NOT NULL,
   `qty` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_order_detail`
+-- Dumping data for table `tb_order_detail_temp`
 --
 
-INSERT INTO `tb_order_detail` (`no_transaksi`, `kode_menu`, `nama_menu`, `qty`, `harga`, `id`) VALUES
-('00001', 'M001', 'Bakso Urat', 2, 15000, 26),
-('00001', 'M002', 'Es Cappucino', 2, 4000, 27),
-('00002', 'M017', 'Mie Putih', 2, 3000, 29),
-('00002', 'M015', 'Mineral', 2, 3000, 30),
-('00003', 'M003', 'Bakso Telur', 2, 15000, 32),
-('00003', 'M004', 'Teh Es', 1, 3000, 33),
-('00004', 'M008', 'Es Nutri Sari', 1, 3000, 34),
-('00004', 'M007', 'Bakso Granat', 3, 17000, 35),
-('00004', 'M011', 'Es Susu', 1, 4000, 36),
-('00004', 'M010', 'Extra Joss Susu', 1, 7000, 37),
-('00004', 'M014', 'Es Jeruk Kecil', 1, 3000, 38);
+INSERT INTO `tb_order_detail_temp` (`order_number`, `kode_menu`, `qty`, `harga`, `id`) VALUES
+('00001', 'M001', 1, 15000, 61),
+('00001', 'M002', 1, 4000, 62),
+('00002', 'M006', 1, 4000, 64),
+('00002', 'M005', 1, 17000, 65),
+('00003', 'M007', 1, 17000, 66),
+('00003', 'M008', 1, 3000, 67),
+('00003', 'M008', 1, 3000, 69),
+('00003', 'M007', 1, 17000, 70),
+('00004', 'M010', 1, 7000, 72),
+('00004', 'M012', 1, 10000, 73);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_tipe_pesanan`
+--
+
+CREATE TABLE `tb_tipe_pesanan` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_tipe_pesanan`
+--
+
+INSERT INTO `tb_tipe_pesanan` (`id`, `name`) VALUES
+(1, 'dine in'),
+(2, 'take away');
 
 --
 -- Indexes for dumped tables
@@ -288,6 +351,24 @@ ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_bills`
+--
+ALTER TABLE `tb_bills`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_cart`
+--
+ALTER TABLE `tb_cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_cart_detail`
+--
+ALTER TABLE `tb_cart_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_meja`
 --
 ALTER TABLE `tb_meja`
@@ -297,12 +378,24 @@ ALTER TABLE `tb_meja`
 -- Indexes for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  ADD PRIMARY KEY (`no_transaksi`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `tb_order_detail`
 --
 ALTER TABLE `tb_order_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_order_detail_temp`
+--
+ALTER TABLE `tb_order_detail_temp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_tipe_pesanan`
+--
+ALTER TABLE `tb_tipe_pesanan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -313,7 +406,7 @@ ALTER TABLE `tb_order_detail`
 -- AUTO_INCREMENT for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `tbl_transaksi`
@@ -322,10 +415,46 @@ ALTER TABLE `tbl_transaksi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
+-- AUTO_INCREMENT for table `tb_bills`
+--
+ALTER TABLE `tb_bills`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tb_cart`
+--
+ALTER TABLE `tb_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_cart_detail`
+--
+ALTER TABLE `tb_cart_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `tb_order`
+--
+ALTER TABLE `tb_order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
 -- AUTO_INCREMENT for table `tb_order_detail`
 --
 ALTER TABLE `tb_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_order_detail_temp`
+--
+ALTER TABLE `tb_order_detail_temp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `tb_tipe_pesanan`
+--
+ALTER TABLE `tb_tipe_pesanan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
