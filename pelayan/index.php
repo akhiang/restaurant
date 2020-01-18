@@ -41,7 +41,7 @@
 							<object data="../assets/images/food.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Pesanan</a>
+							<a href="pesanan.php" class="btn btn-success btn-sm">Pesanan</a>
 						</div>
 					</div>
 					<div class="card text-center">
@@ -57,7 +57,7 @@
 							<object data="../assets/images/menu.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Daftar Menu</a>
+							<a href="#" class="btn btn-success btn-sm">Daftar Transaksi</a>
 						</div>
 					</div>
 				</div>		
@@ -80,20 +80,26 @@
 					<div class="form-group">
 						<label for="tipepesanan">Tipe pesanan</label>
 						<select class="form-control" id="tipepesanan" name="tipepesanan">
-							<option value="">Pilih tipe pesanan</option>
-							<option value="0">Makan di tempat</option>
-							<option value="1">Take away</option>
+							<option value="" selected>Pilih tipe pesanan</option>
+							<?php 
+								$sql = "SELECT * FROM tb_tipe_pesanan";  
+								$q = $conn->query($sql);
+								while ($row = $q->fetch_assoc()) { ?>
+								<option value="<?php echo $row['id'] ?>"><?php echo ucwords($row['name']) ?></option>
+							<?php
+								}
+							?>
 						</select>
 					</div>
 					<div class="form-group" id="meja-div">
 						<label for="meja" class="col-form-label">Meja</label>
 						<select disabled="true" name="id_meja" class="form-control" id="meja">
-							<option value="">Pilih meja</option>
+							<option value="" selected>Pilih meja</option>
 							<?php 
 								$sql = "SELECT * FROM tb_meja WHERE status = 1";  
 								$q = $conn->query($sql);
 								while ($row = $q->fetch_assoc()) { ?>
-								<option value="<?php echo $row['kode_meja'] ?>"><?php echo $row['nama_meja'] ?></option>
+									<option value="<?php echo $row['kode_meja'] ?>"><?php echo $row['nama_meja'] ?></option>
 							<?php
 								}
 							?>
@@ -102,7 +108,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" name="submit" id="submit-pesanan" class="btn btn-primary">Submit</button>
+				<button type="submit" name="submit" id="submit-pesanan" class="btn btn-success">Submit</button>
 				</form>
 			</div>
 			</div>

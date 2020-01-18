@@ -3,11 +3,13 @@
     $no_trans = $_POST['no_trans'];
     $nama_meja = $_POST['nama_meja'];
 
-    $sql = "SELECT * FROM tb_order WHERE no_transaksi = '$no_trans'";  
+    $sql = "SELECT * FROM tb_order WHERE order_number = '$no_trans'";  
     $q = $conn->query($sql);
     $data = $q->fetch_assoc();
 
-    $sql = "SELECT * FROM tb_order_detail WHERE no_transaksi = '$no_trans'";  
+    $sql = "SELECT *, nama_menu FROM tb_order_detail_temp O
+            JOIN tbl_menu M ON O.kode_menu = M.kode_menu
+            WHERE order_number = '$no_trans'";  
     $q = $conn->query($sql);
     $result = $q->num_rows;
 

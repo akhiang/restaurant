@@ -1,10 +1,11 @@
 <?php
     include "../conn.php";
-    
+    session_start();
     $subtotal = 0;
     $tax = 0;
     $total = 0;
-    $sql = "SELECT * FROM tb_cart_detail";
+    $user_id = $_SESSION["user_id"];
+    $sql = "SELECT * FROM tb_cart_detail WHERE user_id = '$user_id'";
     $q = $conn->query($sql);
     $result = $q->num_rows;
     

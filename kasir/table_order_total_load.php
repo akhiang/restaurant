@@ -5,7 +5,7 @@
     $tax = 0;
     $total = 0;
     $no_trans = $_POST['no_trans'];
-    $sql = "SELECT * FROM tb_order_detail WHERE no_transaksi = '$no_trans'";
+    $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$no_trans'";
     $q = $conn->query($sql);
     // var_dump($q);
     // $result = mysqli_num_rows($q);

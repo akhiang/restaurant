@@ -1,8 +1,10 @@
 $(document).ready(function () {
+    
+    $('select').val('');
 
     $('#tipepesanan').change(function () {
         var tipe = $(this).val();
-        if(tipe == 1 || tipe == '') {
+        if(tipe == 2 || tipe == '') {
             $("#meja").prop('disabled', true);
         } else {
             $("#meja").prop('disabled', false);;
@@ -12,40 +14,30 @@ $(document).ready(function () {
     $('#form-pesanan').validate({
         errorElement: "small",
         rules: {
-            tipepesanan: {
-                required: true,
-            },
-            id_meja: {
-                required: true,
-            },
+            tipepesanan: {required: true,},
+            id_meja: {required: true,},
         },
         messages: {
-            tipepesanan: {
-                required: 'This field is required',
-            },
-            id_meja: {
-                required: 'This field is required',
-            },
+            tipepesanan: {required: 'This field is required',},
+            id_meja: {required: 'This field is required',},
         },
-        submitHandler: function (form) {
-            // var data = new FormData(form);
-            // console.log(...data);
-            // $.ajax({
-            //     type: 'POST',
-            //     url: "pemesanan.php",
-            //     data: data,
-            //     contentType: false,
-            //     cache: false,
-            //     processData: false,
-            //     success: function () {
-            //         form.submit();
-            //     }
-            // });
+        submitHandler: function (form) {   
+            var tipe_pesanan = $('#tipepesanan').val();
+            var id_meja = $('#meja').val();
+
+            $.ajax({
+                type: 'post',
+                url: 'pemesanan_submit.php',
+                data: {
+                    tipe: tipe_pesanan,
+                    id_meja: id_meja,
+                },
+                success: function () {
+                    // alert('ok');
+                }
+            });
+
             form.submit();
         }
     });
-
-    // $('#submit-pesanan').click(function () {
-    //     $('#form-pesanan').submit();
-    // });
 })

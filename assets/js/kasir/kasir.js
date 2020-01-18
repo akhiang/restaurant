@@ -1,6 +1,8 @@
 $(document).ready(function () {
     loadTable();
-    // loadOrderList();
+    LoadEmptyOrderHead();
+    LoadEmptyOrder();
+    LoadEmptyOrderFoot();
 
     $(".table-container").niceScroll({
         // cursorcolor: "aquamarine"
@@ -32,13 +34,8 @@ $(document).ready(function () {
     $('#payment-modal-body').on('keyup','#bayar', function() {
         let total = $('#total').val();
         let bayar = $('#bayar').val();
-        // console.log(total);
-        // total = notCurrency(total);
         bayar = notCurrency(bayar);
         total = parseInt(notCurrency(total));
-
-        // console.log(typeof total, total);
-
         let kembalian = bayar - total;
         
         $('#kembalian').val(toCurrency(kembalian));
@@ -48,8 +45,6 @@ $(document).ready(function () {
     $.validator.addMethod('le', function (value, element, param) {
         value = notCurrency(value);
         total = notCurrency($(param).val())
-        // console.log(typeof notCurrency($(param).val()));
-        // console.log(typeof value);
         return this.optional(element) || parseInt(value) >= parseInt(total);
     }, 'Invalid value');
 
@@ -72,7 +67,7 @@ $(document).ready(function () {
         },
         messages: {
             bayar: {
-                le: 'Harus lebih dari Total.'
+                le: 'Must be more than Total Amount'
             }
         },
         submitHandler: function (form) {
@@ -91,7 +86,6 @@ $(document).ready(function () {
                     });
                     $("#payment-form")[0].reset();
                     $('#payment-modal').modal('toggle');
-                    // tableMenu.ajax.reload();
                 }
             });
         }
@@ -101,19 +95,13 @@ $(document).ready(function () {
         $('[name="bayar"]').valid();
     });
 
-    $('.table-container').on('click', '.table-card', function () {
-        var kode_meja = $(this).attr('data-table-id');
-        var nama_meja = $(this).attr('data-table-name');
+    $('.list-table').on('click', '.card', function () {
+        $("#btn-payment").css("visibility", "");
         var no_trans = $(this).attr('data-no-trans');
-        
         $.ajax({    
             type: 'POST',
             url: 'table_order_head_load.php',
-            data: {
-                kode_meja: kode_meja,
-                nama_meja: nama_meja,
-                no_trans: no_trans,
-            },
+            data: { no_trans: no_trans },
             success: function (data) {
                 $('.order-list-head').html(data);
             }
@@ -122,9 +110,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: 'table_order_load.php',
-            data: {
-                no_trans : no_trans,
-            },
+            data: { no_trans : no_trans },
             success: function (data) {
                 $('.order-list-body').html(data);
             }
@@ -142,7 +128,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: 'table_order_payment.php',
-            data: {no_trans : no_trans, kode_meja: kode_meja, nama_meja: nama_meja},
+            data: { no_trans : no_trans },
             success: function (data) {
                 $('#payment-form').html(data);
             }
@@ -157,59 +143,19 @@ function loadTable() {
 };
 
 function LoadEmptyOrderHead() {
-    $.get('table_order_head_load.php', function (data) {
+    $.get('empty_load_head.php', function (data) {
         $('.order-list-head').html(data);
     });
 };
 
 function LoadEmptyOrder() {
-    $.get('table_order_load.php', function (data) {
+    $.get('empty_load_body.php', function (data) {
         $('.order-list-body').html(data);
     });
 };
 
-function LoadEmptyOrderTotal() {
-    $.get('table_order_load.php', function (data) {
-        $('.order-list-body').html(data);
+function LoadEmptyOrderFoot() {
+    $.get('empty_load_foot.php', function (data) {
+        $('.order-list-foot').html(data);
     });
 };
-
-function firstLoad() {
-    var kode_meja = 1;
-    var nama_meja = 'M01';
-    var no_trans = $(this).attr('data-no-trans');
-    // alert(kode_meja);
-    // var id = $(this).attr('data-menu-id');
-    $.ajax({
-        type: 'POST',
-        url: 'table_order_head_load.php',
-        data: {
-            kode_meja: kode_meja,
-            nama_meja: nama_meja,
-            no_trans: no_trans,
-        },
-        success: function (data) {
-            $('.order-list-head').html(data);
-        }
-    });
-
-    $.ajax({
-        type: 'POST',
-        url: 'table_order_load.php',
-        data: {
-            no_trans: no_trans,
-        },
-        success: function (data) {
-            $('.order-list-body').html(data);
-        }
-    });
-
-    $.ajax({
-        type: 'POST',
-        url: 'table_order_total_load.php',
-        data: { no_trans: no_trans },
-        success: function (data) {
-            $('.order-list-foot').html(data);
-        }
-    });
-}

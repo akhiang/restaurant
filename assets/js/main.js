@@ -9,6 +9,7 @@ $(document).ready(function () {
     });
 
     $(".order-list-body").niceScroll();
+    // $(".menu-item").niceScroll();
 
     // $('#menu').isotope('layout');
 
@@ -24,6 +25,8 @@ $(document).ready(function () {
         return false;
     });
 
+    // --------------------- Pelayan table.php
+
     $('.view-order').click(function() {
         var no_trans = $(this).attr('data-no-trans');
         var nama_meja = $(this).attr('data-meja-name');
@@ -38,12 +41,35 @@ $(document).ready(function () {
         });
     });
 
+    // --------------------- table.php 
+
+    // pemesanan.php
+
+    $('.cancel-order').click(function () {
+        var meja_id = $(this).attr('data-meja-id');
+        var user_id = $(this).attr('data-user-id');
+        // alert(user_id);
+        $.ajax({
+            type: 'POST',
+            url: 'pemesanan_cancel_order.php',
+            data: {meja_id: meja_id},
+            success: function () {
+                delCart(user_id);
+                window.location.href = "index.php";
+            }
+        })
+    });
+
     $('#table-order-list').on('click', '.del-cart', function () {
         var id = $(this).attr('data-menu-id');
+        var user = $(this).attr('data-user-id');
         $.ajax({
             type: 'POST',
             url: 'pemesanan_list_del.php',
-            data: {id: id},
+            data: {
+                id: id,
+                user: user
+            },
             success: function () {
                 loadListOrder();
                 loadListOrderTotal();
@@ -52,13 +78,25 @@ $(document).ready(function () {
     })
 
     $('.make-order').click(function () {
+        var user_id = $(this).attr('data-user-id');
         var meja_id = $(this).attr('data-meja-id');
+        var tipe = $(this).attr('data-tipe');
         $.ajax({
             type: 'POST',
             url: 'pemesanan_make_order.php',
-            data: {meja_id: meja_id},
-            success: function () {
-                delCart();
+            data: {
+                user_id: user_id,
+                meja_id: meja_id,
+                tipe: tipe,
+            },
+            success: function (data) {
+                delCart(user_id);
+                Swal.fire({
+                    title: data.replace(/['"]+/g, ''),
+                    text: 'Order successful!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
             }
         })
     });
@@ -74,16 +112,34 @@ function clock() {
     setTimeout("clock()", 1000);
 }
 
-function loadListOrder() {
-    $.get('pemesanan_list_load.php', function (data) {
-        $('.order-list-body').html(data);
+function delCart(id) {
+    $.ajax({
+        type: 'POST',
+        data: {id: id},
+        url: 'pemesanan_del_cart.php',
+        success: function () {
+            loadListOrder();
+            loadListOrderTotal();
+        }
     })
+}
+
+function loadListOrder() {
+    $.ajax({
+        type: 'POST',
+        url: 'pemesanan_list_load.php',
+        // data: {id: id},
+        success: function (data) {
+            $('.order-list-body').html(data);
+        }
+    });
 }
 
 function loadListOrderTotal() {
     $.ajax({
         type: 'POST',
         url: 'pemesanan_list_total.php',
+        // data: {id: id},
         success: function(data) {
             $('.order-list-foot').html(data);
         }
@@ -92,6 +148,8 @@ function loadListOrderTotal() {
 
 function addToCart(id){
     var data = $('.menu-card' + id).serialize()
+    // var user_id = $('input[name="hidden_user_id"]').val();
+    // alert(kode_meja);
     $.ajax({
         type:'post',
         url:'pemesanan_list_add.php',
@@ -103,17 +161,6 @@ function addToCart(id){
             spinnerReset();  
         }
     });
-}
-
-function delCart() {
-    $.ajax({
-        type: 'POST',
-        url: 'pemesanan_list_cancel.php',
-        success: function () {
-            loadListOrder();
-            loadListOrderTotal();
-        }
-    })
 }
 
 function spinnerReset() {

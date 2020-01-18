@@ -1,8 +1,9 @@
 <?php
     include "../conn.php";
-    
+    session_start();
     $total = 0;
-    $sql = "SELECT * FROM tb_cart_detail";
+    $user_id = $_SESSION["user_id"];
+    $sql = "SELECT * FROM tb_cart_detail WHERE user_id = '$user_id'";
     $q = mysqli_query($conn,$sql);
     $result = mysqli_num_rows($q);
 
@@ -14,7 +15,7 @@
     ?>
         
         <tr>
-            <td align="center"><a class="del-cart fa fa-times" data-menu-id="<?php echo $row['kode_menu'] ?>"></a></td>
+            <td align="center"><a class="del-cart fa fa-times" data-menu-id="<?php echo $row['kode_menu'] ?>" data-user-id="<?php echo $user_id ?>"></a></td>
             <td> 
                 <span class="font-weight-bold d-block"><?php echo $row['nama_menu'] ?></span>
                 <span class="text-muted fs-12"><?php echo 'Rp ' .$harga ?></span>

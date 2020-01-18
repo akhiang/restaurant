@@ -1,11 +1,23 @@
+.error {
+    color: tomato;
+}
+
 .list-table {
     /* margin: 40px auto; */
     /* max-width: 600px; */
     /* border: 1px solid black; */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(70px, 70px));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+}
+
+.list-table .card {
+    transition: all 0.3s ease 0s;
+}
+
+.list-table .card:hover {
+    transform: translateY(-5px);
 }
 
 .table-container {
@@ -16,7 +28,6 @@
 
 .table-card {
     cursor: pointer;
-    color: white;
     height: 100%;
     border-radius: 10px;
     position: relative;

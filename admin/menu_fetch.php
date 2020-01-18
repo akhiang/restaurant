@@ -8,7 +8,6 @@
     foreach ($result as $row) {
         $sub_array = array();
         $sub_array[] = $row['kode_menu'];
-        // $sub_array[] = $row['gambar'];
         $sub_array[] = '<img src="../assets/images/menu/'.$row["gambar"].'" class="img-fluid img-thumbnail">';
         $sub_array[] = $row['nama_menu'];
         $sub_array[] = $row['jenis'];

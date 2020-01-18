@@ -23,7 +23,7 @@
                         <div id="clock" class="d-none"></div>
                         <div class="list-table bg-white">
                             <?php 
-                                $sql = "SELECT * FROM tb_meja";
+                                $sql = "SELECT * FROM tb_meja ORDER BY kode_meja ASC";
                                 $q = mysqli_query($conn,$sql);
                                 while ($row = mysqli_fetch_assoc($q)) {
                                     $status = $row['status']; 
@@ -45,7 +45,7 @@
                                                         echo "<h5>Tersedia</h5>";} ?>
                                                 <span class="ml-3 ml-auto">
                                                     <?php if($row['status'] == 0) { ?>  
-                                                        <a href="#" class="view-order" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['no_transaksi']; ?>" data-toggle="modal" data-target="#orderListModal">Order List</a>
+                                                        <a href="#" class="view-order" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['order_number']; ?>" data-toggle="modal" data-target="#orderListModal">Order List</a>
                                                     <?php } ?>
                                                 </span>
                                             </div>
@@ -56,7 +56,7 @@
                                                         <div class="order-number">
                                                             <span class="text-muted d-block title">Order Number</span>
                                                             <span class="font-weight-bold">
-                                                                <?php echo '#'.$row2['no_transaksi'];?>
+                                                                <?php echo '#'.$row2['order_number'];?>
                                                             </span>
                                                         </div>
                                                     </div>                          
@@ -90,7 +90,7 @@
         </div>
     </main>
 
-        <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="orderListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
