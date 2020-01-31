@@ -13,7 +13,7 @@
     
     if ($result > 0) {
         while ($row = $q->fetch_assoc()) {
-            $harga = number_format($row['harga'], 0, ',', '.');
+            // $harga = number_format($row['harga'], 0, ',', '.');
             $amount = $row['harga'] * $row['qty'];
             $subtotal += $amount;
         }

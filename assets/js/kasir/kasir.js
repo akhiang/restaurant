@@ -91,6 +91,11 @@ $(document).ready(function () {
         }
     });
 
+    // $('.print').click(function() {
+    //     var order_number = $(this).attr("data-number");
+    //     window.location.href = "invoice/test.php?o=" + order_number;
+    // });
+
     $('[name="total"]').on('change blur keyup', function () {
         $('[name="bayar"]').valid();
     });
@@ -133,8 +138,16 @@ $(document).ready(function () {
                 $('#payment-form').html(data);
             }
         });
+
+        $('#btn-print').attr('data-order-number', no_trans);
     })
 })
+
+function pdf() {
+    var num = $('#btn-print').attr('data-order-number');
+    window.open("invoice/test.php?o=" + num);
+    // window.location.href = "invoice/test.php?o=" + num , "_blank";
+}
 
 function loadTable() {
     $.get('table_load.php', function (data) {

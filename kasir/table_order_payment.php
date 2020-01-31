@@ -50,7 +50,6 @@
             <label for="bayar" class="col-4 offset-1 col-form-label text-right">Paid</label>
             <div class="col-4">
                 <input type="text" name="bayar" class="form-control text-right font-weight-bold" id="bayar" autocomplete="off">
-                <!-- <span class="error" style="color: red; display: none">Only Numeric</span> -->
             </div>
         </div>
         <div class="form-group row">
