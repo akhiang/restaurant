@@ -1,8 +1,8 @@
 $(document).ready(function () {
     loadTable();
-    LoadEmptyOrderHead();
-    LoadEmptyOrder();
-    LoadEmptyOrderFoot();
+    loadEmptyOrderHead();
+    loadEmptyOrder();
+    loadEmptyOrderFoot();
 
     $(".table-container").niceScroll({
         // cursorcolor: "aquamarine"
@@ -82,19 +82,18 @@ $(document).ready(function () {
                 success: function (data) {
                     swal.fire({
                         icon: "success",
-                        title: "Transaksi Selesai",
-                    });
+                        title: "Payment Successful",
+                        timer: 3000
+                    }).then(() => {
+                        $('#btn-print')[0].click();
+                        location.reload();
+                    })
                     $("#payment-form")[0].reset();
                     $('#payment-modal').modal('toggle');
                 }
             });
         }
     });
-
-    // $('.print').click(function() {
-    //     var order_number = $(this).attr("data-number");
-    //     window.location.href = "invoice/test.php?o=" + order_number;
-    // });
 
     $('[name="total"]').on('change blur keyup', function () {
         $('[name="bayar"]').valid();
@@ -146,7 +145,6 @@ $(document).ready(function () {
 function pdf() {
     var num = $('#btn-print').attr('data-order-number');
     window.open("invoice/test.php?o=" + num);
-    // window.location.href = "invoice/test.php?o=" + num , "_blank";
 }
 
 function loadTable() {
@@ -155,19 +153,19 @@ function loadTable() {
     });
 };
 
-function LoadEmptyOrderHead() {
+function loadEmptyOrderHead() {
     $.get('empty_load_head.php', function (data) {
         $('.order-list-head').html(data);
     });
 };
 
-function LoadEmptyOrder() {
+function loadEmptyOrder() {
     $.get('empty_load_body.php', function (data) {
         $('.order-list-body').html(data);
     });
 };
 
-function LoadEmptyOrderFoot() {
+function loadEmptyOrderFoot() {
     $.get('empty_load_foot.php', function (data) {
         $('.order-list-foot').html(data);
     });

@@ -67,7 +67,7 @@
                 <button type="submit" class="btn btn-success">Submit</button>
                 </form>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <a onclick="pdf()" target="_blank" data-order-number="" id="btn-print" class="btn btn-warning">Print</a>
+                <a onclick="pdf()" target="_blank" data-order-number="" id="btn-print" class="btn btn-warning d-none">Print</a>
             </div>
             </div>
         </div>

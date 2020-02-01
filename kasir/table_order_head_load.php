@@ -11,15 +11,24 @@
 
     if ($result > 0) {
         $row = $q->fetch_assoc();
+        $kode_meja = $row['kode_meja'];
+        if($kode_meja == 0){
+            $nama_meja = '-';
+        } else { 
+            $sql2 = "SELECT * FROM tb_meja WHERE kode_meja = '$kode_meja'";
+            $q2 = $conn->query($sql2); 
+            $row2 = $q2->fetch_assoc();
+            $nama_meja =  $row2['nama_meja'];
+        }
     ?>
         <div class="row">
             <div class="col-4">
-                <span class="fs-12 d-block">No Transaksi</span>
+                <span class="fs-12 d-block">Order Number</span>
                 <span class="font-weight-bold"><?php echo $row['order_number']; ?></span>
             </div>
             <div class="col-4 text-center">
-                <span class="fs-12 d-block">No Meja</span>
-                <span class="font-weight-bold"><?php echo $row['kode_meja']; ?></span>
+                <span class="fs-12 d-block">Table</span>
+                <span class="font-weight-bold"><?php echo $nama_meja; ?></span>
             </div>
             <div class="col-4 text-right">
                 <span class="font-weight-bold fs-12 d-block"><?php echo $row['tgl']; ?></span>

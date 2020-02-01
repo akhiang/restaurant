@@ -3,9 +3,6 @@
 }
 
 .list-table {
-    /* margin: 40px auto; */
-    /* max-width: 600px; */
-    /* border: 1px solid black; */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-column-gap: 20px;
@@ -18,6 +15,11 @@
 
 .list-table .card:hover {
     transform: translateY(-5px);
+}
+
+.no-order {
+    grid-column: 1 / span 2;
+    height: calc(100vh - 220px);
 }
 
 .table-container {
