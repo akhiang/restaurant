@@ -25,7 +25,7 @@
 							<object data="../assets/images/order.svg" type="image/svg+xml"  style="width: 70px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#pemesanan-modal">Buat Pesanan</a>
+							<a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#pemesanan-modal">New Order</a>
 						</div>
 					</div>
 					<div class="card text-center">
@@ -33,7 +33,7 @@
 							<object data="../assets/images/chair.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Daftar Meja</a>
+							<a href="table.php" class="btn btn-success btn-sm">Table List</a>
 						</div>
 					</div>
 					<div class="card text-center">
@@ -41,7 +41,7 @@
 							<object data="../assets/images/food.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="pesanan.php" class="btn btn-success btn-sm">Pesanan</a>
+							<a href="pesanan.php" class="btn btn-success btn-sm">Order</a>
 						</div>
 					</div>
 					<div class="card text-center">
@@ -49,7 +49,7 @@
 							<object data="../assets/images/menu.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Daftar Menu</a>
+							<a href="#" class="btn btn-success btn-sm">Menu List</a>
 						</div>
 					</div>
 					<div class="card text-center">
@@ -57,7 +57,7 @@
 							<object data="../assets/images/menu.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Daftar Transaksi</a>
+							<a href="#" class="btn btn-success btn-sm">Transaction</a>
 						</div>
 					</div>
 				</div>		

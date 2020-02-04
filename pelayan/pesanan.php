@@ -19,7 +19,7 @@
 		<div class="container-fluid px-5">
 			<div class="action-card-container py-5">
                 <div id="clock" class="d-none"></div>
-                <div class="cards pesanan">
+                <div class="cards pesanan border">
                 <?php 
                     $sql = "SELECT order_id, order_number, paid, tipe_pesanan_id, kode_meja, name
                             FROM tb_order O 
@@ -43,7 +43,10 @@
                                 <span class="text-muted fs-12">Order Number</span>
                                 <h6 class="m-0"><?php echo $row['order_number'] ?></h6>                            
                             </div>
-                            <a href="#" class="view-order btn btn-success btn-sm ml-auto" data-meja-name="<?php echo $nama_meja; ?>" data-no-trans="<?php echo $row['order_number'] ?>" data-toggle="modal" data-target="#pesananList"><i class="fa fa-eye"></i></a>
+                            <div class="ml-auto">
+                                <a href="#" class="view-order btn btn-success btn-sm" data-meja-name="<?php echo $nama_meja; ?>" data-no-trans="<?php echo $row['order_number'] ?>" data-toggle="modal" data-target="#pesananList"><i class="fa fa-eye"></i></a>
+                                <a href="#" class="add-order btn btn-success btn-sm mx-1" data-no-trans="<?php echo $row['order_number'] ?>" data-toggle="modal" data-target="#addOrderModal"><i class="fa fa-cart-plus"></i></a>
+                            </div>
                         </div>
                         <div class="card-body row">
                             <div class="col-6">
@@ -75,12 +78,35 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?php echo $row['nama_meja'] ?>
                 <div id="table-view-order"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
             </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form form id="add-order-form" method="POST" action="add_order.php">
+                    <div class="modal-body">
+                        Add more order to this placed order ?
+                        <div id="add-order-conf"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" name="submit" class="btn btn-success" id="btn-submit-add">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

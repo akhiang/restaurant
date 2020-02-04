@@ -26,11 +26,10 @@ $(document).ready(function () {
     });
 
     // --------------------- Pelayan table.php
-
+    // add more order
     $('.view-order').click(function() {
         var no_trans = $(this).attr('data-no-trans');
         var nama_meja = $(this).attr('data-meja-name');
-        // alert(no_trans);
         $.ajax({
             type: 'post',
             url: 'table_view_order.php',
@@ -41,6 +40,18 @@ $(document).ready(function () {
         });
     });
 
+    $('.add-order').click(function() {
+        var no_trans = $(this).attr('data-no-trans');
+        $.ajax({
+            type: 'post',
+            url: 'add_order_conf.php',
+            data: { no_trans: no_trans },
+            success: function (data) {
+                $('#add-order-conf').html(data);
+            }
+        });
+    });
+    // add more order
     // --------------------- table.php 
 
     // pemesanan.php
@@ -66,10 +77,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: 'pemesanan_list_del.php',
-            data: {
-                id: id,
-                user: user
-            },
+            data: { id: id, user: user },
             success: function () {
                 loadListOrder();
                 loadListOrderTotal();
@@ -127,10 +135,10 @@ function delCart(id) {
 function loadListOrder() {
     $.ajax({
         type: 'POST',
-        url: 'pemesanan_list_load.php',
         // data: {id: id},
+        url: 'pemesanan_list_load.php',
         success: function (data) {
-            $('.order-list-body').html(data);
+            $('#order-list-body').html(data);
         }
     });
 }
@@ -141,7 +149,7 @@ function loadListOrderTotal() {
         url: 'pemesanan_list_total.php',
         // data: {id: id},
         success: function(data) {
-            $('.order-list-foot').html(data);
+            $('#order-list-foot').html(data);
         }
     });
 }

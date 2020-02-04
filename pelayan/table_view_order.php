@@ -20,11 +20,11 @@
             <div class="caption p-3">
                 <div class="row">
                     <div class="col-4">
-                        <span class="fs-12 d-block">No Transaksi</span>
+                        <span class="fs-12 d-block">Order Number</span>
                         <?php echo '#'.$no_trans; ?>
                     </div>
                     <div class="col-4 text-center">
-                        <span class="fs-12 d-block">No Meja</span>
+                        <span class="fs-12 d-block">Table</span>
                         <?php echo $nama_meja; ?>
                     </div>
                     <div class="col-4 text-right">

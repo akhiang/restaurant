@@ -6,8 +6,8 @@
     $user_id = $_SESSION["user_id"];
 
     if (isset($_POST["submit"])) {
-        // var_dump($_POST);
-        $tipe = $_POST['tipepesanan'];
+        $order_number = $_POST['number'];
+        $tipe = $_POST['tipe_id'];
         $sql = "SELECT * FROM tb_tipe_pesanan WHERE id = '$tipe'";  
         $q = $conn->query($sql);
         $data = $q->fetch_assoc();
@@ -16,7 +16,7 @@
             $kode_meja = '';
             $nama_meja = '-';
         } else {
-            $kode_meja = $_POST['id_meja'];
+            $kode_meja = $_POST['meja_id'];
             $sql = "SELECT * FROM tb_meja WHERE kode_meja = '$kode_meja'";  
             $q = $conn->query($sql);
             $meja = $q->fetch_assoc();
@@ -33,29 +33,30 @@
                         <div class="order-list-head pb-2">
                             <div class="row">
                                 <div class="col-4">
-                                    <span class="text-muted fs-13 d-block">Tipe pesanan</span>
+                                    <span class="text-muted fs-13 d-block">Order Type</span>
                                     <span class="font-weight-bold"><?php echo ucwords($data['name']); ?></span>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <span class="text-muted fs-13 d-block">Meja</span>
+                                    <span class="text-muted fs-13 d-block">Table</span>
                                     <span class="font-weight-bold"><?php echo $nama_meja; ?></span>
                                 </div>
                                 <div class="col-5 d-flex flex-column">
-                                    <span class="text-muted fs-13 ml-auto"><?php echo date("l, d-m-Y"); ?></span>
-                                    <span class="text-muted fs-13 ml-auto" id="clock"></span>
+                                    <span class="text-muted fs-13 ml-auto d-none" id="clock"></span>
+                                    <span class="text-muted fs-13 ml-auto d-block">Order Number</span>
+                                    <span class="ml-auto font-weight-bold"><?php echo '#'.$order_number; ?></span>
+                                    <input type="hidden" value="<?php echo $order_number; ?>" id="number">
                                 </div>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-sm table-fixed" id="table-order-list">         
-                                <tbody class="order-list-body mb-3" id="order-list-body"></tbody>
-                                <tfoot class="order-list-foot" id="order-list-foot">
-                                </tfoot> 
+                                <tbody class="order-list-body mb-3" id="add-order-body"></tbody>
+                                <tfoot class="order-list-foot" id="add-order-foot"></tfoot> 
                             </table>
                             <div class="order-list-option d-flex p-2">
                                 <button class="btn btn-danger ml-auto" data-toggle="modal" data-target="#cancelOrder">Cancel</button>
-                                <button class="make-order btn btn-success ml-3" data-user-id="<?php echo $user_id ?>"
-                                    data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>">Place Order</button>
+                                <!-- <button id="add-order-submit" class="btn btn-success ml-3" data-user-id="<?php echo $user_id ?>" -->
+                                    <!-- data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>" data-order="<?php echo $order_number; ?>">Add Order</!-->
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@
                                             <input type="hidden" name="hidden_kode_menu" id="kode<?php echo $row['id'] ?>" value="<?php echo $row["kode_menu"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
-                                            <button type="button" onclick="addToCart(<?php echo $row['id'] ?>)"
+                                            <button type="button" onclick="addToOrder(<?php echo $row['id'] ?>)"
                                             class="add-cart btn btn-success btn-sm btn-block mt-2" data-menu-id="<?php echo $row['id'] ?>">Add<i class="fas fa-shopping-cart ml-2"></i></button>
                                         </form>
                                     </div>
@@ -108,17 +109,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Batalkan pemesanan?</p>
+                    <p>Cancel this order?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="cancel-order btn btn-danger" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>" data-dismiss="modal">Ya</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
+                    <button type="button" class="cancel-order btn btn-danger" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>" data-dismiss="modal">Yes, cancel it</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
