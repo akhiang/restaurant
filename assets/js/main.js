@@ -56,21 +56,6 @@ $(document).ready(function () {
 
     // pemesanan.php
 
-    $('.cancel-order').click(function () {
-        var meja_id = $(this).attr('data-meja-id');
-        var user_id = $(this).attr('data-user-id');
-        // alert(user_id);
-        $.ajax({
-            type: 'POST',
-            url: 'pemesanan_cancel_order.php',
-            data: {meja_id: meja_id},
-            success: function () {
-                delCart(user_id);
-                window.location.href = "index.php";
-            }
-        })
-    });
-
     $('#table-order-list').on('click', '.del-cart', function () {
         var id = $(this).attr('data-menu-id');
         var user = $(this).attr('data-user-id');
@@ -101,10 +86,26 @@ $(document).ready(function () {
                 delCart(user_id);
                 Swal.fire({
                     title: data.replace(/['"]+/g, ''),
-                    text: 'Order successful!',
+                    text: 'Order successful placed!',
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 })
+            }
+        })
+    });
+
+    $('.cancel-order').click(function () {
+        var meja_id = $(this).attr('data-meja-id');
+        var user_id = $(this).attr('data-user-id');
+        $.ajax({
+            type: 'POST',
+            url: 'pemesanan_cancel_order.php',
+            data: {
+                meja_id: meja_id
+            },
+            success: function () {
+                delCart(user_id);
+                window.location.href = "index.php";
             }
         })
     });

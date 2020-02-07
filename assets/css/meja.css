@@ -141,25 +141,22 @@
 }
 
 .table-card .view-order {
-    position: relative;
-    left: 0;
-    color: #015c41;
-    font-size: 12px;
-    padding: 4px;
+    /* position: relative; */
+    /* left: 0; */
+    background: linear-gradient(147deg, #ff852d 0%, #fd3838 74%);
+    color: #fff;
+    /* font-size: 12px; */
+    /* padding: 4px; */
     outline: none;
-    border: 1px solid;
-    border-radius: 3px;
-    text-decoration: none;
+    /* border: 1px solid; */
+    /* border-radius: 3px; */
+    /* text-decoration: none; */
     transition: all .4s;
 }
 
-.table-card .view-order:hover {
-    left: -5px;
-}
-
 .order-action button {
-    position: relative;
-    left: 0;
+    /* position: relative;
+    left: 0; */
     color: white;
     outline: none;
     border: none;
@@ -169,7 +166,7 @@
 
 .order-action button:hover {
     color: white;
-    left: -5px;
+    /* left: -5px; */
 }
 
 .order-action .btn-add-order {

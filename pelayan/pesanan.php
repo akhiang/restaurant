@@ -19,7 +19,7 @@
 		<div class="container-fluid px-5">
 			<div class="action-card-container py-5">
                 <div id="clock" class="d-none"></div>
-                <div class="cards pesanan border">
+                <div class="cards pesanan">
                 <?php 
                     $sql = "SELECT order_id, order_number, paid, tipe_pesanan_id, kode_meja, name
                             FROM tb_order O 

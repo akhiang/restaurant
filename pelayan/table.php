@@ -38,14 +38,14 @@
                                             <h6 class="m-0 p-0"> <?php echo $row['nama_meja'] ?> </h6>
                                         </div>
                                         <div class="table-card-content">
-                                            <div class="table-card-head d-flex">
+                                            <div class="table-card-head d-flex py-1">
                                                 <?php if($status==0){
                                                         echo "<h5 class='text-danger'>Terisi</h5>";
                                                     }else {
                                                         echo "<h5>Tersedia</h5>";} ?>
                                                 <span class="ml-3 ml-auto">
                                                     <?php if($row['status'] == 0) { ?>  
-                                                        <a href="#" class="view-order" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['order_number']; ?>" data-toggle="modal" data-target="#orderListModal">Order List</a>
+                                                        <a href="#" class="view-order btn btn-sm" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['order_number']; ?>" data-toggle="modal" data-target="#orderListModal"><i class="fa fa-eye"></i></a>
                                                     <?php } ?>
                                                 </span>
                                             </div>
@@ -62,17 +62,27 @@
                                                     </div>                          
                                                     <div class="col-6">
                                                         <div class="order-action">
-                                                            <form action="pemesanan.php" method="post" class="d-flex">
-                                                                <input type="hidden" name="id_meja" value="<?php echo $row['kode_meja'] ?>">
-                                                                <input type="hidden" name="nama_meja" value="<?php echo $row['nama_meja'] ?>">
-                                                                <?php 
-                                                                    if($status == 0){
-                                                                        echo '<button type="submit" class="btn btn-add-order btn-sm ml-auto">Add Order</button>';
-                                                                    } else {
-                                                                        echo '<button type="submit" class="btn btn-new-order btn-sm ml-auto">New Order</button>';
-                                                                    }
-                                                                ?>    
-                                                            </form>
+                                                            <?php 
+                                                                if ($status == 0) {
+                                                            ?>
+                                                                <form action="add_order.php" method="post" class="d-flex">
+                                                                    <input type="hidden" name="meja_id" value="<?php echo $row['kode_meja'] ?>">
+                                                                    <input type="hidden" name="tipe_id" value="<?php echo $row2['tipe_pesanan_id'] ?>">
+                                                                    <input type="hidden" name="number" value="<?php echo $row2['order_number'] ?>">
+                                                                    <button type="submit" name="submit" class="btn btn-add-order btn-sm ml-auto">Add Order</button>
+                                                                </form>
+                                                            <?php
+                                                                } else {
+                                                            ?>
+                                                                <form action="pemesanan.php" method="post" class="d-flex">
+                                                                    <input type="hidden" name="id_meja" value="<?php echo $row['kode_meja'] ?>">
+                                                                    <input type="hidden" name="tipe_id" value="1">
+                                                                    <input type="hidden" name="nama_meja" value="<?php echo $row['nama_meja'] ?>">
+                                                                    <button type="submit" name="submit" class="btn btn-new-order btn-sm ml-auto">New Order</button>   
+                                                                </form>
+                                                            <?php
+                                                                }
+                                                            ?> 
                                                         </div>
                                                     </div>                          
                                                 </div>

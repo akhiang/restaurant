@@ -2,10 +2,6 @@
     require_once "../conn.php";
     session_start();
     // date_default_timezone_set("Asia/Bangkok");
-
-    // $user_id = $_SESSION["user_id"];
-    // $tgl = date("Y-m-d");
-    // $waktu = date("h:i:sa");
     $tipe = $_POST['tipe'];
 
     if($tipe == 2) {

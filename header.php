@@ -35,14 +35,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="./index.php">Beranda<span class="sr-only"></span></a>
+                            <a class="nav-link active" href="./index.php">Home<span class="sr-only"></span></a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="./table.php">Meja<span class="sr-only">(current)</span></a>
-                        </li>  -->
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="pemesanan.php">Pemesanan<span class="sr-only">(current)</span></a>
-                        </li>           -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="./table.php">Table<span class="sr-only">(current)</span></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pesanan.php">Order List<span class="sr-only"></span></a>
+                        </li>          
+                        <li class="nav-item">
+                            <a class="nav-link" href="./menu.php">Menu List<span class="sr-only"></span></a>
+                        </li>          
                     </ul>
 
                     <ul class="navbar-nav ml-auto">

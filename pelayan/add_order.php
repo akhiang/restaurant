@@ -55,6 +55,7 @@
                             </table>
                             <div class="order-list-option d-flex p-2">
                                 <button class="btn btn-danger ml-auto" data-toggle="modal" data-target="#cancelOrder">Cancel</button>
+                                <a href="pesanan.php" class="btn btn-success ml-3">Back</a>
                                 <!-- <button id="add-order-submit" class="btn btn-success ml-3" data-user-id="<?php echo $user_id ?>" -->
                                     <!-- data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>" data-order="<?php echo $order_number; ?>">Add Order</!-->
                             </div>

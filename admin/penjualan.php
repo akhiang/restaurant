@@ -193,10 +193,11 @@
                     <!-- <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-user-modal"> -->
                       <!-- <i class="fa fa-plus mr-2"></i>Tambah User</button> -->
                     <tr>
-                      <th scope="col">No Transaksi</th>
-                      <th scope="col">Meja</th>
-                      <th scope="col">User</th>
-                      <th scope="col">Tanggal</th>
+                      <th scope="col">Order Number</th>
+                      <th scope="col">Order Type</th>
+                      <th scope="col">Waiter</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Date</th>
                       <!-- <th scope="col">Waktu</th> -->
                       <!-- <th scope="col">Subtotal</th> -->
                       <!-- <th scope="col">Tax</th> -->

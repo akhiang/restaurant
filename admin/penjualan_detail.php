@@ -168,19 +168,20 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Detail Transaksi</h1>
+            <h1 class="m-0 text-dark">Transaction Detail</h1>
             <?php 
                 if(isset($_GET["no"])) {
                     $data = $_GET["no"];
                 }
             ?>
           </div><!-- /.col -->
-          <!-- <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+          <div class="col-sm-6">
+          
+            <!-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div> -->
+            </ol> -->
+          </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -195,15 +196,17 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-12">
-                    <h4>Transaksi</h4>
+                    <a href="penjualan.php" class="btn btn-primary btn-sm mb-3">Back</a>
+                    <h4>Transaction</h4>
                     <table id="table-trans-detail" class="table table-hover table-sm w-100">
                       <tbody>
                       <?php
                         require_once "../conn.php";
-                        $sql = "SELECT Orders.*, Meja.nama_meja, Users.username FROM tb_order as Orders
-                                INNER JOIN tb_meja as Meja USING(kode_meja)
-                                INNER JOIN tbl_user as Users ON Orders.user_id = Users.id
-                                WHERE Orders.no_transaksi = '$data'";
+                        $sql = "SELECT *, m.nama_meja, u.username, t.name FROM tb_order o
+                                LEFT JOIN tb_meja m ON o.kode_meja = m.kode_meja
+                                LEFT JOIN tbl_user u ON o.user_id = u.id
+                                LEFT JOIN tb_tipe_pesanan t ON o.tipe_pesanan_id = t.id
+                                WHERE o.order_number = '$data'";
                         $q = $conn->query($sql);
                         $result = $q->num_rows;
                         if($result > 0) {
@@ -211,23 +214,27 @@
                           $date = date('j F Y', strtotime($row['tgl']));
                       ?>
                         <tr>
-                          <td>No Transaksi</td>
-                          <td class="font-weight-bold"><?php echo $row['no_transaksi']; ?></td>
+                          <td>Order Number</td>
+                          <td class="font-weight-bold"><?php echo $row['order_number']; ?></td>
                         </tr>
                         <tr>
-                          <td>Meja</td>
-                          <td class="font-weight-bold"><?php echo $row['nama_meja']; ?></td>
+                          <td>Order Type</td>
+                          <td class="font-weight-bold"><?php echo ucwords($row['name']); ?></td>
                         </tr>
                         <tr>
-                          <td>Pelayan</td>
-                          <td class="font-weight-bold"><?php echo $row['username']; ?></td>
+                          <td>Table</td>
+                          <td class="font-weight-bold"><?php echo $row['nama_meja'] == '' ? '-' : $row['nama_meja']; ?></td>
                         </tr>
                         <tr>
-                          <td>Tanggal</td>
+                          <td>Waiter</td>
+                          <td class="font-weight-bold"><?php echo ucwords($row['username']); ?></td>
+                        </tr>
+                        <tr>
+                          <td>Date</td>
                           <td class="font-weight-bold"><?php echo $date; ?></td>
                         </tr>
                         <tr>
-                          <td>Waktu</td>
+                          <td>Time</td>
                           <td class="font-weight-bold"><?php echo $row['waktu']; ?></td>
                         </tr>
                         <tr>
@@ -254,9 +261,9 @@
                       <thead class="text-center">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama Menu</th>
+                            <th scope="col">Menu</th>
                             <th scope="col">Qty</th>
-                            <th scope="col">Harga</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Total</th>
                         </tr>
                       </thead>
@@ -265,7 +272,9 @@
                             $numb = 1;
                             $subtotal = 0;
                             $total = 0;
-                            $sql = "SELECT * FROM tb_order_detail WHERE no_transaksi = $data";  
+                            $sql = "SELECT *, nama_menu FROM tb_order_detail_temp od
+                                    LEFT JOIN tbl_menu m on od.kode_menu = m.kode_menu
+                                    WHERE order_number = $data";  
                             $q = $conn->query($sql);
                             $result = $q->num_rows;
                             if($result > 0){
