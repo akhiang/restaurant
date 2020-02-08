@@ -5,7 +5,7 @@
 
     $user_id = $_SESSION["user_id"];
 
-    if (isset($_POST["submit"])) {
+    if (isset($_POST["_token"])) {
         // var_dump($_POST);
         $tipe = $_POST['tipe_id'];
         $sql = "SELECT * FROM tb_tipe_pesanan WHERE id = '$tipe'";  
@@ -71,7 +71,6 @@
                             <?php 
                                 $sql = "SELECT * FROM tbl_menu";
                                 $q = mysqli_query($conn,$sql);
-
                                 while ($row = mysqli_fetch_assoc($q)) {
                             ?>
                                 

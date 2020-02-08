@@ -49,15 +49,7 @@
 							<object data="../assets/images/menu.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Menu List</a>
-						</div>
-					</div>
-					<div class="card text-center">
-						<div class="card-img">
-							<object data="../assets/images/menu.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
-						</div>
-						<div class="card-body">
-							<a href="#" class="btn btn-success btn-sm">Transaction</a>
+							<a href="menu.php" class="btn btn-success btn-sm">Menu List</a>
 						</div>
 					</div>
 				</div>		
@@ -79,7 +71,7 @@
 				<form id="form-pesanan" method="POST" action="pemesanan.php">
 					<div class="form-group">
 						<label for="tipepesanan">Tipe pesanan</label>
-						<select class="form-control" id="tipepesanan" name="tipepesanan">
+						<select class="form-control" id="tipepesanan" name="tipe_id">
 							<option value="" selected>Pilih tipe pesanan</option>
 							<?php 
 								$sql = "SELECT * FROM tb_tipe_pesanan";  
@@ -105,6 +97,7 @@
 							?>
 						</select>
 					</div>
+					<input type="hidden" name="_token">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

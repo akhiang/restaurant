@@ -29,7 +29,7 @@ $(document).ready(function () {
                 type: 'post',
                 url: 'pemesanan_submit.php',
                 data: {
-                    tipe: tipe_pesanan,
+                    tipe_id: tipe_pesanan,
                     id_meja: id_meja,
                 },
                 success: function () {

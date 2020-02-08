@@ -97,7 +97,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form form id="add-order-form" method="POST" action="add_order.php">
+                <form id="add-order-form" method="POST" action="add_order.php">
                     <div class="modal-body">
                         Add more order to this placed order ?
                         <div id="add-order-conf"></div>

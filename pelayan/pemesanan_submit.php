@@ -2,7 +2,7 @@
     require_once "../conn.php";
     session_start();
     // date_default_timezone_set("Asia/Bangkok");
-    $tipe = $_POST['tipe'];
+    $tipe = $_POST['tipe_id'];
 
     if($tipe == 2) {
         $kode_meja = '';

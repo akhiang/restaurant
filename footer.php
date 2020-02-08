@@ -6,7 +6,7 @@
     <script src="../assets/js/simplebar.min.js"></script>
     <script src="../assets/js/jquery.validate.min.js"></script>
     <script src="../assets/js/sweetalert2@9.js"></script>
-    
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script src="../assets/js/isotope.pkgd.min.js"></script>
     <script src="../assets/js/jquery.nicescroll.js"></script>
     <script src="../assets/js/InputSpinner.js"></script>

@@ -13,19 +13,24 @@ $(document).ready(function () {
 
     // $('#menu').isotope('layout');
 
-    var $menu = $('.menu-item').isotope({
+    $('.menu-item').imagesLoaded(function () {
+        // images have loaded
+        var $menu = $('.menu-item').isotope();
 
-    });
-    
-    $('.menu-filter').on('click', 'span', function () {
-        var filterValue = $(this).attr('data-filter');
-        $menu.isotope({
-            filter: filterValue
+        $('.menu-filter').on('click', 'span', function () {
+            var filterValue = $(this).attr('data-filter');
+            $menu.isotope({
+                filter: filterValue
+            });
+            return false;
         });
-        return false;
     });
+
+    
+    
 
     // --------------------- Pelayan table.php
+
     // add more order
     $('.view-order').click(function() {
         var no_trans = $(this).attr('data-no-trans');
@@ -52,7 +57,36 @@ $(document).ready(function () {
         });
     });
     // add more order
-    // --------------------- table.php 
+
+    // table.php 
+        $('.btn-new-order').click(function() {
+            var id = $(this).attr('data-table');
+            $.ajax({
+                type: 'post',
+                url: 'table_new_order_conf.php',
+                data: { meja_id: id },
+                success: function (data) {
+                    $('#table-new-order-conf').html(data);
+                }
+            });
+        });
+
+        $('#btn-new-order-modal').click(function () {
+            var tipe = $('#table-new-order-form input[name="tipe_id"]').val();
+            var meja = $('#table-new-order-form input[name="id_meja"]').val();
+            
+            $.ajax({
+                type: 'post',
+                url: 'pemesanan_submit.php',
+                data: {
+                    tipe_id: tipe,
+                    id_meja: meja,
+                }
+            });
+            $("#table-new-order-form").submit(); // Submit the form
+        });
+
+    // table.php
 
     // pemesanan.php
 
@@ -85,10 +119,12 @@ $(document).ready(function () {
             success: function (data) {
                 delCart(user_id);
                 Swal.fire({
-                    title: data.replace(/['"]+/g, ''),
+                    title: 'Success',
                     text: 'Order successful placed!',
                     icon: 'success',
                     confirmButtonText: 'Ok'
+                }).then(() => {
+                    window.location.href = 'pesanan.php';
                 })
             }
         })
@@ -109,6 +145,8 @@ $(document).ready(function () {
             }
         })
     });
+
+    // pemesanan.php
 });
 
 function clock() {
