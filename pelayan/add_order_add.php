@@ -19,4 +19,20 @@
     else {
         $conn->query($sql);
     }
+
+    // update total di tb_order
+    $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$order_number'";
+    $q = $conn->query($sql);
+    while ($row = $q->fetch_assoc()) {
+            // $harga = number_format($row['harga'], 0, ',', '.');
+            $amount = $row['harga'] * $row['qty'];
+            $subtotal += $amount;
+        }
+    $tax = $subtotal * 0.1;
+    $total = $subtotal + $tax;
+    
+    $sql = "UPDATE tb_order SET subtotal = '$subtotal',
+            tax = '$tax', total = '$total'
+            WHERE order_number = '$order_number'";
+    $q = $conn->query($sql);
 ?>

@@ -177,6 +177,7 @@ nav.fixed-top {
 
 .order-list-container .table .fa {
     color: #ea5e5e;
+    cursor: pointer;
 }
 
 /* End List Order */
@@ -212,11 +213,6 @@ nav.fixed-top {
 
 .menu-filter li span:hover {
     color: #207561;
-}
-
-.menu-item2 {
-    top: 0;
-    left :0;
 }
 
 /* End Menu */

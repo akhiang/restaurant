@@ -9,7 +9,7 @@ $(document).ready(function () {
     });
 
     $(".order-list-body").niceScroll();
-    // $(".menu-item").niceScroll();
+    $(".menu-container").niceScroll();
 
     // $('#menu').isotope('layout');
 

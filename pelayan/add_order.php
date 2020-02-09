@@ -69,7 +69,7 @@
                             <li><span data-filter=".Makanan">Foods</span></li>
                             <li><span data-filter=".Minuman">Drinks</span></li>
                         </ul>
-                        <div class="menu-item d-flex flex-wrap justify-content-center col-12">
+                        <div class="menu-item d-flex flex-wrap justify-content-center">
                             <?php 
                                 $sql = "SELECT * FROM tbl_menu";
                                 $q = mysqli_query($conn,$sql);
