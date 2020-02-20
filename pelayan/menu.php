@@ -21,8 +21,10 @@
             <div class="text-center rounded bg-white py-4 px-2">
                 <ul class="menu-filter">
                     <li><span data-filter="*" class="current">All</span></li>
-                    <li><span data-filter=".Makanan">Foods</span></li>
-                    <li><span data-filter=".Minuman">Drinks</span></li>
+                    <li><span data-filter=".Makanan">Bakso</span></li>
+                    <li><span data-filter=".mie">Noodle</span></li>
+                    <li><span data-filter=".snack">Snack</span></li>
+                    <li><span data-filter=".Minuman">Drink</span></li>
                 </ul>
                 <div class="menu-item justify-content-center">
                 <!-- <div class="menu-item row row-cols-1 row-cols-md-2"> -->

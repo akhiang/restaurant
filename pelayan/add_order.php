@@ -56,8 +56,6 @@
                             <div class="order-list-option d-flex p-2">
                                 <button class="btn btn-danger ml-auto" data-toggle="modal" data-target="#cancelOrder">Cancel</button>
                                 <a href="pesanan.php" class="btn btn-success ml-3">Back</a>
-                                <!-- <button id="add-order-submit" class="btn btn-success ml-3" data-user-id="<?php echo $user_id ?>" -->
-                                    <!-- data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>" data-order="<?php echo $order_number; ?>">Add Order</!-->
                             </div>
                         </div>
                     </div>
@@ -66,8 +64,10 @@
                     <div class="menu-container text-center rounded bg-white py-4 px-2"  style="height: calc(100vh - 7.5rem); overflow: auto;">
                         <ul class="menu-filter">
                             <li><span data-filter="*" class="current">All</span></li>
-                            <li><span data-filter=".Makanan">Foods</span></li>
-                            <li><span data-filter=".Minuman">Drinks</span></li>
+                            <li><span data-filter=".Makanan">Bakso</span></li>
+                            <li><span data-filter=".mie">Noodle</span></li>
+                            <li><span data-filter=".snack">Snack</span></li>
+                            <li><span data-filter=".Minuman">Drink</span></li>
                         </ul>
                         <div class="menu-item d-flex flex-wrap justify-content-center">
                             <?php 

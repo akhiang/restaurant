@@ -64,8 +64,10 @@
                     <div class="menu-container text-center rounded bg-white py-4 px-2"  style="height: calc(100vh - 7.5rem); overflow: auto;">
                         <ul class="menu-filter">
                             <li><span data-filter="*" class="current">All</span></li>
-                            <li><span data-filter=".Makanan">Foods</span></li>
-                            <li><span data-filter=".Minuman">Drinks</span></li>
+                            <li><span data-filter=".bakso">Bakso</span></li>
+                            <li><span data-filter=".mie">Noodle</span></li>
+                            <li><span data-filter=".snack">Snack</span></li>
+                            <li><span data-filter=".Minuman">Drink</span></li>
                         </ul>
                         <div class="menu-item d-flex flex-wrap justify-content-center col-12">
                             <?php 
@@ -85,8 +87,9 @@
                                             <input type="hidden" name="hidden_kode_menu" id="kode<?php echo $row['id'] ?>" value="<?php echo $row["kode_menu"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
-                                            <button type="button" onclick="addToCart(<?php echo $row['id'] ?>)"
-                                            class="add-cart btn btn-success btn-sm btn-block mt-2" data-menu-id="<?php echo $row['id'] ?>">Add<i class="fas fa-shopping-cart ml-2"></i></button>
+                                            <input type="hidden" name="hidden_jenis" value="<?php echo $row["jenis"]; ?>" />
+                                            <button type="button" onclick="addToCart(<?php echo $row['id'] ?>)" class="add-cart btn btn-success btn-sm btn-block mt-2" 
+                                            data-menu-id="<?php echo $row['id'] ?>">Add<i class="fas fa-shopping-cart ml-2"></i></button>
                                         </form>
                                     </div>
                                 </div> 
@@ -119,6 +122,47 @@
                     <button type="button" class="cancel-order btn btn-danger" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>" data-dismiss="modal">Ya</button>
                     <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="baksoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="modifier-form">
+                <div class="modal-body">
+                    <input type="hidden" name="hidden_user_id" value="<?php echo $user_id; ?>" />
+                    <input type="hidden" name="hidden_menu_id" id="menu_id">
+                    <input type="hidden" name="hidden_menu_kode" id="menu_kode">
+                    <input type="hidden" name="hidden_menu_nama" id="menu_nama">
+                    <input type="hidden" name="hidden_menu_qty" id="menu_qty">
+                    <input type="hidden" name="hidden_menu_harga" id="menu_harga">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" name="mie[]" type="checkbox" value="1" id="mie_kuning">
+                        <label class="form-check-label" for="mie_kuning">
+                            Mie Kuning
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="mie[]" type="checkbox" value="2" id="mie_putih">
+                        <label class="form-check-label" for="mie_putih">
+                            Mie Putih
+                        </label>
+                    </div>
+                    <label for="mie[]" class="error mt-2" style="display: none">Your error message will be display here.</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
