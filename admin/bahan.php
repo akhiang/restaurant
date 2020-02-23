@@ -119,7 +119,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="./bahan.php" class="nav-link">
+                <a href="./bahan.php" class="nav-link active">
                 <i class="nav-icon fas fa-utensils"></i>
                 <p>
                     Ingredient
@@ -127,7 +127,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="./meja.php" class="nav-link">
                 <i class="nav-icon fas fa-chair"></i>
                 <p>
                     Table
@@ -180,7 +180,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Table</h1>
+                <h1 class="m-0 text-dark">Ingredient</h1>
             </div><!-- /.col -->
             <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -201,14 +201,15 @@
                 <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="table-meja" class="table table-hover table-sm text-center w-100">
+                        <table id="table-ing" class="table table-hover table-sm text-center w-100">
                             <thead>
-                                <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-meja-modal">
-                                <i class="fa fa-plus mr-2"></i>Tambah Meja</button>
+                                <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-ing-modal">
+                                <i class="fa fa-plus mr-2"></i>Create</button>
                                 <tr>
-                                    <th scope="col">Kode</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Unit</th>
+                                    <th scope="col">Qty</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -240,16 +241,16 @@
     </div>
     <!-- ./wrapper -->
 
-<div class="modal fade" id="add-meja-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-ing-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Meja</h5>
+                <h5 class="modal-title">Create</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="add-meja-form" id="add-meja-form">
+            <form class="add-ing-form" id="add-ing-form">
                 <div class="modal-body">
                     <?php
                         require_once "../conn.php";
@@ -261,18 +262,16 @@
                     ?>
                     <input type="hidden" name="kode_meja" value="<?php echo $kode ?>">
                     <div class="form-group">
-                        <label class="col-form-label">Nama Meja</label>
-                        <input type="text" class="form-control form-control-sm" name="nama_meja" autocomplete="off">
-                        <small class="form-text text-muted">
-                            (Exa. M01, M02)
-                        </small>
-                    </div>  
+                        <label class="col-form-label">Name</label>
+                        <input type="text" class="form-control form-control-sm" name="name" autocomplete="off">
+                    </div>
                     <div class="form-group">
-                        <label for="role" class="col-form-label">Status</label>
-                        <select class="form-control form-control-sm" name="status">
-                            <option value="1" selected>Tersedia</option>
-                            <option value="0">Terisi</option>
-                        </select>
+                        <label class="col-form-label">Unit</label>
+                        <input type="text" class="form-control form-control-sm" name="unit" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Qty</label>
+                        <input type="text" class="form-control form-control-sm" name="qty" autocomplete="off">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -284,33 +283,34 @@
     </div>
 </div>
 
-<div class="modal fade" id="edit-meja-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-ing-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Meja</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="edit-meja-form">
                 <div class="modal-body">
-                    <input type="hidden"name="kode_meja">
+                    <input type="hidden"name="id">
                     <div class="form-group">
-                        <label class="col-form-label">Nama Meja</label>
-                        <input type="text" class="form-control form-control-sm" name="nama_meja" autocomplete="off">
+                        <label class="col-form-label">Name</label>
+                        <input type="text" class="form-control form-control-sm" name="name" autocomplete="off">
                     </div> 
                     <div class="form-group">
-                        <label class="col-form-label">Status</label>
-                        <select class="form-control form-control-sm" name="status">
-                            <option value="1" selected="">Tersedia</option>
-                            <option value="0">Terisi</option>
-                        </select>
-                    </div>  
+                        <label class="col-form-label">Unit</label>
+                        <input type="text" class="form-control form-control-sm" name="unit" autocomplete="off">
+                    </div> 
+                    <div class="form-group">
+                        <label class="col-form-label">Qty</label>
+                        <input type="text" class="form-control form-control-sm" name="qty" autocomplete="off">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn-edit-meja btn btn-primary">Save</button>
+                    <button type="submit" class="btn-edit-ing btn btn-primary">Save</button>
                     </div>
                 </div>
             </form>

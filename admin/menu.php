@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Menu</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -65,7 +65,7 @@
             <i class="fas fa-user-cog mr-3"></i><?php echo $_SESSION['role']; ?>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Profile</a>
+          <button type="button" class="dropdown-item dropdown-footer" data-toggle="modal" data-target="#logoutModal">Logout</button>
         </div>
       </li>
       <li class="nav-item">
@@ -119,7 +119,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="meja.php" class="nav-link">
+            <a href="./bahan.php" class="nav-link">
+              <i class="nav-icon fas fa-utensils"></i>
+              <p>
+                Ingredient
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./meja.php" class="nav-link">
               <i class="nav-icon fas fa-chair"></i>
               <p>
                 Table
@@ -130,7 +138,7 @@
             <a href="./penjualan.php" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave"></i>
               <p>
-                Penjualan
+                Transaction
               </p>
             </a>
           </li>
@@ -195,14 +203,15 @@
                 <table id="table-menu" class="table table-hover table-sm text-center w-100">
                   <thead>
                     <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-menu-modal">
-                    <i class="fa fa-plus mr-2"></i>Tambah Menu</button>
+                    <i class="fa fa-plus mr-2"></i>Create</button>
                     <tr>
-                      <th scope="col">Kode</th>
-                      <th scope="col" class="w-25">Gambar</th>
-                      <th scope="col">Nama</th>
-                      <th scope="col">Jenis</th>
-                      <th scope="col">Stock</th>
-                      <th scope="col">Harga</th>
+                      <th scope="col">#</th>
+                      <th scope="col">Number</th>
+                      <th scope="col" class="w-25">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Price</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -290,22 +299,23 @@
       </div>
       <div class="modal-body">
         <form id="edit-menu-form">
-          <input type="hidden" class="form-control form-control-sm" name="id" autocomplete="off">
+          <input type="hidden" name="id" autocomplete="off">
           <div class="form-group">
             <label for=nama_menu" class="col-form-label">Nama Menu</label>
             <input type="text" class="form-control form-control-sm" name="nama_menu" autocomplete="off">
           </div>
           <div class="form-group">
+            <label for="decs">Description</label>
+            <textarea class="form-control" id="desc" name="desc" rows="2"></textarea>
+          </div>
+          <div class="form-group">
             <label for="jenis" class="col-form-label">Jenis</label>
             <select class="form-control form-control-sm" name="jenis">
-              <option value="Makanan" selected="">Makanan</option>
+              <option value="bakso" selected="">Bakso</option>
               <option value="Minuman">Minuman</option>
+              <option value="snack">Snack</option>
             </select>
           </div>        
-          <div class="form-group">
-            <label for="stock" class="col-form-label">Stock</label>
-            <input type="text" class="form-control form-control-sm" name="stock" autocomplete="off">
-          </div>
           <div class="form-group">
             <label for="harga" class="col-form-label">Harga</label>
             <input type="text" class="form-control form-control-sm" name="harga" autocomplete="off">
@@ -323,6 +333,29 @@
         </div>
         </form>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="../logout.php" method="post">
+        <div class="modal-body">
+          Are you sure you want to Logout?
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Logout</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -367,7 +400,6 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="dist/js/app.js"></script>
-<script src="dist/js/test.js"></script>
 <script>
 
 </script>

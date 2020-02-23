@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Transaction</title>
+  <title>Menu Detail</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -28,9 +28,14 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="dist/css/style.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-  <?php session_start(); ?>
+  <?php
+    session_start();
+  ?>
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -57,10 +62,10 @@
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-user-cog mr-3"></i><?php echo $_SESSION['username']; ?>
+            <i class="fas fa-user-cog mr-3"></i><?php echo $_SESSION['role']; ?>
           </a>
           <div class="dropdown-divider"></div>
-          <button type="button" class="dropdown-item dropdown-footer" data-toggle="modal" data-target="#logoutModal">Logout</button>
+          <a href="#" class="dropdown-item dropdown-footer">Profile</a>
         </div>
       </li>
       <li class="nav-item">
@@ -76,8 +81,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Restaurant</span>
     </a>
 
@@ -97,9 +101,9 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+              with font-awesome or any other icon font library -->
           <li class="nav-item mt-3">
-            <a href="./index.php" class="nav-link">
+            <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -107,7 +111,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href=" menu.php" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-utensils"></i>
               <p>
                 Menu
@@ -115,15 +119,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./bahan.php" class="nav-link">
-              <i class="nav-icon fas fa-utensils"></i>
-              <p>
-                  Ingredient
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./meja.php" class="nav-link">
+            <a href="meja.php" class="nav-link">
               <i class="nav-icon fas fa-chair"></i>
               <p>
                 Table
@@ -131,10 +127,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fa fa-money-bill-wave"></i>
+            <a href="./penjualan.php" class="nav-link">
+              <i class="nav-icon fas fa-money-bill-wave"></i>
               <p>
-                Transaction
+                Penjualan
               </p>
             </a>
           </li>
@@ -176,7 +172,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Penjualan</h1>
+            <h1 class="m-0 text-dark">Menu Detail</h1>
+            <?php 
+              if(isset($_GET["no"])) {
+                  $data = $_GET["no"];
+              }
+            ?>
+						<input type="hidden" value="<?php echo $data ?>" id="menu_id">
           </div><!-- /.col -->
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -193,26 +195,84 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
+
+          <div class="col-5">
             <div class="card">
               <div class="card-body">
-                <table id="table-penjualan" class="table table-hover text-center table-sm w-100">
-                  <thead>
-                    <tr>
-                      <th scope="col">Order Number</th>
-                      <th scope="col">Order Type</th>
-                      <th scope="col">Waiter</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-user-body"></tbody>
-                </table>
+                <div class="row">
+                  <div class="col-12">
+                    <a href="./menu.php" class="btn btn-primary btn-sm mb-3">Back</a><h4>Menu</h4>
+                    <table id="table-menu-detail" class="table table-hover table-sm w-100">
+                      <tbody>
+												<?php
+													require_once "../conn.php";
+													$sql = "SELECT * FROM tbl_menu WHERE id = '$data'";
+													$q = $conn->query($sql);
+													$result = $q->num_rows;
+													if($result > 0) {
+														$row = $q->fetch_assoc();
+												?>
+                        <tr>
+                          <td>Number</td>
+                          <td class="font-weight-bold"><?php echo $row['kode_menu']; ?></td>
+                        </tr>
+                        <tr>
+                          <td>Name</td>
+                          <td class="font-weight-bold"><?php echo ucwords($row['nama_menu']); ?></td>
+                        </tr>
+                        <tr>
+                          <td>Description</td>
+                          <td class="font-weight-bold"><?php echo ucwords($row['description']); ?></td>
+                        </tr>
+                        <tr>
+                          <td>Category</td>
+                          <td class="font-weight-bold"><?php echo ucwords($row['jenis']); ?></td>
+                        </tr>
+                        <tr>
+                          <td>Price</td>
+                          <td class="font-weight-bold"><?php echo 'Rp '. number_format($row['harga'], 0, ',', '.');; ?></td>
+                        </tr>
+                        <tr>
+                          <td>Image</td>
+                          <td class="font-weight-bold"><img src="../assets/images/menu/<?php echo $row['gambar'] ?>" class="img-fluid img-thumbnail"></td>
+                        </tr>
+                        <?php 
+                          } 
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>         
               </div>
             </div>
           </div>
+					<div class="col-7">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12">
+                    <h4>Ingredients</h4>
+                    <button class="btn btn-info btn-sm mb-3" data-toggle="modal" data-target="#add-menu-detail-modal"><i class="fa fa-plus mr-2"></i>Create</button>
+                    <table id="table-ing-detail" class="table table-hover table-sm w-100 text-center">
+                      <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -235,28 +295,88 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-menu-detail-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+        <h5 class="modal-title">Create</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="../logout.php" method="post">
+      <form class="add-menu-detail-form" id="add-menu-detail-form">
         <div class="modal-body">
-          Are you sure you want to Logout?
+          <input type="hidden" value="<?php echo $data ?>" name="menu_id">
+          <div class="form-group">
+            <label for=nama_menu" class="col-form-label">Name</label>
+            <select class="form-control" name="ingredient_id">
+							<option value="" selected>Select Name</option>
+							<?php 
+								$sql = "SELECT * FROM tb_bahan";  
+								$q = $conn->query($sql);
+								while ($row = $q->fetch_assoc()) { ?>
+								<option value="<?php echo $row['id'] ?>"><?php echo ucwords($row['name']) ?></option>
+							<?php
+								}
+							?>
+						</select>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">Qty</label>
+            <input type="text" class="form-control form-control-sm" name="use_qty" autocomplete="off">
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger">Logout</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn-add-menu-detail btn btn-primary">Save</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="edit-menu-detail-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="edit-menu-detail-form" id="edit-menu-detail-form">
+        <div class="modal-body">
+          <input type="hidden" name="id">
+          <input type="hidden" value="<?php echo $data ?>" name="menu_id">
+          <div class="form-group">
+            <label for=nama_menu" class="col-form-label">Name</label>
+            <select class="form-control" name="ingredient_id">
+							<option value="" selected>Select Name</option>
+							<?php 
+								$sql = "SELECT * FROM tb_bahan";  
+								$q = $conn->query($sql);
+								while ($row = $q->fetch_assoc()) { ?>
+								<option value="<?php echo $row['id'] ?>"><?php echo ucwords($row['name']) ?></option>
+							<?php
+								}
+							?>
+						</select>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">Qty</label>
+            <input type="text" class="form-control form-control-sm" name="use_qty" autocomplete="off">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn-edit-menu-detail btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
@@ -274,7 +394,7 @@
 <!-- ChartJS -->
 <script src="plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<!-- <script src="plugins/sparklines/sparkline.js"></script> -->
 <!-- JQVMap -->
 <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
 <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
@@ -297,6 +417,9 @@
 <script src="dist/js/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="dist/js/app.js" type="text/javascript"></script>
+<script src="dist/js/app.js"></script>
+<script>
+
+</script>
 </body>
 </html>

@@ -20,7 +20,7 @@
     // loop over the array
     foreach ( $cit as $value )
     {
-        $sql .= "('', '$user', '$menu_id', LAST_INSERT_ID(), $value, 0)";
+        $sql .= "('', '$user', '$menu_kode', LAST_INSERT_ID(), $value, 0)";
         if( $cit->hasNext() )
             {
                 $sql .= ",";

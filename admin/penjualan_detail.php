@@ -257,7 +257,7 @@
                 <div class="row">
                   <div class="col-12">
                     <h4>Menu</h4>
-                    <table id="table-menu-detail" class="table table-hover table-sm w-100">
+                    <table id="table-order-detail" class="table table-hover table-sm w-100">
                       <thead class="text-center">
                         <tr>
                             <th scope="col">#</th>
@@ -316,7 +316,6 @@
                     </table>
                   </div>
                 </div>
-                        
               </div>
             </div>
           </div>

@@ -64,7 +64,7 @@
                     <div class="menu-container text-center rounded bg-white py-4 px-2"  style="height: calc(100vh - 7.5rem); overflow: auto;">
                         <ul class="menu-filter">
                             <li><span data-filter="*" class="current">All</span></li>
-                            <li><span data-filter=".Makanan">Bakso</span></li>
+                            <li><span data-filter=".bakso">Bakso</span></li>
                             <li><span data-filter=".mie">Noodle</span></li>
                             <li><span data-filter=".snack">Snack</span></li>
                             <li><span data-filter=".Minuman">Drink</span></li>

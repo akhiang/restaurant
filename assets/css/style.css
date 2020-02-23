@@ -165,8 +165,11 @@ nav.fixed-top {
     width: 100px;
 }
 .table-fixed td:nth-child(2) {
-    width: 300px;
+    width: 200px;
 }
+/* .table-fixed td:nth-child(3) {
+    width: 100px;
+} */
 .table-fixed td:nth-child(3) {
     width: 100px;
 }

@@ -88,8 +88,8 @@ $(document).ready(function () {
       success: function (data) {
         $("#edit-menu-modal").find("input[name='id']").val(data.id);
         $("#edit-menu-modal").find("input[name='nama_menu']").val(data.nama_menu);
+        $("#edit-menu-modal").find("textarea[name='desc']").val(data.description);
         $("#edit-menu-modal").find("select[name='jenis']").val(data.jenis);
-        $("#edit-menu-modal").find("input[name='stock']").val(data.stok);
         $("#edit-menu-modal").find("input[name='harga']").val(data.harga);
       }
     });
@@ -97,16 +97,18 @@ $(document).ready(function () {
 
   $('form[id="edit-menu-form"]').validate({
     rules: {
-      nama_menu: {required: true,minlength: 3},
+      nama_menu: {required: true, minlength: 3},
+      desc: {required: true, minlength: 3},
       jenis: {required: true},
       stock: {required: true,digits: true},
       harga: {required: true,digits: true},
-      image: {required: true,}
+      image: {required: true}
     },
     messages: {
-      username: {
+      nama_menu: {
         required: 'This field is required',
-        minlength: 'Username must be at least 3 characters long'},
+        minlength: 'Name must be at least 3 characters long'},
+      desc : {},
       jenis: {required: 'This field is required'},
       stock: {required: 'This field is required'},
       harga: {required: 'This field is required'},
@@ -128,6 +130,7 @@ $(document).ready(function () {
           });
           tableMenu.ajax.reload();
           $('#edit-menu-modal').modal('toggle');
+          $("#edit-menu-form")[0].reset();
           $("#edit-menu-form .imgInput").val("");
           $("#edit-menu-form .upImg").attr('src', '');
         }
@@ -164,6 +167,286 @@ $(document).ready(function () {
     })
   });
   // END MENU SECTION
+
+  // MENU DETAIL SECTION
+    if ($('#table-ing-detail').length) // use this if you are using id to check
+      {
+        var id = $('#menu_id').val()
+        var tableIngDetail = $('#table-ing-detail').DataTable({
+          "paging": false,
+          "searching": false,
+          "ajax": {
+            "url": "menu_detail_fetch.php",
+            "type": "POST",
+            "data": {id: id}
+          },
+        });
+      }
+
+  $('form[id="add-menu-detail-form"]').validate({
+    rules: {
+      ingredient_id: {
+        required: true
+      },
+      use_qty: {
+        required: true,
+        number: true,
+        min: 1
+      }
+    },
+    messages: {
+      ingredient_id: {
+        required: 'This field is required'
+      },
+      use_qty: {
+        required: 'This field is required',
+        number: 'This field must be numberic',
+      },
+    },
+    submitHandler: function (form) {
+      $.ajax({
+        url: "menu_detail_add.php",
+        type: "POST",
+        data: $(form).serialize(),
+        success: function (data) {
+          swal.fire({
+            icon: "success",
+            title: "New ingredient added",
+          });
+          $("#add-menu-detail-form")[0].reset();
+          $('#add-menu-detail-modal').modal('toggle');
+          tableIngDetail.ajax.reload();
+        }
+      });
+    }
+  });
+
+  $('#table-ing-detail').on('click', '.edit-menu-det', function () {
+    var id = $(this).attr('data-id');
+    $.ajax({
+      type: 'post',
+      url: 'menu_detail_fetch_single.php',
+      data: { id: id },
+      dataType: 'json',
+      success: function (response) {
+        $("#edit-menu-detail-modal").find("input[name='id']").val(response.id);
+        $("#edit-menu-detail-modal").find("select[name='ingredient_id']").val(response.ingredient_id);
+        $("#edit-menu-detail-modal").find("input[name='use_qty']").val(response.use_qty);
+      }
+    });
+  });
+
+  $('form[id="edit-menu-detail-form"]').validate({
+    rules: {
+      ingredient_id: {
+        required: true
+      },
+      use_qty: {
+        required: true,
+        number: true,
+        min: 1
+      }
+    },
+    messages: {
+      ingredient_id: {
+        required: 'This field is required'
+      },
+      use_qty: {
+        required: 'This field is required',
+        number: 'This field must be numberic',
+      },
+    },
+    submitHandler: function (form) {
+      $.ajax({
+        url: "menu_detail_edit.php",
+        type: "POST",
+        data: $(form).serialize(),
+        success: function (data) {
+          swal.fire({
+            icon: "success",
+            title: "Ingredient updated",
+          });
+          $("#edit-menu-detail-form")[0].reset();
+          $('#edit-menu-detail-modal').modal('toggle');
+          tableIngDetail.ajax.reload();
+        }
+      });
+    }
+  });
+
+  $('#table-ing-detail').on('click', '.del-menu-det', function () {
+    var id = $(this).attr('data-id');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        $.ajax({
+          type: 'post',
+          url: 'menu_detail_delete.php',
+          data: { id: id },
+          success: function () {
+            tableIngDetail.ajax.reload();
+            Swal.fire(
+              'Deleted!',
+              'Ingredient has been deleted.',
+              'success'
+            )
+          }
+        });
+      }
+    })
+  });
+
+  // END MENU DETAIL SECTION
+
+  // INGREDIENT SECTION
+  var tableIng = $('#table-ing').DataTable({
+    "ajax": {
+      "url": "bahan_fetch.php"
+    },
+  });
+
+  $('form[id="add-ing-form"]').validate({
+    rules: {
+      name: {
+        required: true
+      },
+      unit: {
+        required: true
+      },
+      qty: {
+        required: true,
+        number: true,
+        min: 1
+      }
+    },
+    messages: {
+      name: {
+        required: 'This field is required'
+      },
+      unit: {
+        required: 'This field is required'
+      },
+      number: {
+        required: 'This field is required',
+        number: 'This field must be numberic',
+      },
+    },
+    submitHandler: function (form) {
+      $.ajax({
+        url: "bahan_add.php",
+        type: "POST",
+        data: $(form).serialize(),
+        success: function (data) {
+          swal.fire({
+            icon: "success",
+            title: "New ingredient added",
+          });
+          $("#add-ing-form")[0].reset();
+          $('#add-ing-modal').modal('toggle');
+          tableIng.ajax.reload();
+        }
+      });
+    }
+  });
+
+  $('#table-ing').on('click', '.edit-ing', function () {
+    var id = $(this).attr('data-ingId');
+    $.ajax({
+      type: 'post',
+      url: 'bahan_fetch_single.php',
+      data: {
+        id: id
+      },
+      dataType: 'json',
+      success: function (data) {
+        $("#edit-ing-modal").find("input[name='id']").val(data.id);
+        $("#edit-ing-modal").find("input[name='name']").val(data.name);
+        $("#edit-ing-modal").find("input[name='unit']").val(data.unit);
+        $("#edit-ing-modal").find("input[name='qty']").val(data.qty);
+      }
+    });
+  });
+
+  $('form[id="edit-meja-form"]').validate({
+    rules: {
+      name: {
+        required: true
+      },
+      unit: {
+        required: true
+      },
+      qty: {
+        required: true,
+        number: true,
+        min: 1
+      }
+    },
+    messages: {
+      name: {
+        required: 'This field is required'
+      },
+      unit: {
+        required: 'This field is required'
+      },
+      number: {
+        required: 'This field is required',
+        number: 'This field must be numberic',
+      },
+    },
+    submitHandler: function (form) {
+      $.ajax({
+        url: "bahan_edit.php",
+        type: "POST",
+        data: $(form).serialize(),
+        success: function () {
+          swal.fire({
+            icon: "success",
+            title: "Ingredient updated",
+          });
+          tableIng.ajax.reload();
+          $('#edit-ing-modal').modal('toggle');
+        }
+      });
+    }
+  });
+
+  $('#table-ing').on('click', '.del-ing', function () {
+    var id = $(this).attr('data-ingId');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        $.ajax({
+          type: 'post',
+          url: 'bahan_delete.php',
+          data: { id: id },
+          success: function () {
+            tableIng.ajax.reload();
+            Swal.fire(
+              'Deleted!',
+              'Ingredient has been deleted.',
+              'success'
+            )
+          }
+        });
+      }
+    })
+  });
+
+  // END INGREDIENT SECTION
 
   // TABLE SECTION
   var tableMeja = $('#table-meja').DataTable({
