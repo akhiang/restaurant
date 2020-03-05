@@ -21,7 +21,7 @@
             <div class="text-center rounded bg-white py-4 px-2">
                 <ul class="menu-filter">
                     <li><span data-filter="*" class="current">All</span></li>
-                    <li><span data-filter=".Makanan">Bakso</span></li>
+                    <li><span data-filter=".bakso">Bakso</span></li>
                     <li><span data-filter=".mie">Noodle</span></li>
                     <li><span data-filter=".snack">Snack</span></li>
                     <li><span data-filter=".Minuman">Drink</span></li>
@@ -37,7 +37,8 @@
                             <div class="card">
                                 <img src=" <?php echo '../assets/images/menu/'.$row['gambar']; ?>" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['nama_menu']; ?></h5>
+                                    <h5 class="card-title"><?php echo ucwords($row['nama_menu']); ?></h5>
+                                    <!-- <h5 class="card-title"><?php echo $row['description']; ?></h5> -->
                                     <h6 class="card-text text-danger"><?php echo number_format($row['harga'], 0, ',', '.'); ?></h6>
                                 </div>
                             </div>

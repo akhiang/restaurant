@@ -54,8 +54,9 @@
                             </table>
                             <div class="order-list-option d-flex p-2">
                                 <button class="btn btn-danger ml-auto" data-toggle="modal" data-target="#cancelOrder">Cancel</button>
-                                <button class="make-order btn btn-success ml-3" data-user-id="<?php echo $user_id ?>"
-                                    data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>">Place Order</button>
+                                <button class="btn btn-success ml-3" data-toggle="modal" data-target="#placeOrder">Place Order</button>
+                                <!-- <button class="btn btn-success ml-3" id="place-order" data-user-id="<?php echo $user_id ?>"
+                                    data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>">Place Order</button> -->
                             </div>
                         </div>
                     </div>
@@ -71,7 +72,7 @@
                         </ul>
                         <div class="menu-item d-flex flex-wrap justify-content-center col-12">
                             <?php 
-                                $sql = "SELECT * FROM tbl_menu";
+                                $sql = "SELECT * FROM tbl_menu WHERE ready = 1";
                                 $q = mysqli_query($conn,$sql);
                                 while ($row = mysqli_fetch_assoc($q)) {
                             ?>
@@ -79,14 +80,23 @@
                                 <div class="card m-2 <?php echo $row['jenis']; ?>" style="width: 13.3rem;">
                                     <img src=" <?php echo '../assets/images/menu/'.$row['gambar']; ?>" class="card-img-top img-responsive">
                                     <div class="card-body">
-                                        <h6> <?php echo $row['nama_menu']; ?> </h6>
-                                        <h6 class="text-danger"> <?php echo $row['harga']; ?> </h6>
+                                        <h6 class="p-0 mb-1"> <?php echo $row['nama_menu']; ?> </h6>
+                                        <h6 class="fs-12 text-muted">
+                                            <?php
+                                                if($row['description'] == ''){
+                                                    echo "<div class='invisible'>.</div>";
+                                                } else 
+                                                echo ucwords($row['description']);
+                                            ?> 
+                                        </h6>
+                                        <h6 class="text-danger my-3"> <?php echo number_format($row['harga'], 0, ',', '.'); ?> </h6>
                                         <form class="menu-card<?php echo $row['id'] ?>">
                                             <input type="hidden" name="hidden_user_id" value="<?php echo $user_id; ?>" />
-                                            <input class="form-control form-control-sm spinner" type="number" name="qty_menu" id="qty<?php echo $row['id'] ?>" min="1" value="1"/>
-                                            <input type="hidden" name="hidden_kode_menu" id="kode<?php echo $row['id'] ?>" value="<?php echo $row["kode_menu"]; ?>" />
+                                            <!-- <input class="form-control form-control-sm spinner" type="number" name="qty_menu" id="qty<?php echo $row['id'] ?>" min="1" value="1"/> -->
+                                            <input type="hidden" name="hidden_id_menu" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
+                                            <!-- <input type="hidden" name="qty_menu" id="qty<?php echo $row['id'] ?>" min="1" value="1"/> -->
                                             <input type="hidden" name="hidden_jenis" value="<?php echo $row["jenis"]; ?>" />
                                             <button type="button" onclick="addToCart(<?php echo $row['id'] ?>)" class="add-cart btn btn-success btn-sm btn-block mt-2" 
                                             data-menu-id="<?php echo $row['id'] ?>">Add<i class="fas fa-shopping-cart ml-2"></i></button>
@@ -110,17 +120,39 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Cancel Order</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Batalkan pemesanan?</p>
+                    <p>Are you sure you want to cancel this order?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="cancel-order btn btn-danger" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>" data-dismiss="modal">Ya</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
+                    <button type="button" class="btn btn-danger" id="cancel-order" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>">Yes, cancel order</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">No, keep the order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="placeOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Place Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to place this order?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="place-order" data-user-id="<?php echo $user_id ?>"
+                        data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>" data-dismiss="modal">Place order</button>
                 </div>
             </div>
         </div>

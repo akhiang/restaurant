@@ -5,7 +5,7 @@
     $tax = 0;
     $total = 0;
     $no_trans = $_POST['no_trans'];
-    $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$no_trans'";
+    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$no_trans'";
     $q = $conn->query($sql);
     // var_dump($q);
     // $result = mysqli_num_rows($q);
@@ -14,7 +14,7 @@
     if ($result > 0) {
         while ($row = $q->fetch_assoc()) {
             // $harga = number_format($row['harga'], 0, ',', '.');
-            $amount = $row['harga'] * $row['qty'];
+            $amount = $row['price'] * $row['qty'];
             $subtotal += $amount;
         }
         $tax = $subtotal * 0.1;

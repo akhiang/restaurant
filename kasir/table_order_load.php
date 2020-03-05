@@ -4,16 +4,16 @@
     $no_trans = $_POST['no_trans'];
     $total = 0;
     // $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$no_trans'";
-    $sql = "SELECT *, nama_menu FROM tb_order_detail_temp O
-        JOIN tbl_menu M ON O.kode_menu = M.kode_menu
+    $sql = "SELECT *, nama_menu FROM tb_order_detail O
+        JOIN tbl_menu M ON O.menu_id = M.id
         WHERE order_number = '$no_trans'";  
     $q = mysqli_query($conn,$sql);
     $result = mysqli_num_rows($q);
 
     if ($result > 0) {
         while ($row = mysqli_fetch_assoc($q)) {
-            $harga = number_format($row['harga'], 0, ',', '.');
-            $amount = $row['harga'] * $row['qty'];
+            $harga = number_format($row['price'], 0, ',', '.');
+            $amount = $row['price'] * $row['qty'];
             // $total += $amount;
     ?>
         <tr class="w-100">

@@ -7,13 +7,13 @@
     $qty = $_POST['qty_menu'];
     $harga = $_POST['hidden_harga'];
 
-    $sql = "INSERT INTO tb_order_detail_temp (order_number, kode_menu, qty, harga, id) VALUES
+    $sql = "INSERT INTO tb_order_detail (order_number, kode_menu, qty, harga, id) VALUES
             ('$order_number', '$kode', '$qty', '$harga', '')";
     
-    $sameItem = $conn->query("SELECT * FROM tb_order_detail_temp WHERE order_number = '$order_number' AND kode_menu = '$kode'");
+    $sameItem = $conn->query("SELECT * FROM tb_order_detail WHERE order_number = '$order_number' AND kode_menu = '$kode'");
 
     if($sameItem->num_rows > 0) {       
-        $sql2 = "UPDATE tb_order_detail_temp SET qty = qty + 1 WHERE order_number = '$order_number' AND kode_menu = '$kode'";
+        $sql2 = "UPDATE tb_order_detail SET qty = qty + 1 WHERE order_number = '$order_number' AND kode_menu = '$kode'";
         $conn->query($sql2);
     }
     else {
@@ -21,7 +21,7 @@
     }
 
     // update total di tb_order
-    $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$order_number'";
+    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$order_number'";
     $q = $conn->query($sql);
     while ($row = $q->fetch_assoc()) {
             // $harga = number_format($row['harga'], 0, ',', '.');

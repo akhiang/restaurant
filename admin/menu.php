@@ -150,22 +150,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="./supplier.html" class="nav-link">
-              <i class="nav-icon fas fa-truck-loading"></i>
-              <p>
-                Supplier
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./report.html" class="nav-link">
-              <i class="nav-icon far fa-file-alt"></i>
-              <p>
-                Report
-              </p>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -258,16 +242,16 @@
             <input type="text" class="form-control form-control-sm" name="nama_menu" autocomplete="off">
           </div>
           <div class="form-group">
+            <label for="decs">Description</label>
+            <textarea class="form-control" name="desc" rows="2"></textarea>
+          </div>
+          <div class="form-group">
             <label for="role" class="col-form-label">Jenis</label>
             <select class="form-control form-control-sm" name="jenis">
               <option value="makanan" selected="">Makanan</option>
               <option value="minuman">Minuman</option>
             </select>
           </div>        
-          <div class="form-group">
-            <label for="stock" class="col-form-label">Stock</label>
-            <input type="text" class="form-control form-control-sm" name="stock" autocomplete="off">
-          </div>
           <div class="form-group">
             <label for="harga" class="col-form-label">Harga</label>
             <input type="text" class="form-control form-control-sm" name="harga" autocomplete="off">
@@ -306,7 +290,7 @@
           </div>
           <div class="form-group">
             <label for="decs">Description</label>
-            <textarea class="form-control" id="desc" name="desc" rows="2"></textarea>
+            <textarea class="form-control" name="desc" rows="2"></textarea>
           </div>
           <div class="form-group">
             <label for="jenis" class="col-form-label">Jenis</label>

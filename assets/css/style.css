@@ -19,6 +19,9 @@ body {
     margin-top: 70px;
 }
 
+.fs-11 {
+    font-size: 11px;
+}
 .fs-12 {
     font-size: 12px;
 }
@@ -162,16 +165,16 @@ nav.fixed-top {
 }
 
 .table-fixed td:nth-child(1) {
-    width: 100px;
+    width: 150px;
 }
 .table-fixed td:nth-child(2) {
-    width: 200px;
+    width: 250px;
 }
 /* .table-fixed td:nth-child(3) {
     width: 100px;
 } */
 .table-fixed td:nth-child(3) {
-    width: 100px;
+    width: 200px;
 }
 .table-fixed td:nth-child(4) {
     padding-right: 30px;

@@ -42,7 +42,7 @@ $layout =
                         </tr>
                         <tr>
                             <td>
-                                <h6>Jl. Gusti Hamzah No. 207 Pontianak</h6>
+                                <h6>Jl. Tebu No 8, Pontianak</h6>
                             </td>
                         </tr>
                         <tr>
@@ -83,8 +83,8 @@ $layout =
                     <tbody>
     ';
 
-    $sql = "SELECT *, nama_menu FROM tb_order_detail_temp O
-        JOIN tbl_menu M ON O.kode_menu = M.kode_menu
+    $sql = "SELECT *, nama_menu FROM tb_order_detail O
+        JOIN tbl_menu M ON O.menu_id = M.id
         WHERE order_number = '$order_number'";
     $q = mysqli_query($conn,$sql);
     $no = 1;
@@ -95,8 +95,8 @@ $layout =
                 <td align="center">'.$no.'</td>
                 <td>'.$row['nama_menu'].'</td>
                 <td align="center">'.$row['qty'].'</td>
-                <td align="right">'.$row['harga'].'</td>
-                <td align="right">'.$row['harga'].'</td>
+                <td align="right">'.$row['price'].'</td>
+                <td align="right">'.$row['price'] * $row['qty'].'</td>
             </tr>
         ';
         $no++;
@@ -109,10 +109,10 @@ $layout =
             </section>
     ';
 
-    $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$order_number'";
+    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$order_number'";
     $q = mysqli_query($conn,$sql);
     while ($row = mysqli_fetch_assoc($q)) {
-        $amount = $row['harga'] * $row['qty'];
+        $amount = $row['price'] * $row['qty'];
         $subtotal += $amount;
     }
     $tax = $subtotal * 0.1;

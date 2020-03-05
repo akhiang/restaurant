@@ -62,7 +62,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Pemesanan</h5>
+				<h5 class="modal-title" id="exampleModalLabel">New Order</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -70,9 +70,9 @@
 			<div class="modal-body">
 				<form id="form-pesanan" method="POST" action="pemesanan.php">
 					<div class="form-group">
-						<label for="tipepesanan">Tipe pesanan</label>
+						<label for="tipepesanan">Order Type</label>
 						<select class="form-control" id="tipepesanan" name="tipe_id">
-							<option value="" selected>Pilih tipe pesanan</option>
+							<option value="" selected>Select order type</option>
 							<?php 
 								$sql = "SELECT * FROM tb_tipe_pesanan";  
 								$q = $conn->query($sql);
@@ -84,9 +84,9 @@
 						</select>
 					</div>
 					<div class="form-group" id="meja-div">
-						<label for="meja" class="col-form-label">Meja</label>
+						<label for="meja" class="col-form-label">Table</label>
 						<select disabled="true" name="id_meja" class="form-control" id="meja">
-							<option value="" selected>Pilih meja</option>
+							<option value="" selected>Select table</option>
 							<?php 
 								$sql = "SELECT * FROM tb_meja WHERE status = 1";  
 								$q = $conn->query($sql);

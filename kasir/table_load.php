@@ -1,9 +1,9 @@
 <?php 
     include "../conn.php";
 
-    $sql = "SELECT order_id, order_number, paid, tipe_pesanan_id, kode_meja, name
+    $sql = "SELECT order_id, order_number, paid, order_type_id, table_id, name
             FROM tb_order O 
-            LEFT JOIN tb_tipe_pesanan T ON O.tipe_pesanan_id = T.id
+            LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id
             WHERE paid = 0 ORDER BY order_number DESC";
     $q = mysqli_query($conn,$sql);
     $result = mysqli_num_rows($q);
@@ -11,7 +11,7 @@
     if($result > 0) {
 
         while ($row = mysqli_fetch_assoc($q)) {
-            $kode_meja = $row['kode_meja'];
+            $kode_meja = $row['table_id'];
             if($kode_meja == 0){
                 $nama_meja = '-';
             } else { 

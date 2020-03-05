@@ -117,7 +117,9 @@ $(document).ready(function () {
     // table.php
 
     // pemesanan.php
-    $('#table-order-list').on('click', '.del-cart', function () {
+
+    // hapus menu dari cart
+    $('#table-order-list').on('click', '.del-menu-cart', function () {
         var id = $(this).attr('data-menu-id');
         var user = $(this).attr('data-user-id');
         $.ajax({
@@ -131,20 +133,20 @@ $(document).ready(function () {
         });
     })
 
-    $('.make-order').click(function () {
+    $('#place-order').click(function () {
         var user_id = $(this).attr('data-user-id');
         var meja_id = $(this).attr('data-meja-id');
         var tipe = $(this).attr('data-tipe');
         $.ajax({
             type: 'POST',
-            url: 'pemesanan_make_order.php',
+            url: 'pemesanan_place_order.php',
             data: {
                 user_id: user_id,
                 meja_id: meja_id,
                 tipe: tipe,
             },
             success: function (data) {
-                delCart(user_id);
+                emptyCart(user_id);
                 Swal.fire({
                     title: 'Success',
                     text: 'Order successful placed!',
@@ -157,17 +159,18 @@ $(document).ready(function () {
         })
     });
 
-    $('.cancel-order').click(function () {
+    $('#cancel-order').click(function () {
         var meja_id = $(this).attr('data-meja-id');
         var user_id = $(this).attr('data-user-id');
         $.ajax({
             type: 'POST',
             url: 'pemesanan_cancel_order.php',
             data: {
-                meja_id: meja_id
+                meja_id: meja_id,
+                user_id: user_id
             },
             success: function () {
-                delCart(user_id);
+                emptyCart(user_id);
                 window.location.href = "index.php";
             }
         })
@@ -183,18 +186,6 @@ function clock() {
     var detik = waktu.getSeconds() + "";
     clock.innerHTML = (jam.length == 1 ? "0" + jam : jam) + ":" + (menit.length == 1 ? "0" + menit : menit) + ":" + (detik.length == 1 ? "0" + detik : detik);
     setTimeout("clock()", 1000);
-}
-
-function delCart(id) {
-    $.ajax({
-        type: 'POST',
-        data: {id: id},
-        url: 'pemesanan_del_cart.php',
-        success: function () {
-            loadListOrder();
-            loadListOrderTotal();
-        }
-    })
 }
 
 function loadListOrder() {
@@ -221,42 +212,68 @@ function loadListOrderTotal() {
 
 function addToCart(id){
     var data = $('.menu-card' + id).serialize()
-    var qty = $('.menu-card' + id).serializeArray()[1]['value'];
-    var kode = $('.menu-card' + id).serializeArray()[2]['value'];
-    var nama = $('.menu-card' + id).serializeArray()[3]['value'];
-    var harga = $('.menu-card' + id).serializeArray()[4]['value'];
-    var jenis = $('.menu-card' + id).serializeArray()[5]['value'];
-    if (jenis === 'bakso') {
-        $('#baksoModal').modal('show');
-        $('#menu_id').val(id);
-        $('#menu_kode').val(kode);
-        $('#menu_nama').val(nama);
-        $('#menu_qty').val(qty);
-        $('#menu_harga').val(harga);
-    } else {
-        $.ajax({
-            type:'post',
-            url:'pemesanan_list_add.php',
-            data: data,
-            success:function (response) {
-                checkSameItem(response);
+    // var qty = $('.menu-card' + id).serializeArray()[1]['value'];
+    // var kode = $('.menu-card' + id).serializeArray()[2]['value'];
+    // var nama = $('.menu-card' + id).serializeArray()[3]['value'];
+    // var harga = $('.menu-card' + id).serializeArray()[4]['value'];
+    // var jenis = $('.menu-card' + id).serializeArray()[5]['value'];
+    // if (jenis === 'bakso') {
+    //     $('#baksoModal').modal('show');
+    //     $('#menu_id').val(id);
+    //     $('#menu_kode').val(kode);
+    //     $('#menu_nama').val(nama);
+    //     $('#menu_qty').val(qty);
+    //     $('#menu_harga').val(harga);
+    // } else {
+    // }
+    $.ajax({
+        type: 'post',
+        url: 'pemesanan_list_add.php',
+        data: data,
+        success: function (response) {
+            // checkSameItem(response);
+            if (response == 'ingredient') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Can\'t add menu',
+                    text: 'Please check the menu\'s ingredient',
+                })
+            } else if (response == 'quantity') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Can\'t add menu',
+                    text: 'Please check the menu\'s ingredient quantity',
+                })
+            } else if (response == 'success') {   
                 loadListOrder();
                 loadListOrderTotal();
-                spinnerReset();  
             }
-        });
-    }
+            // spinnerReset();
+        }
+    });
 }
 
-function spinnerReset() {
-    $('.spinner').val(1);
+function emptyCart(id) {
+    $.ajax({
+        type: 'POST',
+        data: { id: id },
+        url: 'pemesanan_del_cart.php',
+        success: function () {
+            loadListOrder();
+            loadListOrderTotal();
+        }
+    })
 }
 
-function checkSameItem(item) {
-    if(item) {
-        alert('Item sudah ada');
-    }
-}
+// function spinnerReset() {
+//     $('.spinner').val(1);
+// }
+
+// function checkSameItem(item) {
+//     if(item) {
+//         alert('Item sudah ada');
+//     }
+// }
 
 $(function() {  
     // $(".navbar .nav-link").on('click', function() {

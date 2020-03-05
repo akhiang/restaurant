@@ -4,9 +4,9 @@
     $no_trans = $_POST['no_trans'];
     
     // $sql = "SELECT * FROM tb_order WHERE no_transaksi = '$no_trans'";  
-    $sql = "SELECT order_id, order_number, total, tipe_pesanan_id, kode_meja, name
+    $sql = "SELECT order_id, order_number, total, order_type_id, table_id, name
         FROM tb_order O 
-        LEFT JOIN tb_tipe_pesanan T ON O.tipe_pesanan_id = T.id
+        LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id
         WHERE order_number = '$no_trans'";
 
     $q = $conn->query($sql);
@@ -14,7 +14,7 @@
 
     if ($result > 0) {
         $row = $q->fetch_assoc();
-        $kode_meja = $row['kode_meja'];
+        $kode_meja = $row['table_id'];
         if($kode_meja == 0){
             $nama_meja = '-';
         } else { 

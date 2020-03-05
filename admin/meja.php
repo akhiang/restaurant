@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Table</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -150,22 +150,6 @@
                 </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="./supplier.html" class="nav-link">
-                <i class="nav-icon fas fa-truck-loading"></i>
-                <p>
-                    Supplier
-                </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="./report.html" class="nav-link">
-                <i class="nav-icon far fa-file-alt"></i>
-                <p>
-                    Report
-                </p>
-                </a>
-            </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -204,10 +188,10 @@
                         <table id="table-meja" class="table table-hover table-sm text-center w-100">
                             <thead>
                                 <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-meja-modal">
-                                <i class="fa fa-plus mr-2"></i>Tambah Meja</button>
+                                <i class="fa fa-plus mr-2"></i>Create</button>
                                 <tr>
-                                    <th scope="col">Kode</th>
-                                    <th scope="col">Nama</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -244,7 +228,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Meja</h5>
+                <h5 class="modal-title">Create</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -261,19 +245,12 @@
                     ?>
                     <input type="hidden" name="kode_meja" value="<?php echo $kode ?>">
                     <div class="form-group">
-                        <label class="col-form-label">Nama Meja</label>
+                        <label class="col-form-label">Name</label>
                         <input type="text" class="form-control form-control-sm" name="nama_meja" autocomplete="off">
                         <small class="form-text text-muted">
                             (Exa. M01, M02)
                         </small>
                     </div>  
-                    <div class="form-group">
-                        <label for="role" class="col-form-label">Status</label>
-                        <select class="form-control form-control-sm" name="status">
-                            <option value="1" selected>Tersedia</option>
-                            <option value="0">Terisi</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

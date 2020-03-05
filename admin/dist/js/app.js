@@ -374,7 +374,7 @@ $(document).ready(function () {
     });
   });
 
-  $('form[id="edit-meja-form"]').validate({
+  $('form[id="edit-ing-form"]').validate({
     rules: {
       name: {
         required: true
@@ -514,7 +514,7 @@ $(document).ready(function () {
         success: function () {
           swal.fire({
             icon: "success",
-            title: "Meja updated",
+            title: "Table updated",
           });
           tableMeja.ajax.reload();
           $('#edit-meja-modal').modal('toggle');

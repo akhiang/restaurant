@@ -150,22 +150,6 @@
                 </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="./supplier.html" class="nav-link">
-                <i class="nav-icon fas fa-truck-loading"></i>
-                <p>
-                    Supplier
-                </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="./report.html" class="nav-link">
-                <i class="nav-icon far fa-file-alt"></i>
-                <p>
-                    Report
-                </p>
-                </a>
-            </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -292,7 +276,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="edit-meja-form">
+            <form id="edit-ing-form">
                 <div class="modal-body">
                     <input type="hidden"name="id">
                     <div class="form-group">

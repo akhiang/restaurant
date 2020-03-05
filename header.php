@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/fontawesome/css/all.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="../assets/css/simplebar.css">
     <link href="../assets/css/jquery.nice-number.css" rel="stylesheet">
 
