@@ -203,15 +203,15 @@
                       <?php
                         require_once "../conn.php";
                         $sql = "SELECT *, m.nama_meja, u.username, t.name FROM tb_order o
-                                LEFT JOIN tb_meja m ON o.kode_meja = m.kode_meja
+                                LEFT JOIN tb_meja m ON o.table_id = m.kode_meja
                                 LEFT JOIN tbl_user u ON o.user_id = u.id
-                                LEFT JOIN tb_tipe_pesanan t ON o.tipe_pesanan_id = t.id
+                                LEFT JOIN tb_tipe_pesanan t ON o.order_type_id = t.id
                                 WHERE o.order_number = '$data'";
                         $q = $conn->query($sql);
                         $result = $q->num_rows;
                         if($result > 0) {
                           $row = $q->fetch_assoc();
-                          $date = date('j F Y', strtotime($row['tgl']));
+                          $date = date('j F Y', strtotime($row['date']));
                       ?>
                         <tr>
                           <td>Order Number</td>
@@ -235,7 +235,7 @@
                         </tr>
                         <tr>
                           <td>Time</td>
-                          <td class="font-weight-bold"><?php echo $row['waktu']; ?></td>
+                          <td class="font-weight-bold"><?php echo $row['time']; ?></td>
                         </tr>
                         <tr>
                           <td>Total</td>
@@ -272,8 +272,8 @@
                             $numb = 1;
                             $subtotal = 0;
                             $total = 0;
-                            $sql = "SELECT *, nama_menu FROM tb_order_detail_temp od
-                                    LEFT JOIN tbl_menu m on od.kode_menu = m.kode_menu
+                            $sql = "SELECT *, nama_menu FROM tb_order_detail od
+                                    LEFT JOIN tbl_menu m on od.menu_id = m.id
                                     WHERE order_number = $data";  
                             $q = $conn->query($sql);
                             $result = $q->num_rows;

@@ -7,8 +7,8 @@
     $q = $conn->query($sql);
     $data = $q->fetch_assoc();
 
-    $sql = "SELECT *, nama_menu FROM tb_order_detail_temp O
-            JOIN tbl_menu M ON O.kode_menu = M.kode_menu
+    $sql = "SELECT *, nama_menu FROM tb_order_detail od
+            JOIN tbl_menu M ON od.menu_id = M.id
             WHERE order_number = '$no_trans'";  
     $q = $conn->query($sql);
     $result = $q->num_rows;
@@ -28,8 +28,8 @@
                         <?php echo $nama_meja; ?>
                     </div>
                     <div class="col-4 text-right">
-                        <span class="fs-12 d-block"><?php echo $data['tgl']; ?></span>
-                        <span class="fs-12"><?php echo $data['waktu']; ?></span>
+                        <span class="fs-12 d-block"><?php echo $data['date']; ?></span>
+                        <span class="fs-12"><?php echo $data['time']; ?></span>
                     </div>
                 </div>
             <tbody>

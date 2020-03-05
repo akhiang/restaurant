@@ -159,22 +159,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="./supplier.html" class="nav-link">
-              <i class="nav-icon fas fa-truck-loading"></i>
-              <p>
-                Supplier
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./report.html" class="nav-link">
-              <i class="nav-icon far fa-file-alt"></i>
-              <p>
-                Report
-              </p>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -5,7 +5,7 @@
     $sql = "SELECT * FROM tb_meja";
     $result = $conn->query($sql);
 
-    foreach ($result as $row) {
+    foreach ($result as $key => $row) {
         if($row['status'] == 1){
             $status = '<a href="#" class="badge badge-success">Tersedia</a>';
         }
@@ -13,7 +13,7 @@
             $status = '<a href="#" class="badge badge-danger">Terisi</a>';
         }
         $sub_array = array();
-        $sub_array[] = $row['kode_meja'];
+        $sub_array[] = $key + 1;
         $sub_array[] = $row['nama_meja'];
         $sub_array[] = $status;
         $sub_array[] = '

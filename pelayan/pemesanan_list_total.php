@@ -11,8 +11,8 @@
     
     if ($result > 0) {
         while ($row = $q->fetch_assoc()) {
-            $harga = number_format($row['harga'], 0, ',', '.');
-            $amount = $row['harga'] * $row['qty'];
+            $harga = number_format($row['price'], 0, ',', '.');
+            $amount = $row['price'] * $row['qty'];
             $subtotal += $amount;
         }
         $tax = $subtotal * 0.1;

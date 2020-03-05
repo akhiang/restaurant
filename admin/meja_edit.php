@@ -1,5 +1,6 @@
 <?php
-	require_once "../conn.php";
+    require_once "../conn.php";
+    
     $kode = $_POST['kode_meja'];
     $nama = $_POST['nama_meja'];
     $status = $_POST['status'];

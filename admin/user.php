@@ -150,22 +150,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="./supplier.html" class="nav-link">
-              <i class="nav-icon fas fa-truck-loading"></i>
-              <p>
-                Supplier
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./report.html" class="nav-link">
-              <i class="nav-icon far fa-file-alt"></i>
-              <p>
-                Report
-              </p>
-            </a>
-          </li>
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -203,7 +188,7 @@
                 <table id="table-user" class="table table-hover text-center table-sm w-100">
                   <thead>
                     <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-user-modal">
-                      <i class="fa fa-plus mr-2"></i>Tambah User</button>
+                      <i class="fa fa-plus mr-2"></i>Create</button>
                     <tr>
                       <th scope="col">Id</th>
                       <th scope="col">Username</th>
@@ -243,7 +228,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tambah User</h5>
+        <h5 class="modal-title">Create</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -281,7 +266,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit User</h5>
+        <h5 class="modal-title">Edit</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

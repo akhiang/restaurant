@@ -4,15 +4,15 @@
     $path = "../assets/images/menu/".basename($_FILES['image']['name']);
     // var_dump($_POST);
     $nama = $_POST['nama_menu'];
+    $desc = $_POST['desc'];
     $jenis = $_POST['jenis'];
-    $stock = $_POST['stock'];
     $harga = $_POST['harga'];
     $gambar = $_FILES['image']['name'];
 
+    // var_dump($desc);
+
     $sqlCode = "SELECT MAX(kode_menu) as kode from tbl_menu";
-    
     $qCode = $conn->query($sqlCode);
-    
     $data = mysqli_fetch_assoc($qCode);
 
     $auto = $data['kode'];
@@ -20,8 +20,11 @@
     $auto++;
     $kode = "M". sprintf('%03s',$auto);
 
-    $sql = "INSERT INTO tbl_menu (id, kode_menu, nama_menu, jenis, harga, stok, gambar) VALUES
-            ('','$kode','$nama','$jenis','$harga','$stock','$gambar')";
+    // $sql = "INSERT INTO tbl_menu (id, kode_menu, nama_menu, desc, jenis, harga, gambar, ready, deleted) VALUES
+    //         ('', '$kode', '$nama', '$desc, '$jenis', '$harga', '$gambar', 1, 0)";
+
+    $sql = "INSERT INTO tbl_menu VALUES
+            ('', '$kode', '$nama', '$desc', '$jenis', '$harga', '$gambar', 1, 0)";
 
     $q = $conn->query($sql);
 
