@@ -6,14 +6,14 @@
     $total = 0;
     $order_number = $_POST["num"];
     // $user_id = $_SESSION["user_id"];
-    $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$order_number'";
+    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$order_number'";
     $q = $conn->query($sql);
     $result = $q->num_rows;
     
     if ($result > 0) {
         while ($row = $q->fetch_assoc()) {
-            $harga = number_format($row['harga'], 0, ',', '.');
-            $amount = $row['harga'] * $row['qty'];
+            $harga = number_format($row['price'], 0, ',', '.');
+            $amount = $row['price'] * $row['qty'];
             $subtotal += $amount;
         }
         $tax = $subtotal * 0.1;

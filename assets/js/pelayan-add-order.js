@@ -46,9 +46,22 @@ function addToOrder(id) {
         url: 'add_order_add.php',
         data: data + '&num=' +  num,
         success: function (response) {
-            // checkSameItem(response);
-            loadOrderBody();
-            loadOrderTotal();
+            if (response == 'ingredient') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Can\'t add menu',
+                    text: 'Please check the menu\'s ingredient',
+                })
+            } else if (response == 'quantity') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Can\'t add menu',
+                    text: 'Please check the menu\'s ingredient quantity',
+                })
+            } else if (response == 'success') {
+                loadOrderBody();
+                loadOrderTotal();
+            }
             // spinnerReset();
         }, error: function() {
             alert('aa');

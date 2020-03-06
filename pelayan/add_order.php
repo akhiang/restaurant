@@ -81,11 +81,17 @@
                                     <img src=" <?php echo '../assets/images/menu/'.$row['gambar']; ?>" class="card-img-top img-responsive">
                                     <div class="card-body">
                                         <h6> <?php echo $row['nama_menu']; ?> </h6>
-                                        <h6 class="text-danger"> <?php echo $row['harga']; ?> </h6>
+                                        <h6 class="fs-12 text-muted">
+                                            <?php
+                                                if($row['description'] == ''){
+                                                    echo "<div class='invisible'>.</div>";
+                                                } else 
+                                                echo ucwords($row['description']);
+                                            ?> 
+                                        </h6>
+                                        <h6 class="text-danger my-3"> <?php echo $row['harga']; ?> </h6>
                                         <form class="menu-card<?php echo $row['id'] ?>">
-                                            <input type="hidden" name="hidden_user_id" value="<?php echo $user_id; ?>" />
-                                            <input class="form-control form-control-sm spinner" type="number" name="qty_menu" id="qty<?php echo $row['id'] ?>" min="1" value="1"/>
-                                            <input type="hidden" name="hidden_kode_menu" id="kode<?php echo $row['id'] ?>" value="<?php echo $row["kode_menu"]; ?>" />
+                                            <input type="hidden" name="hidden_id_menu" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
                                             <button type="button" onclick="addToOrder(<?php echo $row['id'] ?>)"

@@ -4,8 +4,8 @@
     $user_id = $_POST['hidden_user_id'];
     $menu_id = $_POST['hidden_id_menu'];
     $nama = $_POST['hidden_nama_menu'];
-    // $qty = $_POST['qty_menu'];
     $harga = $_POST['hidden_harga'];
+    
     // var_dump($user_id);
     $i = 0;
     $insert_menu = false;

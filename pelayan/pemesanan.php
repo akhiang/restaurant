@@ -92,7 +92,6 @@
                                         <h6 class="text-danger my-3"> <?php echo number_format($row['harga'], 0, ',', '.'); ?> </h6>
                                         <form class="menu-card<?php echo $row['id'] ?>">
                                             <input type="hidden" name="hidden_user_id" value="<?php echo $user_id; ?>" />
-                                            <!-- <input class="form-control form-control-sm spinner" type="number" name="qty_menu" id="qty<?php echo $row['id'] ?>" min="1" value="1"/> -->
                                             <input type="hidden" name="hidden_id_menu" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
