@@ -129,7 +129,7 @@
           </li>
           <li class="nav-item">
             <a href="./bahan.php" class="nav-link">
-              <i class="nav-icon fas fa-utensils"></i>
+              <i class="nav-icon fas fa-egg"></i>
               <p>
                 Ingredient
               </p>

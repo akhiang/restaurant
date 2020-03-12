@@ -107,10 +107,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href=" menu.php" class="nav-link">
+            <a href="./menu.php" class="nav-link">
               <i class="nav-icon fas fa-utensils"></i>
               <p>
                 Menu
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./bahan.php" class="nav-link">
+              <i class="nav-icon fas fa-egg"></i>
+              <p>
+                Ingredient
               </p>
             </a>
           </li>
@@ -126,7 +134,7 @@
             <a href="./penjualan.php" class="nav-link active">
               <i class="nav-icon fa fa-money-bill-wave"></i>
               <p>
-                Penjualan
+                Transaction
               </p>
             </a>
           </li>
@@ -135,22 +143,6 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./supplier.html" class="nav-link">
-              <i class="nav-icon fas fa-truck-loading"></i>
-              <p>
-                Supplier
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./report.html" class="nav-link">
-              <i class="nav-icon far fa-file-alt"></i>
-              <p>
-                Report
               </p>
             </a>
           </li>
@@ -220,6 +212,11 @@
                         <tr>
                           <td>Order Type</td>
                           <td class="font-weight-bold"><?php echo ucwords($row['name']); ?></td>
+                        </tr>
+                        <tr>
+                        <tr>
+                          <td>Order Status</td>
+                          <td class="font-weight-bold"><?php echo ucwords($row['order_status']); ?></td>
                         </tr>
                         <tr>
                           <td>Table</td>

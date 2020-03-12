@@ -1,10 +1,10 @@
 <?php 
     include "../conn.php";
 
-    $sql = "SELECT order_id, order_number, paid, order_type_id, table_id, name
+    $sql = "SELECT order_id, order_number, order_status, order_type_id, table_id, name
             FROM tb_order O 
             LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id
-            WHERE paid = 0 ORDER BY order_number DESC";
+            WHERE order_status = 'unpaid' ORDER BY order_number DESC";
     $q = mysqli_query($conn,$sql);
     $result = mysqli_num_rows($q);
 

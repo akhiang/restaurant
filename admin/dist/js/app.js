@@ -662,31 +662,12 @@ $(document).ready(function () {
   // END USER SECTION 
 
   // PENJUALAN SECTION
-
     var tablePenjualan = $('#table-penjualan').DataTable({
       "ajax": {"url": "penjualan_fetch.php"},
       "order": [[0, "desc"]]
     });
-
   // END PENJUALAN SECTION
 });
-
-// function loadMenu() {
-//   var tableUser = $('#table-user').DataTable({
-//     "ajax": {
-//       "url": "menu_fetch.php",
-//     },
-//     // "columns": [ 
-//     //   {"data": 'kode_menu'}, 
-//     //   {"data": 'gambar'}, 
-//     //   {"data": 'nama_menu'}, 
-//     //   {"data": 'jenis'}, 
-//     //   {"data": 'stok'}, 
-//     //   {"data": 'harga'}, 
-//     //   {"data": 'harga'}, 
-//     // ],
-//   });
-// }
 
 function readURL(input) {
   if (input.files && input.files[0]) {

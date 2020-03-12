@@ -70,7 +70,6 @@
 
 ?>
 
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -95,22 +94,22 @@
       height: 100vh;
     }
 
-		.loginbox {
-			width: 350px;
-			height: 410px;
-			background: white;
-			top: 50%;
-			left: 50%;
-			position: absolute;
-			transform: translate(-50%, -50%);
-			box-sizing: border-box;
-			padding: 30px 30px;
-			border-radius: 5px;
-		}
+	.loginbox {
+		width: 350px;
+		height: 470px;
+		background: white;
+		top: 50%;
+		left: 50%;
+		position: absolute;
+		transform: translate(-50%, -50%);
+		box-sizing: border-box;
+		padding: 30px 30px;
+		border-radius: 5px;
+	}
 
     .btn {
-      background: #207561;
-      color: white;
+      	background: #207561;
+      	color: white;
     }
     .btn:hover {
     	background: #155949;
@@ -120,47 +119,37 @@
 		color: red;
 		font-size: 12px;
 	}
+
+	.crop {
+		border-radius: 50%;
+		background-color: #207561;
+	}
 	</style>
 </head>
 
 <body>
 	<div class="wrapper">
-		<?php
-
-		if (isset($_GET['pesan'])) {
-			if ($_GET['pesan'] == "gagal") {
-
-				echo '
-		<div class="alert alert-danger alert-dismissible">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<strong>Peringatan!</strong><br> Username atau Password Salah.
-		</div>';
-
-			}
-		}
-		?>
-<div class="loginbox">
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <h3 class="text-center mb-5">Logo Here</h3>
-    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off">
-		<div class="help-block"><?php echo $username_err; ?></div>
-    </div>
-    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
-		<span class="help-block"><?php echo $password_err; ?></span>
-    </div>
-    <input type="submit" name="login" value="Login" class="btn btn-block mt-4">
-    </form>
-</div>
+		<div class="loginbox">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+				<div class="d-flex flex-column align-items-center mt-2 mb-2">
+					<object class="crop" data="assets/images/background/bakso300.svg" type="image/svg+xml"  style="width: 130px; height: 130px;"></object>
+				</div>
+				<div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off">
+					<div class="help-block"><?php echo $username_err; ?></div>
+				</div>
+				<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
+					<span class="help-block"><?php echo $password_err; ?></span>
+				</div>
+				<input type="submit" name="login" value="Login" class="btn btn-block mt-4">
+			</form>
+		</div>
+	</div>
 </body>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
-	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </html>

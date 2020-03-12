@@ -39,6 +39,7 @@
                                 <div class="col-3 text-center">
                                     <span class="text-muted fs-13 d-block">Meja</span>
                                     <span class="font-weight-bold"><?php echo $nama_meja; ?></span>
+                                    <input type="hidden" class="input_table" value="<?= $kode_meja; ?>">
                                 </div>
                                 <div class="col-5 d-flex flex-column">
                                     <span class="text-muted fs-13 ml-auto"><?php echo date("l, d-m-Y"); ?></span>
@@ -55,8 +56,6 @@
                             <div class="order-list-option d-flex p-2">
                                 <button class="btn btn-danger ml-auto" data-toggle="modal" data-target="#cancelOrder">Cancel</button>
                                 <button class="btn btn-success ml-3" data-toggle="modal" data-target="#placeOrder">Place Order</button>
-                                <!-- <button class="btn btn-success ml-3" id="place-order" data-user-id="<?php echo $user_id ?>"
-                                    data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>">Place Order</button> -->
                             </div>
                         </div>
                     </div>
@@ -91,7 +90,7 @@
                                         </h6>
                                         <h6 class="text-danger my-3"> <?php echo number_format($row['harga'], 0, ',', '.'); ?> </h6>
                                         <form class="menu-card<?php echo $row['id'] ?>">
-                                            <input type="hidden" name="hidden_user_id" value="<?php echo $user_id; ?>" />
+                                            <input type="hidden" name="hidden_user_id" class="input_user" value="<?php echo $user_id; ?>" />
                                             <input type="hidden" name="hidden_id_menu" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
@@ -128,7 +127,7 @@
                     <p>Are you sure you want to cancel this order?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="cancel-order" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>">Yes, cancel order</button>
+                    <button type="button" class="btn btn-danger" id="cancel-order" onclick="cancelListOrder()">Yes, cancel order</button>
                     <button type="button" class="btn btn-success" data-dismiss="modal">No, keep the order</button>
                 </div>
             </div>

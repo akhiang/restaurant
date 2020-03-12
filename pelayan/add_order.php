@@ -80,7 +80,7 @@
                                 <div class="card m-2 <?php echo $row['jenis']; ?>" style="width: 13.3rem;">
                                     <img src=" <?php echo '../assets/images/menu/'.$row['gambar']; ?>" class="card-img-top img-responsive">
                                     <div class="card-body">
-                                        <h6> <?php echo $row['nama_menu']; ?> </h6>
+                                        <h6> <?php echo ucwords($row['nama_menu']); ?> </h6>
                                         <h6 class="fs-12 text-muted">
                                             <?php
                                                 if($row['description'] == ''){
@@ -89,7 +89,7 @@
                                                 echo ucwords($row['description']);
                                             ?> 
                                         </h6>
-                                        <h6 class="text-danger my-3"> <?php echo $row['harga']; ?> </h6>
+                                        <h6 class="text-danger my-3"> <?php echo number_format($row['harga'], 0, ',', '.'); ?> </h6>
                                         <form class="menu-card<?php echo $row['id'] ?>">
                                             <input type="hidden" name="hidden_id_menu" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
@@ -116,7 +116,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Cancel Order</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -125,8 +125,8 @@
                     <p>Cancel this order?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="cancel-order btn btn-danger" data-meja-id="<?php echo $kode_meja ?>" data-user-id="<?php echo $user_id; ?>" data-dismiss="modal">Yes, cancel it</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" id="cancel-ordered" data-meja-id="<?php echo $kode_meja ?>" data-order-number="<?php echo $order_number; ?>" data-dismiss="modal">Yes, cancel order</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">No, Keep the order</button>
                 </div>
             </div>
         </div>

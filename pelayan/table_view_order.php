@@ -7,7 +7,7 @@
     $q = $conn->query($sql);
     $data = $q->fetch_assoc();
 
-    $sql = "SELECT *, nama_menu FROM tb_order_detail od
+    $sql = "SELECT * FROM tb_order_detail od
             JOIN tbl_menu M ON od.menu_id = M.id
             WHERE order_number = '$no_trans'";  
     $q = $conn->query($sql);
@@ -44,7 +44,7 @@
             <tr>
                 <td> 
                     <span class="font-weight-bold d-block"><?php echo $row['nama_menu'] ?></span>
-                    <span class="text-muted fs-12"><?php echo 'Rp ' .$harga ?></span>
+                    <span class="text-muted fs-12"><?php echo ucwords($row['description']) ?></span>
                 </td>
                 <td align="center"> 
                     <?php echo $row['qty'] ?>

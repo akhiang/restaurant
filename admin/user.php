@@ -120,7 +120,7 @@
           </li>
           <li class="nav-item">
             <a href="./bahan.php" class="nav-link">
-              <i class="nav-icon fas fa-utensils"></i>
+              <i class="nav-icon fas fa-egg"></i>
               <p>
                   Ingredient
               </p>
@@ -138,7 +138,7 @@
             <a href="./penjualan.php" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave"></i>
               <p>
-                Penjualan
+                Transaction
               </p>
             </a>
           </li>

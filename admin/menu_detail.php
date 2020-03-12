@@ -119,7 +119,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="meja.php" class="nav-link">
+            <a href="./bahan.php" class="nav-link">
+              <i class="nav-icon fas fa-utensils"></i>
+              <p>
+                Ingredient
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./meja.php" class="nav-link">
               <i class="nav-icon fas fa-chair"></i>
               <p>
                 Table
@@ -130,7 +138,7 @@
             <a href="./penjualan.php" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave"></i>
               <p>
-                Penjualan
+                Transaction
               </p>
             </a>
           </li>
@@ -139,22 +147,6 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./supplier.html" class="nav-link">
-              <i class="nav-icon fas fa-truck-loading"></i>
-              <p>
-                Supplier
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./report.html" class="nav-link">
-              <i class="nav-icon far fa-file-alt"></i>
-              <p>
-                Report
               </p>
             </a>
           </li>

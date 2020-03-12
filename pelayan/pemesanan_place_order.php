@@ -11,7 +11,6 @@
     $number = $data['nomor'];
     $number++;
     $kode = sprintf('%05s',$number);
-    // var_dump($kode);
 
     $subtotal = 0;
     $tgl = date("Y-m-d");
@@ -30,9 +29,7 @@
     $tax = $subtotal * 0.1;
     $total = $subtotal + $tax;
 
-    $sql = "INSERT INTO tb_order VALUES ('', '$kode', 0, '$tipe', '$table_id',
+    $sql = "INSERT INTO tb_order VALUES ('', '$kode', 'unpaid', '$tipe', '$table_id',
                 '$user_id','$tgl','$waktu','$subtotal','$tax','$total', 0)";    
     $q = $conn->query($sql);
-
-    // echo json_encode($kode);
 ?>

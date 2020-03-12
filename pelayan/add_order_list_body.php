@@ -2,8 +2,9 @@
     include "../conn.php";
     $total = 0;
     $order_number = $_POST["num"];
-    $sql = "SELECT * FROM tb_order_detail
-            WHERE order_number = '$order_number' ORDER BY id ASC";  
+    $sql = "SELECT * FROM tb_order_detail od
+            JOIN tbl_menu M ON od.menu_id = M.id
+            WHERE order_number = '$order_number' ORDER BY od.id ASC";  
     $q = mysqli_query($conn,$sql);
     $result = mysqli_num_rows($q);
 
@@ -18,7 +19,7 @@
             <td align="center"><a class="del-order fa fa-times" data-menu-id="<?php echo $row['menu_id'] ?>" data-order="<?php echo $order_number; ?>" ></a></td>
             <td> 
                 <span class="font-weight-bold d-block"><?php echo $row['menu_name'] ?></span>
-                <span class="text-muted fs-12"><?php echo 'Rp ' .$harga ?></span>
+                <span class="text-muted fs-12"><?php echo ucwords($row['description']) ?></span>
             </td>
             <td align="center"> 
                 <span><?php echo $row['qty'] ?></span>

@@ -28,7 +28,7 @@
                                 while ($row = mysqli_fetch_assoc($q)) {
                                     $status = $row['status']; 
                                     $kode_meja = $row['kode_meja'];
-                                    $sql2 = "SELECT * FROM tb_order WHERE order_number = '$kode_meja' AND paid = '0'";
+                                    $sql2 = "SELECT * FROM tb_order WHERE table_id = '$kode_meja' AND order_status = 'unpaid'";
                                     $q2 = $conn->query($sql2); 
                                     $row2 = $q2->fetch_assoc(); 
                             ?>

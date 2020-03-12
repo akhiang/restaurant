@@ -17,7 +17,7 @@
 ?>
 	<main class="wrapper-all">
 		<div class="container-fluid px-5">
-
+			<div id="clock" class="d-none"></div>
 			<div class="action-card-container py-5">
 				<div class="cards">
 					<div class="card text-center">

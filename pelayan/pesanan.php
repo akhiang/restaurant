@@ -21,10 +21,10 @@
                 <div id="clock" class="d-none"></div>
                 <div class="cards pesanan">
                 <?php 
-                    $sql = "SELECT order_id, order_number, paid, order_type_id, table_id, name
+                    $sql = "SELECT order_id, order_number, order_status, order_type_id, table_id, name
                             FROM tb_order O 
                             LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id 
-                            WHERE paid = 0 ORDER BY order_number DESC";
+                            WHERE order_status = 'unpaid' ORDER BY order_number DESC";
                     $q = mysqli_query($conn,$sql);
                     while ($row = mysqli_fetch_assoc($q)) {
                         $kode_meja = $row['table_id'];
@@ -71,18 +71,18 @@
     <div class="modal fade" id="pesananList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Order List</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="table-view-order"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="table-view-order"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -92,14 +92,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Order Detail</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form id="add-order-form" method="POST" action="add_order.php">
                     <div class="modal-body">
-                        Add more order to this placed order ?
+                        See detail for this order?
                         <div id="add-order-conf"></div>
                     </div>
                     <div class="modal-footer">

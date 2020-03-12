@@ -116,7 +116,7 @@
           </li>
           <li class="nav-item">
             <a href="./bahan.php" class="nav-link">
-              <i class="nav-icon fas fa-utensils"></i>
+              <i class="nav-icon fas fa-egg"></i>
               <p>
                   Ingredient
               </p>
@@ -185,8 +185,8 @@
                     <tr>
                       <th scope="col">Order Number</th>
                       <th scope="col">Order Type</th>
-                      <th scope="col">Waiter</th>
-                      <th scope="col">Status</th>
+                      <th scope="col">Order Status</th>
+                      <th scope="col">Table</th>
                       <th scope="col">Date</th>
                       <th scope="col">Total</th>
                       <th scope="col">Action</th>
