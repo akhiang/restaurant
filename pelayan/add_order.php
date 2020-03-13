@@ -84,7 +84,7 @@
                                         <h6 class="fs-12 text-muted">
                                             <?php
                                                 if($row['description'] == ''){
-                                                    echo "<div class='invisible'>.</div>";
+                                                    echo "<div class='invisible '>.</div>";
                                                 } else 
                                                 echo ucwords($row['description']);
                                             ?> 
