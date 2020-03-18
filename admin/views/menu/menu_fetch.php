@@ -9,7 +9,7 @@
         $sub_array = array();
         $sub_array[] = $key + 1;
         $sub_array[] = $row['kode_menu'];
-        $sub_array[] = '<img src="../assets/images/menu/'.$row["gambar"].'" class="img-fluid img-thumbnail">';
+        $sub_array[] = '<img src="../../../assets/images/menu/'.$row["gambar"].'" class="img-fluid img-thumbnail">';
         $sub_array[] = ucwords($row['nama_menu']);
         $sub_array[] = ucwords($row['description']);
         $sub_array[] = ucwords($row['jenis']);

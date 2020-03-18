@@ -18,7 +18,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -89,9 +89,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-          style="opacity: .8">
-      <span class="brand-text font-weight-light">Restaurant</span>
+      <img src="./dist/img/bakso-logo.png" class="brand-image img-circle elevation-3">
+      <span class="brand-text font-weight-light">Bakso Mas Ari</span>
     </a>
 
     <!-- Sidebar -->
@@ -120,7 +119,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./menu.php" class="nav-link">
+            <a href="views/menu/menu.php" class="nav-link">
               <i class="nav-icon fas fa-utensils"></i>
               <p>
                 Menu
@@ -128,7 +127,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./bahan.php" class="nav-link">
+            <a href="views/bahan/bahan.php" class="nav-link">
               <i class="nav-icon fas fa-egg"></i>
               <p>
                 Ingredient
@@ -136,7 +135,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./meja.php" class="nav-link">
+            <a href="views/meja/meja.php" class="nav-link">
               <i class="nav-icon fas fa-chair"></i>
               <p>
                 Table
@@ -144,7 +143,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./penjualan.php" class="nav-link">
+            <a href="views/penjualan/penjualan.php" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave"></i>
               <p>
                 Transaction
@@ -152,7 +151,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./user.php" class="nav-link">
+            <a href="views/user/user.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User
@@ -174,6 +173,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard</h1>
+            <?php require_once "../conn.php"; ?>
           </div><!-- /.col -->
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -189,7 +189,173 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php
+                  $tgl = date("Y-m-d");
+                  $q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl'");
+                  $a = $q->num_rows;
+                  echo '<h3>'.$a.'</h3>';
+                ?>
+                <p>Today's Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-compose"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <?php
+                  $tgl = date("Y-m-d");
+                  $q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl' AND order_status = 'paid'");
+                  $a = $q->num_rows;
+                  echo '<h3>'.$a.'</h3>';
+                ?>
+
+                <p>Finished Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-checkmark-round"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <?php
+                    $q = $conn->query("SELECT * FROM tbl_user");
+                    $a = $q->num_rows;
+                    echo '<h3>'.$a.'</h3>';
+                ?>
+                <p>User</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <?php
+                    $q = $conn->query("SELECT * FROM tbl_menu WHERE ready = 1");
+                    $a = $q->num_rows;
+                    echo '<h3>'.$a.'</h3>';
+                ?>
+
+                <p>Menu</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-clipboard"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+        <!-- Chart -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Online Store Visitors</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">820</span>
+                    <span>Visitors Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                    <span class="text-muted">Since last week</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Sales</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">$18,230.00</span>
+                    <span>Sales Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                    <span class="text-muted">Since last month</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This year
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last year
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- !Chart -->
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -234,39 +400,19 @@
   </div>
 </div>
 
+<!-- REQUIRED SCRIPTS -->
+
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
+<!-- Bootstrap -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
+<!-- AdminLTE -->
 <script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<script src="dist/js/pages/dashboard3.js"></script>
+
 </body>
 </html>

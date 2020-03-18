@@ -2,12 +2,10 @@
     include "../conn.php";
 
     $no_trans = $_POST['no_trans'];
-    
-    // $sql = "SELECT * FROM tb_order WHERE no_transaksi = '$no_trans'";  
     $sql = "SELECT order_id, order_number, total, order_type_id, table_id, name
-        FROM tb_order O 
-        LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id
-        WHERE order_number = '$no_trans'";
+            FROM tb_order O 
+            LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id
+            WHERE order_number = '$no_trans'";
 
     $q = $conn->query($sql);
     $result = mysqli_num_rows($q);
@@ -24,7 +22,6 @@
             $nama_meja =  $row2['nama_meja'];
         }
     ?>
-        
         <div class="form-group row">
             <label for="no-transaksi" class="col-4 offset-1 col-form-label text-right">Order Number</label>
             <div class="col-4"> 

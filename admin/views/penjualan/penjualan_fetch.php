@@ -8,8 +8,9 @@
             ORDER BY o.order_number DESC";
     $result = $conn->query($sql);
 
-    foreach ($result as $row) {
+    foreach ($result as $key => $row) {
         $sub_array = array();
+        // $sub_array[] = $key + 1;
         $sub_array[] = $row['order_number'];
         $sub_array[] = $row['order_type_id'] == 1 ? '<span class="badge badge-primary">Dine In</span>' : '<span class="badge badge-info">Take Away</span>';
         $sub_array[] = orderStatus($row['order_status']);
@@ -18,6 +19,7 @@
         $sub_array[] = number_format($row['total'], 0, ',', '.');
         $sub_array[] = '
             <a href="./penjualan_detail.php?no='.$row['order_number'].'" class="trans-detail badge badge-info mr-2"><i class="far fa-eye p-1"></i></a>
+            <a href="./penjualan_print.php?o='.$row['order_number'].'" class="trans-detail badge badge-danger mr-2"><i class="fa fa-print p-1"></i></a>
         ';
         $data[] = $sub_array;
     }

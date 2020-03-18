@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.left {
+    float: left;
+    width: 40%;
+    /* border: 1px solid black; */
+}
+
+.right {
+    width: 50%;
+    float: right;
+    /* border: 1px solid black; */
+}
+
+.pt-3 {
+    padding-top: 8mm !important;
+}
+
+.my-2 {
+    margin-top: 5mm !important;
+    margin-bottom: 5mm !important;
+}
+
+#menu {
+    font-size: 13px;
+    border-collapse: collapse;
+}
+
+#menu thead, th {
+    padding: 10px 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid #999;
+}
+
+#menu tbody td {
+    padding: 10px 0;
+    border-bottom: 1px solid #999;
+}
+
+#footer {
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+#footer td{
+    padding: 5px 0;
+}
+
+#footer tr:nth-child(2) td {
+    border-bottom: 1px solid #999;
+}
+
+#footer .total {
+    font-size: 15px;
+    padding: 15px 0;
+}

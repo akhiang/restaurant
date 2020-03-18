@@ -17,6 +17,7 @@
     <title>Restaurant</title>
 </head>
 <body>
+    <?php session_start(); ?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
@@ -44,15 +45,13 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user mr-3"></i>Nama
+                                    <i class="fas fa-user mr-3"></i><?php echo $_SESSION['username']; ?>
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-cog mr-3"></i>Role
+                                    <i class="fas fa-user-cog mr-3"></i><?= $_SESSION['role']; ?>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt"></i>Logout
-                                </a>
+                                <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt mr-3"></i>Logout</button>
                             </div>
                         </li>
                     </ul>

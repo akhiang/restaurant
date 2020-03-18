@@ -144,7 +144,7 @@ $(document).ready(function () {
 
 function pdf() {
     var num = $('#btn-print').attr('data-order-number');
-    window.open("invoice/test.php?o=" + num);
+    window.open("invoice/invoice.php?o=" + num);
 }
 
 function loadTable() {

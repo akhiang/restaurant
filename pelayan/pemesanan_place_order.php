@@ -30,6 +30,6 @@
     $total = $subtotal + $tax;
 
     $sql = "INSERT INTO tb_order VALUES ('', '$kode', 'unpaid', '$tipe', '$table_id',
-                '$user_id','$tgl','$waktu','$subtotal','$tax','$total', 0)";    
+                '$user_id','$tgl','$waktu','$subtotal','$tax','$total')";    
     $q = $conn->query($sql);
 ?>

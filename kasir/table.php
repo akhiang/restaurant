@@ -2,7 +2,6 @@
     include "../conn.php";
     require_once "../header_kasir.php";
 
-    session_start();
 	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		if ($_SESSION['role'] == "pelayan") {
 			header("location: ../pelayan/index.php");

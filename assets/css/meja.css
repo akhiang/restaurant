@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.no-order {
+    grid-column: 1 / span 4;
+    height: calc(100vh - 220px);
+}
+
 .action-card-container {
     /* display: grid;
     grid-template-columns: 1fr repeat(12, minmax(auto, 60px) 1fr);
