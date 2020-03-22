@@ -1,10 +1,13 @@
 <?php
     require_once "../conn.php";
 
+    $from = $_POST['from'];
+    $to = $_POST['to'];
     $data = array();
     $sql = "SELECT *, m.nama_meja, u.username FROM tb_order o
             LEFT JOIN tb_meja m ON o.table_id = m.kode_meja
             LEFT JOIN tbl_user u ON o.user_id = u.id
+            WHERE date BETWEEN '$from' AND '$to'
             ORDER BY o.order_number DESC";
     $result = $conn->query($sql);
 
@@ -14,7 +17,7 @@
         $sub_array[] = $row['order_number'];
         $sub_array[] = $row['order_type_id'] == 1 ? '<span class="badge badge-primary">Dine In</span>' : '<span class="badge badge-info">Take Away</span>';
         $sub_array[] = orderStatus($row['order_status']);
-        $sub_array[] = $row['table_id'] == 0 ? '-' : $row['nama_meja'];
+        $sub_array[] = $row['table_id'] == 0 ? '-' : $row['nama_meja'] ;
         $sub_array[] = $row['date'];
         $sub_array[] = number_format($row['total'], 0, ',', '.');
         $sub_array[] = '

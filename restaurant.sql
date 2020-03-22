@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2020 at 05:31 AM
+-- Generation Time: Mar 22, 2020 at 08:04 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.1.30
 
@@ -48,7 +48,7 @@ INSERT INTO `tbl_menu` (`id`, `kode_menu`, `nama_menu`, `description`, `jenis`, 
 (1, 'M001', 'Bakso Urat', 'mie kuning & mie putih', 'bakso', '15000', 'k.jpeg', 1, 0),
 (2, 'M002', 'Es Cappucino', '', 'Minuman', '4000', 'menu_escappp.jpeg', 1, 0),
 (3, 'M003', 'Bakso Telur', 'mie kuning & mie putih', 'bakso', '15000', 'menu_bstelur.jpeg', 1, 0),
-(5, 'M005', 'Bakso Mercon', '', 'bakso', '17000', 'menu_bsmercon.jpg', 1, 0),
+(5, 'M005', 'Bakso Mercon', 'mie kuning & mie putih', 'bakso', '17000', 'menu_bsmercon.jpg', 1, 0),
 (6, 'M006', 'Es Extra Joss', '', 'Minuman', '4000', 'menu_esxtrajoss.jpeg', 1, 0),
 (7, 'M007', 'Bakso Granat', '', 'bakso', '17000', 'menu_bsgranat.jpg', 1, 0),
 (8, 'M008', 'Es Nutri Sari', '', 'Minuman', '3000', 'menu_esnutri.jpeg', 1, 0),
@@ -71,7 +71,7 @@ INSERT INTO `tbl_menu` (`id`, `kode_menu`, `nama_menu`, `description`, `jenis`, 
 
 CREATE TABLE `tbl_user` (
   `id` varchar(5) NOT NULL,
-  `username` varchar(6) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -105,7 +105,7 @@ CREATE TABLE `tb_bahan` (
 --
 
 INSERT INTO `tb_bahan` (`id`, `name`, `unit`, `qty`, `deleted`) VALUES
-(1, 'mie kuning', 'gram', 85, 0),
+(1, 'mie kuning', 'gram', 100, 0),
 (2, 'mie putih', 'gram', 85, 0),
 (3, 'nutri sari', 'pcs', 100, 0),
 (4, 'bakso kecil', 'pcs', 91, 0),
@@ -113,8 +113,9 @@ INSERT INTO `tb_bahan` (`id`, `name`, `unit`, `qty`, `deleted`) VALUES
 (7, 'bakso mercon', 'pcs', 100, 0),
 (8, 'bakso telur', 'pcs', 99, 0),
 (9, 'bakso granat', 'pcs', 1000, 0),
-(10, 'cappucino', 'bks', 98, 0),
-(11, 'extra joss', 'bks', 1000, 0);
+(10, 'cappucino', 'bks', 100, 0),
+(11, 'extra joss', 'bks', 1000, 0),
+(12, 'nutri sari', 'bks', 100, 0);
 
 -- --------------------------------------------------------
 
@@ -125,8 +126,8 @@ INSERT INTO `tb_bahan` (`id`, `name`, `unit`, `qty`, `deleted`) VALUES
 CREATE TABLE `tb_bills` (
   `id` int(11) NOT NULL,
   `order_number` varchar(50) NOT NULL,
-  `tgl` date NOT NULL,
-  `waktu` time NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -134,36 +135,10 @@ CREATE TABLE `tb_bills` (
 -- Dumping data for table `tb_bills`
 --
 
-INSERT INTO `tb_bills` (`id`, `order_number`, `tgl`, `waktu`, `total`) VALUES
-(10, '00001', '2020-02-02', '01:55:23', 20900),
-(11, '00005', '2020-02-02', '01:55:34', 20900),
-(12, '00003', '2020-02-02', '01:55:50', 44000),
-(13, '00004', '2020-02-02', '01:56:00', 18700),
-(14, '00002', '2020-02-02', '01:56:08', 23100),
-(15, '00006', '2020-02-13', '10:00:16', 42900),
-(16, '00007', '2020-02-13', '11:44:32', 58300),
-(17, '00006', '2020-03-02', '09:21:11', 20900),
-(18, '00001', '2020-03-02', '09:22:27', 16500),
-(19, '00004', '2020-03-02', '09:23:15', 20900),
-(20, '00003', '2020-03-02', '09:24:22', 20900);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_cart`
---
-
-CREATE TABLE `tb_cart` (
-  `id` int(11) NOT NULL,
-  `tipe_pesanan_id` int(11) NOT NULL,
-  `kode_meja` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `tgl` date NOT NULL,
-  `waktu` time NOT NULL,
-  `subtotal` int(11) NOT NULL,
-  `tax` int(11) NOT NULL,
-  `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tb_bills` (`id`, `order_number`, `date`, `time`, `total`) VALUES
+(21, '00006', '2020-03-13', '10:12:59', 37400),
+(22, '00007', '2020-03-13', '10:18:19', 20900),
+(23, '00008', '2020-03-13', '11:41:42', 13200);
 
 -- --------------------------------------------------------
 
@@ -236,9 +211,10 @@ INSERT INTO `tb_meja` (`kode_meja`, `nama_meja`, `status`) VALUES
 (6, 'M06', 1),
 (7, 'M07', 1),
 (8, 'M08', 1),
-(9, 'M09', 0),
+(9, 'M09', 1),
 (10, 'M10', 1),
-(11, 'M11', 1);
+(11, 'M11', 1),
+(12, 'M12', 1);
 
 -- --------------------------------------------------------
 
@@ -267,7 +243,8 @@ INSERT INTO `tb_menu_ingredient` (`id`, `menu_id`, `ingredient_id`, `use_qty`) V
 (9, 3, 2, 5),
 (10, 3, 4, 3),
 (11, 3, 8, 1),
-(12, 6, 11, 1);
+(12, 6, 11, 1),
+(13, 8, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -308,22 +285,22 @@ CREATE TABLE `tb_order` (
   `time` time NOT NULL,
   `subtotal` int(11) NOT NULL,
   `tax` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
-  `deleted` tinyint(1) NOT NULL
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_order`
 --
 
-INSERT INTO `tb_order` (`order_id`, `order_number`, `order_status`, `order_type_id`, `table_id`, `user_id`, `date`, `time`, `subtotal`, `tax`, `total`, `deleted`) VALUES
-(7, '00001', 'cancelled', 2, 0, 4, '2020-03-04', '11:58:34', 15000, 1500, 16500, 0),
-(8, '00002', 'cancelled', 1, 1, 4, '2020-03-13', '12:15:07', 19000, 1900, 20900, 0),
-(9, '00003', 'cancelled', 1, 1, 4, '2020-03-13', '12:24:54', 19000, 1900, 20900, 0),
-(10, '00004', 'cancelled', 1, 11, 4, '2020-03-13', '12:26:35', 19000, 1900, 20900, 0),
-(11, '00005', 'cancelled', 1, 10, 4, '2020-03-13', '12:35:04', 23000, 2300, 25300, 0),
-(12, '00006', 'unpaid', 1, 9, 4, '2020-03-13', '12:50:13', 34000, 3400, 37400, 0),
-(13, '00007', 'unpaid', 2, 0, 4, '2020-03-13', '01:03:32', 19000, 1900, 20900, 0);
+INSERT INTO `tb_order` (`order_id`, `order_number`, `order_status`, `order_type_id`, `table_id`, `user_id`, `date`, `time`, `subtotal`, `tax`, `total`) VALUES
+(7, '00001', 'cancelled', 2, 0, 4, '2020-03-04', '11:58:34', 15000, 1500, 16500),
+(8, '00002', 'cancelled', 1, 1, 4, '2020-03-13', '12:15:07', 19000, 1900, 20900),
+(9, '00003', 'cancelled', 1, 1, 4, '2020-03-13', '12:24:54', 19000, 1900, 20900),
+(10, '00004', 'cancelled', 1, 11, 4, '2020-03-13', '12:26:35', 19000, 1900, 20900),
+(11, '00005', 'cancelled', 1, 10, 4, '2020-03-13', '12:35:04', 23000, 2300, 25300),
+(12, '00006', 'paid', 1, 9, 4, '2020-03-13', '12:50:13', 34000, 3400, 37400),
+(13, '00007', 'paid', 2, 0, 4, '2020-03-13', '01:03:32', 19000, 1900, 20900),
+(14, '00008', 'paid', 2, 0, 4, '2020-03-13', '11:06:21', 12000, 1200, 13200);
 
 -- --------------------------------------------------------
 
@@ -357,29 +334,10 @@ INSERT INTO `tb_order_detail` (`order_number`, `menu_id`, `menu_name`, `qty`, `p
 ('00006', '1', 'Bakso Urat', 2, 15000, 45),
 ('00006', '2', 'Es Cappucino', 1, 4000, 46),
 ('00007', '3', 'Bakso Telur', 1, 15000, 48),
-('00007', '2', 'Es Cappucino', 1, 4000, 49);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_order_detail_temp`
---
-
-CREATE TABLE `tb_order_detail_temp` (
-  `order_number` varchar(50) NOT NULL,
-  `kode_menu` varchar(10) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_order_detail_temp`
---
-
-INSERT INTO `tb_order_detail_temp` (`order_number`, `kode_menu`, `qty`, `harga`, `id`) VALUES
-('', 'M002', 1, 4000, 125),
-('00002', 'M003', 1, 15000, 126);
+('00007', '2', 'Es Cappucino', 1, 4000, 49),
+('00008', '6', 'Es Extra Joss', 1, 4000, 50),
+('00008', '6', 'Es Extra Joss', 1, 4000, 51),
+('00008', '6', 'Es Extra Joss', 1, 4000, 52);
 
 -- --------------------------------------------------------
 
@@ -445,12 +403,6 @@ ALTER TABLE `tb_bills`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_cart`
---
-ALTER TABLE `tb_cart`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tb_cart_detail`
 --
 ALTER TABLE `tb_cart_detail`
@@ -493,12 +445,6 @@ ALTER TABLE `tb_order_detail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_order_detail_temp`
---
-ALTER TABLE `tb_order_detail_temp`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tb_order_modifier`
 --
 ALTER TABLE `tb_order_modifier`
@@ -524,25 +470,19 @@ ALTER TABLE `tbl_menu`
 -- AUTO_INCREMENT for table `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_bills`
 --
 ALTER TABLE `tb_bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `tb_cart`
---
-ALTER TABLE `tb_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_cart_detail`
 --
 ALTER TABLE `tb_cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tb_cart_detail_modifier`
@@ -554,7 +494,7 @@ ALTER TABLE `tb_cart_detail_modifier`
 -- AUTO_INCREMENT for table `tb_menu_ingredient`
 --
 ALTER TABLE `tb_menu_ingredient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tb_modifier`
@@ -566,19 +506,13 @@ ALTER TABLE `tb_modifier`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tb_order_detail`
 --
 ALTER TABLE `tb_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
---
--- AUTO_INCREMENT for table `tb_order_detail_temp`
---
-ALTER TABLE `tb_order_detail_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `tb_order_modifier`

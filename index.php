@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    	if ($_SESSION['role'] == "admin") {
+		if ($_SESSION['role'] == "admin") {
 			header("location:admin/index.php");
 		}
 		else if ($_SESSION['role'] == "kasir") {
@@ -10,7 +10,7 @@
 		else if ($_SESSION['role'] == "pelayan") {
 			header("location:pelayan/index.php");
 		}
-    	exit;
+		exit;
 	}
 	require_once "conn.php";
 	$username = $password = "";
@@ -80,20 +80,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
 	<style>
-		body {
-			background: url(assets/images/background/bg_login.jpg) no-repeat center center fixed;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-		}
+	body {
+		background: url(assets/images/background/bg_login.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
 
     .wrapper {
-      background-color: rgb(21, 89, 73, 0.8);
-      width: 100%;
-      height: 100vh;
+		background-color: rgb(21, 89, 73, 0.8);
+		width: 100%;
+		height: 100vh;
     }
-
 	.loginbox {
 		width: 350px;
 		height: 470px;
@@ -106,20 +105,18 @@
 		padding: 30px 30px;
 		border-radius: 5px;
 	}
-
     .btn {
-      	background: #207561;
-      	color: white;
+		background: #207561;
+		color: white;
     }
     .btn:hover {
-    	background: #155949;
-    	color: white;
+		background: #155949;
+		color: white;
     }
 	.help-block {
 		color: red;
 		font-size: 12px;
 	}
-
 	.crop {
 		border-radius: 50%;
 		background-color: #207561;

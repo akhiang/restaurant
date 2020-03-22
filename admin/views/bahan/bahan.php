@@ -309,7 +309,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="../logout.php" method="post">
+      <form action="../../../logout.php" method="post">
         <div class="modal-body">
           Are you sure you want to Logout?
         </div>

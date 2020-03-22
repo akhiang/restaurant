@@ -22,12 +22,19 @@
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+    <!-- Checkbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <link rel="stylesheet" href="../../dist/css/style.css">
+    <style>
+      .limit {
+        width: 0 !important;
+      }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   <?php session_start(); ?>
@@ -179,21 +186,58 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <table id="table-penjualan" class="table table-hover text-center table-sm w-100">
-                  <thead>
-                    <tr>
-                      <!-- <th scope="col">#</th> -->
-                      <th scope="col">Order Number</th>
-                      <th scope="col">Order Type</th>
-                      <th scope="col">Order Status</th>
-                      <th scope="col">Table</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-user-body"></tbody>
-                </table>
+                <div class="row mb-4">
+                  <div class="form-check">
+                    <div class="pretty p-svg p-curve">
+                      <input type="checkbox" id="date-check">
+                      <div class="state p-primary">
+                          <!-- svg path -->
+                          <svg class="svg svg-icon" viewBox="0 0 20 20">
+                              <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                          </svg>
+                          <label></label>
+                      </div>
+                    </div>
+                  </div>              
+                  <div class="col-md-3 mb-3">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">From</span>
+                      </div>
+                      <input type="text" class="date form-control" id="from-date" disabled>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">To</span>
+                      </div>
+                      <input type="text" class="date form-control" id="to-date" value="" disabled>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="button" id="filter" class="btn btn-outline-primary btn-sm">Filter</button>
+                    <button type="button" id="report" class="btn btn-outline-info btn-sm">Report</button>
+                  </div>
+                </div>
+
+                <div class="table-responsive">
+                  <table id="table-penjualan" class="table table-hover text-center table-sm w-100">
+                    <thead>
+                      <tr>
+                        <!-- <th scope="col">#</th> -->
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Order Type</th>
+                        <th scope="col">Order Status</th>
+                        <th scope="col">Table</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-user-body"></tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -229,7 +273,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="../logout.php" method="post">
+      <form action="../../../logout.php" method="post">
         <div class="modal-body">
           Are you sure you want to Logout?
         </div>
@@ -255,7 +299,9 @@
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-
+<!-- DatePicker -->
+<script src="../../plugins/daterangepicker/moment.min.js"></script>
+<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
 
@@ -264,6 +310,57 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="../../dist/js/app.js"></script>
+<script>
+  $(function() {
+    $('#date-check').click(function() {
+      if ($(this).is(':checked')) {
+        $('.date').prop('disabled', false);
+      } else {
+        $('.date').prop('disabled', true);
+      }
+    });
 
+    $('.date').daterangepicker({
+      singleDatePicker: true,
+      showDropdowns: true,
+      minYear: 2000,
+      clearBtn: true,
+      maxYear: parseInt(moment().format('YYYY'),10,),
+      locale: {
+        format: 'YYYY-MM-D'
+      }
+    });
+
+    $('#filter').on('click', function() {
+      if ($('#date-check').is(':checked')) {
+        var url = 'penjualan_range.php',
+            from = $('#from-date').val(), to = $('#to-date').val();
+      } else {
+        url = 'penjualan_fetch.php'
+      }
+      $('#table-penjualan').DataTable({
+        "destroy": true,
+        "ajax": {
+          url: url,
+          type: "POST",
+          data: {
+            from: from,
+            to: to,
+          }
+        },
+        "order": [[0, "desc"]]
+      });
+    });
+
+    $('#report').on('click', function() {
+      if ($('#date-check').is(':checked')) {
+        var from = $('#from-date').val(), to = $('#to-date').val();
+      } else {
+        var from = '', to = '';
+      }
+      window.open(`penjualan_report.php?from=${from}&to=${to}`, `_blank`);
+    });
+  });
+</script>
 </body>
 </html>

@@ -25,36 +25,20 @@
     margin-bottom: 5mm !important;
 }
 
-#menu {
-    font-size: 13px;
+.content {
+    width: 100%;
+}
+
+.content table {
+    width: 100%;
     border-collapse: collapse;
+    text-align: center;
 }
 
-#menu thead, th {
-    padding: 10px 0;
-    text-transform: uppercase;
-    border-bottom: 1px solid #999;
+.content table, .content th, .content td {
+    border: 1px solid #999;
 }
 
-#menu tbody td {
-    padding: 10px 0;
-    border-bottom: 1px solid #999;
-}
-
-#footer {
-    border-collapse: collapse;
-    font-size: 13px;
-}
-
-#footer td{
-    padding: 5px 0;
-}
-
-#footer tr:nth-child(2) td {
-    border-bottom: 1px solid #999;
-}
-
-#footer .total {
-    font-size: 15px;
-    padding: 15px 0;
+.content td {
+    padding: 3mm 0;
 }

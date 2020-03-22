@@ -257,7 +257,6 @@
                     $a = $q->num_rows;
                     echo '<h3>'.$a.'</h3>';
                 ?>
-
                 <p>Menu</p>
               </div>
               <div class="icon">
