@@ -9,69 +9,89 @@ $(function () {
   var mode      = 'index'
   var intersect = true
 
-  var $salesChart = $('#sales-chart')
-  var salesChart  = new Chart($salesChart, {
-    type   : 'bar',
-    data   : {
-      labels  : ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-      datasets: [
-        {
-          backgroundColor: '#007bff',
-          borderColor    : '#007bff',
-          data           : [1000, 2000, 3000, 2500, 2700, 2500, 3000]
-        },
-        {
-          backgroundColor: '#ced4da',
-          borderColor    : '#ced4da',
-          data           : [700, 1700, 2700, 2000, 1800, 1500, 2000]
-        },
-      ]
-    },
-    options: {
-      maintainAspectRatio: false,
-      tooltips           : {
-        mode     : mode,
-        intersect: intersect
-      },
-      hover              : {
-        mode     : mode,
-        intersect: intersect
-      },
-      legend             : {
-        display: false
-      },
-      scales             : {
-        yAxes: [{
-          // display: false,
-          gridLines: {
-            display      : true,
-            lineWidth    : '4px',
-            color        : 'rgba(0, 0, 0, .2)',
-            zeroLineColor: 'transparent'
-          },
-          ticks    : $.extend({
-            beginAtZero: true,
+  $.ajax({
+    url: "views/ajax/sale_chart_fetch.php",
+    type: "GET",
+    dataType: 'JSON',
+    success: function (response) {
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var month = [], amount = [];
+      console.log(response);      
 
-            // Include a dollar sign in the ticks
-            callback: function (value, index, values) {
-              if (value >= 1000) {
-                value /= 1000
-                value += 'k'
-              }
-              return '$' + value
-            }
-          }, ticksStyle)
-        }],
-        xAxes: [{
-          display  : true,
-          gridLines: {
-            display: false
+      response.forEach(element => {
+        var d = new Date(element.themonth);
+        var monthIndex = d.getMonth();
+        month.push(months[monthIndex]);
+        amount.push(isNull(element.amount));
+      });
+
+      var $salesChart = $('#sales-chart')
+      var salesChart  = new Chart($salesChart, {
+        type   : 'bar',
+        data   : {
+          labels  : month,
+          datasets: [
+            {
+              label          : 'Amount',
+              backgroundColor: 'rgba(54, 162, 235, 0.6)',
+              borderColor    : 'rgba(54, 162, 235, 1)',
+              borderWidth    : 1,
+              data           : amount
+            },
+            {
+              label          : 'Amount',
+              backgroundColor: 'rgba(255, 206, 86, 0.6)',
+              borderColor    : 'rgba(255, 206, 86, 1)',
+              borderWidth    : 1,
+              data           : [7000, 17000, 27000, 20000, 18000, 150000, 20000]
+            },
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips           : {
+            mode     : mode,
+            intersect: intersect
           },
-          ticks    : ticksStyle
-        }]
-      }
+          hover              : {
+            mode     : mode,
+            intersect: intersect
+          },
+          scales             : {
+            yAxes: [{
+              display: true,
+              gridLines: {
+                // display      : true,
+                lineWidth    : '4px',
+                color        : 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks    : $.extend({
+                beginAtZero: true,
+    
+                // Include a dollar sign in the ticks
+                callback: function (value, index, values) {
+                  if (value >= 1000) {
+                    value /= 1000
+                    value += 'k'
+                  }
+                  return 'Rp ' + value
+                }
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display  : true,
+              gridLines: {
+                // display: true
+              },
+              ticks    : ticksStyle
+            }]
+          }
+        }
+      })
     }
-  })
+  });
+
 
   $.ajax({
     url: "views/ajax/order_chart_fetch.php",
@@ -89,17 +109,17 @@ $(function () {
 
       var $visitorsChart = $('#visitors-chart')
       var visitorsChart  = new Chart($visitorsChart, {
+        type: 'line',
         data   : {
           labels  : date,
           datasets: [{
-            // label: 'This week',
-            type                : 'line',
+            label               : 'This week',
             data                : orders,
             backgroundColor     : 'transparent',
             borderColor         : '#007bff',
             pointBorderColor    : '#007bff',
             pointBackgroundColor: '#007bff',
-            fill                : false
+            fill                : true,
             // pointHoverBackgroundColor: '#007bff',
             // pointHoverBorderColor    : '#007bff'
           }]
@@ -127,11 +147,15 @@ $(function () {
             intersect: intersect
           },
           legend             : {
-            display: false
+            labels   : {
+            }
+          },
+          hAxis              : {
+            title: 'Date',
           },
           scales             : {
             yAxes: [{
-              // display: false,
+              display: true,
               gridLines: {
                 display      : true,
                 lineWidth    : '4px',
@@ -139,8 +163,8 @@ $(function () {
                 zeroLineColor: 'transparent'
               },
               ticks    : $.extend({
-                // beginAtZero : true,
-                // min: 0,
+                padding: 50,
+                beginAtZero : true,
                 precision: 0,
                 // stepSize: 5,
                 // suggestedMax: 10,
@@ -149,9 +173,10 @@ $(function () {
             xAxes: [{
               display  : true,
               gridLines: {
-                display: false
+                display: true
               },
-              ticks    : ticksStyle
+              ticks    : ticksStyle,
+              padding  : 20
             }]
           }
         }
@@ -159,3 +184,7 @@ $(function () {
     }
   });
 })
+
+function isNull(value) {
+  return value == null ? 0 : value;
+}
