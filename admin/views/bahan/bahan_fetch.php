@@ -7,7 +7,6 @@
 
     foreach ($result as $key => $row) {
         $sub_array = array();
-        // $sub_array[] = $row['id'];
         $sub_array[] = $key + 1;
         $sub_array[] = ucwords($row['name']);
         $sub_array[] = $row['unit'];

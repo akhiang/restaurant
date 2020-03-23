@@ -17,20 +17,20 @@ $mpdf = new \Mpdf\Mpdf([
 
 	$mpdf->SetHTMLFooter('
 		<table width="100%" style="vertical-align: bottom; font-family: serif; 
-		    font-size: 8pt; color: #000000;">
-		    <tr>
-		        <td width="50%">{DATE Y-M-j}</td>
-		        <td width="50%" align="right">Page {PAGENO}/{nbpg}</td>
-		    </tr>
+            font-size: 8pt; color: #000000;">
+            <tr>
+                <td width="50%">{DATE Y-M-j}</td>
+                <td width="50%" align="right">Page {PAGENO}/{nbpg}</td>
+            </tr>
 		</table>','O');
 
 	$mpdf->SetHTMLFooter('
 		<table width="100%" style="vertical-align: bottom; font-family: serif; 
-		    font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
-		    <tr>
-		        <td width="33%" align="center" style="font-weight: bold; font-style: italic;">Hal {PAGENO}/{nbpg}</td>
-		        <td width="33%" style="text-align: right; ">{DATE Y-M-j}</td>
-		    </tr>
+            font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
+            <tr>
+                <td width="33%" align="center" style="font-weight: bold; font-style: italic;">Hal {PAGENO}/{nbpg}</td>
+                <td width="33%" style="text-align: right; ">{DATE Y-M-j}</td>
+        </tr>
 		</table>', 'E');
 
 $layout = 
@@ -108,22 +108,32 @@ $layout =
                 LEFT JOIN tbl_user u ON o.user_id = u.id
                 WHERE date BETWEEN '$from' AND '$to'";
     }
+    $q = $conn->query($sql);
+    $result = $q->num_rows;
 
-    $result = $conn->query($sql);
-    foreach ($result as $key => $row)
-    {
-        $key+=1;
+    if ($result > 0) {
+        foreach ($q as $key => $row)
+        {
+            $key+=1;
+            $layout.=
+            '
+                <tr>
+                    <td width="7%">'.$key.'</td>
+                    <td width="15%">'.$row['order_number'].'</td>
+                    <td>'.ucwords($row['order_status']).'</td>
+                    <td>'.ucwords($row['table_id'] == 0 ? '-' : $row['nama_meja']).'</td>
+                    <td>'.ucwords($row['username']).'</td>
+                    <td>'.$row['date'].'</td>
+                    <td>'.$row['time'].'</td>
+                    <td>'.number_format($row['total'], 0, ',', '.').'</td>
+                </tr>
+            ';
+        }
+    } else {
         $layout.=
         '
             <tr>
-                <td width="7%">'.$key.'</td>
-                <td width="15%">'.$row['order_number'].'</td>
-                <td>'.ucwords($row['order_status']).'</td>
-                <td>'.ucwords($row['table_id'] == 0 ? '-' : $row['nama_meja']).'</td>
-                <td>'.ucwords($row['username']).'</td>
-                <td>'.$row['date'].'</td>
-                <td>'.$row['time'].'</td>
-                <td>'.number_format($row['total'], 0, ',', '.').'</td>
+                <td colspan="8">No data available in table</td>
             </tr>
         ';
     }

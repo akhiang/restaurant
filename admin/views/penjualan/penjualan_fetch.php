@@ -23,7 +23,6 @@
         ';
         $data[] = $sub_array;
     }
-    
     $output = array(
         "data" => $data
     );
