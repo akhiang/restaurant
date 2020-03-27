@@ -34,7 +34,7 @@
                     <h6><?php echo ucwords($row['name']); ?></h6>
                 </div>
                 <div class="col-6">
-                    <span class="text-muted fs-12">Meja</span>
+                    <span class="text-muted fs-12">Table</span>
                     <h6><?php echo $nama_meja; ?></h6>
                 </div>
             </div>

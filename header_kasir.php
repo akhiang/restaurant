@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/simplebar.css">
     <link href="../assets/css/jquery.nice-number.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <!-- CheckBox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <!-- DatePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/kasir/kasir.css">
 
@@ -34,7 +38,10 @@
                             <a class="nav-link active" href="./index.php">Home<span class="sr-only"></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./table.php">Order List<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="./payment.php">Payment<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./order_list.php">Order List<span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
 

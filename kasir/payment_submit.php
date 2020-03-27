@@ -5,9 +5,10 @@
     $no_trans = $_POST['no_trans'];
     $tgl = date("Y-m-d");
     $waktu = date("h:i:sa");
+    $pay = $_POST['pay_hidden'];
     $total = $_POST['total_hidden'];
 
-    $sql = "INSERT INTO tb_bills VALUES ('','$no_trans','$tgl', '$waktu', '$total')";
+    $sql = "INSERT INTO tb_bills VALUES ('','$no_trans','$tgl', '$waktu', '$total', '$pay')";
     $q = $conn->query($sql);
 
     $sql = "UPDATE tb_order SET order_status = 'paid' WHERE order_number = '$no_trans'";

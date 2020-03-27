@@ -29,6 +29,7 @@
             </div>
         </div>
             <input type="hidden" name="kode_meja" value="<?php echo $kode_meja ?>">
+            <input type="hidden" name="pay_hidden" id="pay-hidden" value="">
             <input type="hidden" name="total_hidden" value="<?php echo $row['total'] ?>">
         <div class="form-group row">
             <label for="meja" class="col-4 offset-1 col-form-label text-right">Table</label>
@@ -37,7 +38,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="total" class="col-4 offset-1 col-form-label text-right text-danger">Total Amount</label>
+            <label for="total" class="col-4 offset-1 col-form-label text-right text-danger">Amount</label>
             <div class="col-4">
                 <input type="text" readonly name="total" class="form-control text-right currency font-weight-bold" 
                 id="total" value="<?php echo number_format($row['total'], 0, ',', '.'); ?>">

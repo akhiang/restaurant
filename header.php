@@ -64,12 +64,7 @@
                                     <i class="fas fa-user-cog mr-3"></i><?php echo $_SESSION['role']; ?>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">
-                                    <form action="../logout.php" method="post">
-                                        <!-- <i type="submit" class="fas fa-sign-out-alt"></i> -->
-                                        <button type="submit" href="#" class="dropdown-item dropdown-footer">Logout</button>
-                                    </form>
-                                </a>
+                                <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt mr-3"></i>Logout</button>
                             </div>
                         </li>
                     </ul>

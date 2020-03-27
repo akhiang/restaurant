@@ -12,12 +12,27 @@ $(document).ready(function () {
         // cursorcolor: "aquamarine"
     });
 
+    var tableOrder = $('#order-table').DataTable({
+        "ajax": {
+            url: "order_list_fetch.php",
+            type: "POST",
+            data: {
+                is_date: 'no',
+                from: '',
+                to: '',
+            }
+        },
+        "order": [
+            [0, "desc"]
+        ]
+    });
+
     function toCurrency(num) {
         return currency(num, { precision: 0, separator: '.' }).format();
     }
 
     function notCurrency(num)   {
-    return num.replace(/\./g, '');
+        return num.replace(/\./g, '');
     }
     
     $('#payment-modal-body').on('keypress','#bayar', function(e) {
@@ -34,6 +49,7 @@ $(document).ready(function () {
     $('#payment-modal-body').on('keyup','#bayar', function() {
         let total = $('#total').val();
         let bayar = $('#bayar').val();
+        $('#pay-hidden').val(bayar);
         bayar = notCurrency(bayar);
         total = parseInt(notCurrency(total));
         let kembalian = bayar - total;
@@ -73,7 +89,7 @@ $(document).ready(function () {
         submitHandler: function (form) {
             var data = new FormData(form)
             $.ajax({
-                url: "table_submit_payment.php",
+                url: "payment_submit.php",
                 type: "POST",
                 data: data,
                 contentType: false,
@@ -104,7 +120,7 @@ $(document).ready(function () {
         var no_trans = $(this).attr('data-no-trans');
         $.ajax({    
             type: 'POST',
-            url: 'table_order_head_load.php',
+            url: 'payment_order_head_load.php',
             data: { no_trans: no_trans },
             success: function (data) {
                 $('.order-list-head').html(data);
@@ -113,7 +129,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'table_order_load.php',
+            url: 'payment_order_load.php',
             data: { no_trans : no_trans },
             success: function (data) {
                 $('.order-list-body').html(data);
@@ -122,7 +138,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'table_order_total_load.php',
+            url: 'payment_order_total_load.php',
             data: {no_trans : no_trans},
             success: function (data) {
                 $('.order-list-foot').html(data);
@@ -131,7 +147,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'table_order_payment.php',
+            url: 'payment_order_payment.php',
             data: { no_trans : no_trans },
             success: function (data) {
                 $('#payment-form').html(data);
@@ -139,7 +155,22 @@ $(document).ready(function () {
         });
 
         $('#btn-print').attr('data-order-number', no_trans);
-    })
+    });
+
+    $('#order-table').on('click', '.order-detail', function () {
+        // $("#btn-payment").css("visibility", "");
+        var no_trans = $(this).attr('data-order-number');        
+        $.ajax({
+            type: 'POST',
+            url: 'order_list_view.php',
+            data: {
+                no_trans: no_trans
+            },
+            success: function (data) {
+                $('#order-list-view').html(data);
+            }
+        });
+    });
 })
 
 function pdf() {
@@ -148,7 +179,7 @@ function pdf() {
 }
 
 function loadTable() {
-    $.get('table_load.php', function (data) {
+    $.get('payment_load.php', function (data) {
         $('.list-table').html(data);
     });
 };

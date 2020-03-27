@@ -14,7 +14,7 @@ $(function () {
     type: "GET",
     dataType: 'JSON',
     success: function (response) {
-      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var months = ['Janeuary', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       var month = [], amount = [];
       console.log(response);      
 
@@ -38,13 +38,13 @@ $(function () {
               borderWidth    : 1,
               data           : amount
             },
-            {
-              label          : 'Amount',
-              backgroundColor: 'rgba(255, 206, 86, 0.6)',
-              borderColor    : 'rgba(255, 206, 86, 1)',
-              borderWidth    : 1,
-              data           : [7000, 17000, 27000, 20000, 18000, 150000, 20000]
-            },
+            // {
+            //   label          : 'Amount',
+            //   backgroundColor: 'rgba(255, 206, 86, 0.6)',
+            //   borderColor    : 'rgba(255, 206, 86, 1)',
+            //   borderWidth    : 1,
+            //   data           : [7000, 17000, 27000, 20000, 18000, 150000, 20000]
+            // },
           ]
         },
         options: {
@@ -57,6 +57,9 @@ $(function () {
             mode     : mode,
             intersect: intersect
           },
+          legend             : {
+            display  : false,
+          },
           scales             : {
             yAxes: [{
               display: true,
@@ -68,6 +71,7 @@ $(function () {
               },
               ticks    : $.extend({
                 beginAtZero: true,
+                stepSize: 50000,
     
                 // Include a dollar sign in the ticks
                 callback: function (value, index, values) {
@@ -147,8 +151,7 @@ $(function () {
             intersect: intersect
           },
           legend             : {
-            labels   : {
-            }
+            display: false,
           },
           hAxis              : {
             title: 'Date',

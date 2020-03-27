@@ -327,7 +327,12 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">Rp18,230</span>
+                    <?php
+                      $q = $conn->query("SELECT sum(total) as amount FROM tb_order 
+                                        WHERE MONTH(DATE_SUB( NOW(), INTERVAL 6 MONTH)) >= MONTH(date)");
+                      $a = $q->fetch_assoc();
+                      echo '<span class="text-bold text-lg">Rp'.number_format($a['amount'], 0, ',', '.').'</span>'
+                    ?>
                     <span>Sales Over Time</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">

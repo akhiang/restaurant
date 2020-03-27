@@ -60,7 +60,7 @@ $layout =
                         </tr>
                         <tr>
                             <td><h5>Date</h5></td>
-                            <td><h5>'.date("d/m/Y", strtotime($d["tgl"])).'</h5></td>
+                            <td><h5>'.date("d/m/Y", strtotime($d["date"])).'</h5></td>
                         </tr>
                     </table>
                 </div>
