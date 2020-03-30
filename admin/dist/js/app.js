@@ -101,6 +101,7 @@ $(document).ready(function () {
         $("#edit-menu-modal").find("input[name='nama_menu']").val(data.nama_menu);
         $("#edit-menu-modal").find("textarea[name='desc']").val(data.description);
         $("#edit-menu-modal").find("select[name='jenis']").val(data.jenis);
+        $("#edit-menu-modal").find("select[name='ready']").val(data.ready);
         $("#edit-menu-modal").find("input[name='harga']").val(data.harga);
         $("#edit-menu-modal").find("#upImg").attr("src", path + data.gambar);
       }
@@ -114,6 +115,7 @@ $(document).ready(function () {
       jenis: {required: true},
       stock: {required: true,digits: true},
       harga: {required: true,digits: true},
+      ready: {required: true},
       // image: {required: true}
     },
     messages: {
@@ -124,6 +126,7 @@ $(document).ready(function () {
       jenis: {required: 'This field is required'},
       stock: {required: 'This field is required'},
       harga: {required: 'This field is required'},
+      ready: {required: 'This field is required'},
       image: {required: 'This field is required'}
     },
     submitHandler: function (form) {

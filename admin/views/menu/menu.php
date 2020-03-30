@@ -188,12 +188,13 @@
                     <i class="fa fa-plus mr-2"></i>Create</button>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Number</th>
-                      <th scope="col" class="w-25">Image</th>
+                      <th scope="col" width="3%">Number</th>
+                      <th scope="col" class="w-20">Image</th>
                       <th scope="col">Name</th>
                       <th scope="col">Description</th>
                       <th scope="col">Category</th>
                       <th scope="col">Price</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -303,6 +304,13 @@
             <label for="harga" class="col-form-label">Harga</label>
             <input type="text" class="form-control form-control-sm" name="harga" autocomplete="off">
           </div>
+          <div class="form-group">
+            <label for="role" class="col-form-label">Status</label>
+            <select class="form-control form-control-sm" name="ready">
+              <option value="1">Ready</option>
+              <option value="0">Not ready</option>
+            </select>
+          </div> 
           <div class="form-group">
             <label for="image" class="col-form-label d-block">Gambar</label>
             <img src="" id="upImg" class="upImg img-thumbnail" alt="">

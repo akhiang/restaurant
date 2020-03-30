@@ -14,6 +14,7 @@
         $sub_array[] = ucwords($row['description']);
         $sub_array[] = ucwords($row['jenis']);
         $sub_array[] = number_format($row['harga'], 0, ',', '.');
+        $sub_array[] = $row['ready'] == 1 ? '<span class="badge badge-primary">Ready</span>' : '<span class="badge badge-danger">Not ready</span>';
         $sub_array[] = '
                 <a href="./menu_detail.php?no='.$row['id'].'" class="info-menu badge badge-primary mr-1" data-menuId="'.$row["id"].'"><i class="fa fa-eye p-1"></i></a>
                 <a href="#" class="edit-menu badge badge-info mr-1" data-toggle="modal" data-target="#edit-menu-modal" data-menuId="'.$row["id"].'"><i class="fa fa-pencil-alt p-1"></i></a>
