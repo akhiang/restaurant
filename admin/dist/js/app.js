@@ -11,7 +11,7 @@ $(document).ready(function () {
     else {
       $("#add-menu-form .imgInput").val("");
       $("#add-menu-form .imgError").css("display", "block");
-      $("#add-menu-form .imgError").html("Please upload file in these format only (jpg, jpeg, png)");
+      $("#add-menu-form .imgError").html("Please upload file in these format only (jpg or jpeg)");
       $("#add-menu-form .upImg").attr('src', '');
     }
   });
@@ -26,12 +26,16 @@ $(document).ready(function () {
     } else {
       $("#edit-menu-form .imgInput").val("");
       $("#edit-menu-form .imgError").css("display", "block");
-      $("#edit-menu-form .imgError").html("Please upload file in these format only (jpg, jpeg, png)");
+      $("#edit-menu-form .imgError").html("Please upload file in these format only (jpg or jpeg)");
       $("#edit-menu-form .upImg").attr('src', '');
     }
   });
 
   // MENU SECTION
+  $.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= param)
+  }, 'File size must be less than {0}');
+
   var tableMenu = $('#table-menu').DataTable({
     dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>>" +
       "<'row'<'col-sm-12'tr>>" +
@@ -47,14 +51,20 @@ $(document).ready(function () {
       jenis: {required: true},
       stock: {required: true,digits: true},
       harga: {required: true,digits: true},
-      image: {required: true,}
+      image: {
+        required: true,
+        filesize: 300000,
+      }
     },
     messages: {
       username: {required: 'This field is required', minlength: 'Username must be at least 3 characters long'},
       jenis: {required: 'This field is required'},
       stock: {required: 'This field is required'},
       harga: {required: 'This field is required'},
-      image: {required: 'This field is required'}
+      image: {
+        required: 'This field is required',
+        filesize: " file size must be less than 300 KB.",
+      }
     },
     submitHandler: function (form) {
       var data = new FormData(form)
@@ -79,6 +89,7 @@ $(document).ready(function () {
   });
 
   $('#table-menu').on('click', '.edit-menu', function () {
+    var path = "../../../assets/images/menu/";
     var id = $(this).attr('data-menuId');
     $.ajax({
       type: 'post',
@@ -91,6 +102,7 @@ $(document).ready(function () {
         $("#edit-menu-modal").find("textarea[name='desc']").val(data.description);
         $("#edit-menu-modal").find("select[name='jenis']").val(data.jenis);
         $("#edit-menu-modal").find("input[name='harga']").val(data.harga);
+        $("#edit-menu-modal").find("#upImg").attr("src", path + data.gambar);
       }
     });
   });
@@ -102,7 +114,7 @@ $(document).ready(function () {
       jenis: {required: true},
       stock: {required: true,digits: true},
       harga: {required: true,digits: true},
-      image: {required: true}
+      // image: {required: true}
     },
     messages: {
       nama_menu: {
@@ -691,12 +703,12 @@ function readURL2(input) {
   }
 }
 
-function loadUser() {
-  $.ajax({
-    type: 'POST',
-    url: 'employee_load.php',
-    success: function (data) {
-      $('.table-user-body').html(data);
-    }
-  });
-}
+// function loadUser() {
+//   $.ajax({
+//     type: 'POST',
+//     url: 'employee_load.php',
+//     success: function (data) {
+//       $('.table-user-body').html(data);
+//     }
+//   });
+// }

@@ -246,8 +246,9 @@
           <div class="form-group">
             <label for="role" class="col-form-label">Jenis</label>
             <select class="form-control form-control-sm" name="jenis">
-              <option value="makanan" selected="">Makanan</option>
+              <option value="bakso" selected="">Bakso</option>
               <option value="minuman">Minuman</option>
+              <option value="snack">Snack</option>
             </select>
           </div>        
           <div class="form-group">
@@ -280,7 +281,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="edit-menu-form">
+        <form id="edit-menu-form" encypte="multipart/form-data">
           <input type="hidden" name="id" autocomplete="off">
           <div class="form-group">
             <label for=nama_menu" class="col-form-label">Nama Menu</label>
@@ -303,10 +304,10 @@
             <input type="text" class="form-control form-control-sm" name="harga" autocomplete="off">
           </div>
           <div class="form-group">
-            <label for="image">Gambar</label>
+            <label for="image" class="col-form-label d-block">Gambar</label>
+            <img src="" id="upImg" class="upImg img-thumbnail" alt="">
             <input type="file" class="imgInput form-control-file" name="image" autocomplete="off"/>
             <label class="imgError error" id="imgError" style="display:none"></label>
-            <img src="" id="upImg" class="upImg img-thumbnail" alt="">
           </div>
         </div>
         <div class="modal-footer">
@@ -361,8 +362,8 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="../../dist/js/jquery.validate.min.js"></script>
+<script src="../../dist/js/sweetalert2@9.js"></script>
 <script src="../../dist/js/app.js"></script>
 </body>
 </html>
