@@ -9,6 +9,7 @@
     $jenis = $_POST['jenis'];
     $harga = $_POST['harga'];
     $ready = $_POST['ready'];
+    $sequence = $_POST['sequence'];
     $gambar = $_FILES['image']['tmp_name'];
 
     $maxDimW = 174;
@@ -35,7 +36,7 @@
 
     if ($gambar == ''){
         $sql = "UPDATE tbl_menu SET nama_menu = '$nama', description = '$desc', jenis = '$jenis', harga = '$harga',
-                ready = '$ready' WHERE id = '$id'";
+                ready = '$ready', sequence = '$sequence' WHERE id = '$id'";
     } else {
         $q = $conn->query("SELECT * FROM tbl_menu WHERE id = '$id'");
         $data = $q->fetch_assoc();
@@ -43,7 +44,7 @@
         unlink("../../../assets/images/menu/".$old_img);
         $upload = move_uploaded_file($_FILES['image']['tmp_name'], $path);
         $sql = "UPDATE tbl_menu SET nama_menu = '$nama', description = '$desc', jenis = '$jenis', harga = '$harga', 
-                ready = '$ready', gambar = '$filename' WHERE id = '$id'";
+                ready = '$ready', sequence = '$sequence', gambar = '$filename' WHERE id = '$id'";
     }
     $conn->query($sql);
 ?>

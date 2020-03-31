@@ -188,13 +188,14 @@
                     <i class="fa fa-plus mr-2"></i>Create</button>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col" width="3%">Number</th>
-                      <th scope="col" class="w-20">Image</th>
+                      <!-- <th scope="col" width="3%">Number</th> -->
+                      <th scope="col" width="14%">Image</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Description</th>
+                      <th scope="col" width="10%">Description</th>
                       <th scope="col">Category</th>
                       <th scope="col">Price</th>
                       <th scope="col">Status</th>
+                      <th scope="col">Sequence</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -229,7 +230,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tambah Menu</h5>
+        <h5 class="modal-title">Add Menu</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -237,7 +238,7 @@
       <form class="add-menu-form" id="add-menu-form" encypte="multipart/form-data">
         <div class="modal-body">
           <div class="form-group">
-            <label for=nama_menu" class="col-form-label">Nama Menu</label>
+            <label for=nama_menu" class="col-form-label">Menu Name</label>
             <input type="text" class="form-control form-control-sm" name="nama_menu" autocomplete="off">
           </div>
           <div class="form-group">
@@ -245,19 +246,23 @@
             <textarea class="form-control" name="desc" rows="2"></textarea>
           </div>
           <div class="form-group">
-            <label for="role" class="col-form-label">Jenis</label>
+            <label for="role" class="col-form-label">Category</label>
             <select class="form-control form-control-sm" name="jenis">
               <option value="bakso" selected="">Bakso</option>
               <option value="minuman">Minuman</option>
               <option value="snack">Snack</option>
             </select>
-          </div>        
+          </div>
           <div class="form-group">
-            <label for="harga" class="col-form-label">Harga</label>
+            <label for="harga" class="col-form-label">Sequence</label>
+            <input type="text" class="form-control form-control-sm" name="sequence" autocomplete="off">
+          </div>   
+          <div class="form-group">
+            <label for="harga" class="col-form-label">Price</label>
             <input type="text" class="form-control form-control-sm" name="harga" autocomplete="off">
           </div>
           <div class="form-group">
-            <label for="image">Gambar</label>
+            <label for="image">Image</label>
             <input type="file" class="imgInput form-control-file" id="imgInput" name="image" autocomplete="off"/>
             <label class="imgError error" id="imgError" style="display:none"></label>
             <img src="" id="upImg" class="upImg img-thumbnail" alt="">
@@ -285,7 +290,7 @@
         <form id="edit-menu-form" encypte="multipart/form-data">
           <input type="hidden" name="id" autocomplete="off">
           <div class="form-group">
-            <label for=nama_menu" class="col-form-label">Nama Menu</label>
+            <label for=nama_menu" class="col-form-label">Menu Name</label>
             <input type="text" class="form-control form-control-sm" name="nama_menu" autocomplete="off">
           </div>
           <div class="form-group">
@@ -293,7 +298,7 @@
             <textarea class="form-control" name="desc" rows="2"></textarea>
           </div>
           <div class="form-group">
-            <label for="jenis" class="col-form-label">Jenis</label>
+            <label for="jenis" class="col-form-label">Category</label>
             <select class="form-control form-control-sm" name="jenis">
               <option value="bakso" selected="">Bakso</option>
               <option value="Minuman">Minuman</option>
@@ -301,7 +306,7 @@
             </select>
           </div>        
           <div class="form-group">
-            <label for="harga" class="col-form-label">Harga</label>
+            <label for="harga" class="col-form-label">Price</label>
             <input type="text" class="form-control form-control-sm" name="harga" autocomplete="off">
           </div>
           <div class="form-group">
@@ -310,9 +315,13 @@
               <option value="1">Ready</option>
               <option value="0">Not ready</option>
             </select>
-          </div> 
+          </div>
           <div class="form-group">
-            <label for="image" class="col-form-label d-block">Gambar</label>
+            <label for="harga" class="col-form-label">Sequence</label>
+            <input type="text" class="form-control form-control-sm" name="sequence" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="image" class="col-form-label d-block">Image</label>
             <img src="" id="upImg" class="upImg img-thumbnail" alt="">
             <input type="file" class="imgInput form-control-file" name="image" autocomplete="off"/>
             <label class="imgError error" id="imgError" style="display:none"></label>

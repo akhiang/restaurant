@@ -21,6 +21,7 @@
 					<div class="card">
 						<div class="card-body">
 							<?php
+								date_default_timezone_set("Asia/Bangkok");
 								$tgl = date("Y-m-d");
 								$q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl'");
 								$a = $q->num_rows;
@@ -29,7 +30,7 @@
 							<p>Today's Orders</p>
 						</div>
 						<div class="card-bottom w-100">
-							<a href="./table.php" class="d-flex justify-content-center align-items-center">More info <i class="fas fa-arrow-circle-right ml-2"></i></a>
+							<a href="./payment.php" class="d-flex justify-content-center align-items-center">More info <i class="fas fa-arrow-circle-right ml-2"></i></a>
 						</div>
 						<div class="card-img">
 							<object data="../assets/images/order.svg" type="image/svg+xml"  style="width: 70px; height: 90px;"></object>
@@ -38,7 +39,6 @@
 					<div class="card">
 						<div class="card-body">
 							<?php
-								$tgl = date("Y-m-d");
 								$q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl' AND order_status = 'paid'");
 								$a = $q->num_rows;
 								echo '<h3>'.$a.'</h3>';
@@ -46,7 +46,7 @@
 							<p>Finished Orders</p>
 						</div>
 						<div class="card-bottom w-100">
-							<a href="./table.php" class="d-flex justify-content-center align-items-center">More info <i class="fas fa-arrow-circle-right ml-2"></i></a>
+							<a href="./payment.php" class="d-flex justify-content-center align-items-center">More info <i class="fas fa-arrow-circle-right ml-2"></i></a>
 						</div>
 						<div class="card-img">
 							<object data="../assets/images/checklist.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>

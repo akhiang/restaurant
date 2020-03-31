@@ -18,7 +18,7 @@
         <tr>
             <td align="center"><a class="del-order fa fa-times" data-menu-id="<?php echo $row['menu_id'] ?>" data-order="<?php echo $order_number; ?>" ></a></td>
             <td> 
-                <span class="font-weight-bold d-block"><?php echo $row['menu_name'] ?></span>
+                <span class="font-weight-bold d-block"><?php echo ucwords($row['menu_name']) ?></span>
                 <span class="text-muted fs-12"><?php echo ucwords($row['description']) ?></span>
             </td>
             <td align="center"> 

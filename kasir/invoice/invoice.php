@@ -37,7 +37,7 @@ $layout =
                     <table style="width:100%">
                         <tr>
                             <td>
-                                <h4>Restaurant</h4>
+                                <h4>Bakso Mas Ari</h4>
                             </td>
                         </tr>
                         <tr>
@@ -93,10 +93,10 @@ $layout =
         '
             <tr>
                 <td align="center">'.$no.'</td>
-                <td>'.$row['nama_menu'].'</td>
+                <td>'.ucwords($row['nama_menu']).'</td>
                 <td align="center">'.$row['qty'].'</td>
-                <td align="right">'.$row['price'].'</td>
-                <td align="right">'.$row['price'] * $row['qty'].'</td>
+                <td align="right">'.number_format($row['price'], 0, ',', '.').'</td>
+                <td align="right">'.number_format($row['price'] * $row['qty'], 0, ',', '.').'</td>
             </tr>
         ';
         $no++;

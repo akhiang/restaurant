@@ -196,8 +196,9 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
+                  date_default_timezone_set("Asia/Bangkok");
                   $tgl = date("Y-m-d");
-                  $q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl'");
+                  $q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl' AND order_status <> 'cancelled'");
                   $a = $q->num_rows;
                   echo '<h3>'.$a.'</h3>';
                 ?>
@@ -215,7 +216,6 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
-                  $tgl = date("Y-m-d");
                   $q = $conn->query("SELECT * FROM tb_order WHERE date = '$tgl' AND order_status = 'paid'");
                   $a = $q->num_rows;
                   echo '<h3>'.$a.'</h3>';

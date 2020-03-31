@@ -7,6 +7,7 @@
     $desc = $_POST['desc'];
     $jenis = $_POST['jenis'];
     $harga = $_POST['harga'];
+    $sequence = $_POST['sequence'];
     $gambar = $_FILES['image']['tmp_name'];
     
     $maxDimW = 174;
@@ -40,7 +41,7 @@
     $auto++;
     $kode = "M". sprintf('%03s',$auto);
 
-    $sql = "INSERT INTO tbl_menu VALUES ('', '$kode', '$nama', '$desc', '$jenis', '$harga', '$filename', 1, 0)";
+    $sql = "INSERT INTO tbl_menu VALUES ('', '$kode', '$nama', '$desc', '$jenis', '$harga', '$filename', 1, '$sequence', 0)";
 
     $q = $conn->query($sql);
 

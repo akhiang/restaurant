@@ -51,6 +51,7 @@ $(document).ready(function () {
       jenis: {required: true},
       stock: {required: true,digits: true},
       harga: {required: true,digits: true},
+      sequence: {digits: true},
       image: {
         required: true,
         filesize: 300000,
@@ -61,6 +62,7 @@ $(document).ready(function () {
       jenis: {required: 'This field is required'},
       stock: {required: 'This field is required'},
       harga: {required: 'This field is required'},
+      sequence: {digits: 'Please enter numeric value'},
       image: {
         required: 'This field is required',
         filesize: " file size must be less than 300 KB.",
@@ -103,6 +105,7 @@ $(document).ready(function () {
         $("#edit-menu-modal").find("select[name='jenis']").val(data.jenis);
         $("#edit-menu-modal").find("select[name='ready']").val(data.ready);
         $("#edit-menu-modal").find("input[name='harga']").val(data.harga);
+        $("#edit-menu-modal").find("input[name='sequence']").val(data.sequence);
         $("#edit-menu-modal").find("#upImg").attr("src", path + data.gambar);
       }
     });
@@ -113,10 +116,10 @@ $(document).ready(function () {
       nama_menu: {required: true, minlength: 3},
       desc: {required: true, minlength: 3},
       jenis: {required: true},
-      stock: {required: true,digits: true},
-      harga: {required: true,digits: true},
+      stock: {required: true, digits: true},
+      harga: {required: true, digits: true},
       ready: {required: true},
-      // image: {required: true}
+      sequence: {digits: true}
     },
     messages: {
       nama_menu: {
@@ -127,7 +130,7 @@ $(document).ready(function () {
       stock: {required: 'This field is required'},
       harga: {required: 'This field is required'},
       ready: {required: 'This field is required'},
-      image: {required: 'This field is required'}
+      sequence: {digits: 'Please enter numeric value'}
     },
     submitHandler: function (form) {
       var data = new FormData(form)

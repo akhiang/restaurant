@@ -18,8 +18,8 @@
     ?>
         <tr class="w-100">
             <td> 
-                <span class="font-weight-bold d-block"><?php echo $row['nama_menu'] ?></span>
-                <span class="text-muted fs-12"><?php echo 'Rp ' .$harga ?></span>
+                <span class="font-weight-bold d-block"><?php echo ucwords($row['nama_menu']) ?></span>
+                <span class="text-muted fs-12"><?php echo ucwords($row['description']) ?></span>
             </td>
             <td align="center"> 
                 <span><?php echo $row['qty'] ?></span>
