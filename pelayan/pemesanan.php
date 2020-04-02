@@ -33,11 +33,11 @@
                         <div class="order-list-head pb-2">
                             <div class="row">
                                 <div class="col-4">
-                                    <span class="text-muted fs-13 d-block">Tipe pesanan</span>
+                                    <span class="text-muted fs-13 d-block">Order Type</span>
                                     <span class="font-weight-bold"><?php echo ucwords($data['name']); ?></span>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <span class="text-muted fs-13 d-block">Meja</span>
+                                    <span class="text-muted fs-13 d-block">Table</span>
                                     <span class="font-weight-bold"><?php echo $nama_meja; ?></span>
                                     <input type="hidden" class="input_table" value="<?= $kode_meja; ?>">
                                 </div>
@@ -71,7 +71,7 @@
                         </ul>
                         <div class="menu-item d-flex flex-wrap justify-content-center col-12">
                             <?php 
-                                $sql = "SELECT * FROM tbl_menu WHERE ready = 1";
+                                $sql = "SELECT * FROM tbl_menu WHERE ready = 1 AND deleted = 0 ORDER BY sequence DESC";
                                 $q = mysqli_query($conn,$sql);
                                 while ($row = mysqli_fetch_assoc($q)) {
                             ?>
@@ -79,7 +79,7 @@
                                 <div class="card m-2 <?php echo $row['jenis']; ?>" style="width: 13.3rem;">
                                     <img src=" <?php echo '../assets/images/menu/'.$row['gambar']; ?>" class="card-img-top img-responsive">
                                     <div class="card-body">
-                                        <h6 class="p-0 mb-1"> <?php echo $row['nama_menu']; ?> </h6>
+                                        <h6 class="p-0 mb-2"> <?php echo ucwords($row['nama_menu']); ?> </h6>
                                         <h6 class="fs-12 text-muted">
                                             <?php
                                                 if($row['description'] == ''){
@@ -94,7 +94,6 @@
                                             <input type="hidden" name="hidden_id_menu" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                             <input type="hidden" name="hidden_nama_menu" id="nama<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                             <input type="hidden" name="hidden_harga" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
-                                            <!-- <input type="hidden" name="qty_menu" id="qty<?php echo $row['id'] ?>" min="1" value="1"/> -->
                                             <input type="hidden" name="hidden_jenis" value="<?php echo $row["jenis"]; ?>" />
                                             <button type="button" onclick="addToCart(<?php echo $row['id'] ?>)" class="add-cart btn btn-success btn-sm btn-block mt-2" 
                                             data-menu-id="<?php echo $row['id'] ?>">Add<i class="fas fa-shopping-cart ml-2"></i></button>

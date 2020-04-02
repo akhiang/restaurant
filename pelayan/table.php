@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12 py-4">
                     <div class="table-container rounded px-5 py-1">
-                        <h5 class="mb-2">Meja</h5>
+                        <h5 class="mb-2">Table</h5>
                         <div id="clock" class="d-none"></div>
                         <div class="list-table bg-white">
                             <?php 
@@ -40,9 +40,9 @@
                                         <div class="table-card-content">
                                             <div class="table-card-head d-flex py-1">
                                                 <?php if($status==0){
-                                                        echo "<h5 class='text-danger'>Terisi</h5>";
+                                                        echo "<h5 class='text-danger'>Filled</h5>";
                                                     }else {
-                                                        echo "<h5>Tersedia</h5>";} ?>
+                                                        echo "<h5>Available</h5>";} ?>
                                                 <span class="ml-3 ml-auto">
                                                     <?php if($row['status'] == 0) { ?>  
                                                         <a href="#" class="view-order btn btn-sm" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['order_number']; ?>" data-toggle="modal" data-target="#orderListModal"><i class="fa fa-eye"></i></a>

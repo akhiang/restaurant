@@ -18,7 +18,7 @@
 	<main class="wrapper-all">
 		<div class="container-fluid" onload="clock()">
             <span class="text-muted fs-13 ml-auto d-none" id="clock"></span>
-            <div class="text-center rounded bg-white py-4 px-2">
+            <div class="text-center rounded bg-white py-5 px-2">
                 <ul class="menu-filter">
                     <li><span data-filter="*" class="current">All</span></li>
                     <li><span data-filter=".bakso">Bakso</span></li>
@@ -29,16 +29,23 @@
                 <div class="menu-item justify-content-center">
                 <!-- <div class="menu-item row row-cols-1 row-cols-md-2"> -->
                     <?php 
-                        $sql = "SELECT * FROM tbl_menu";
+                        $sql = "SELECT * FROM tbl_menu WHERE deleted = 0 ORDER BY sequence DESC";
                         $q = mysqli_query($conn,$sql);
                         while ($row = mysqli_fetch_assoc($q)) {
                     ?>
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 <?php echo $row['jenis']; ?>">
+                        <div class="col-lg-2 col-md-3 col-sm-4 mb-4 <?php echo $row['jenis']; ?>">
                             <div class="card">
                                 <img src=" <?php echo '../assets/images/menu/'.$row['gambar']; ?>" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo ucwords($row['nama_menu']); ?></h5>
-                                    <!-- <h5 class="card-title"><?php echo $row['description']; ?></h5> -->
+                                    <h6 class="card-title m-0"><?php echo ucwords($row['nama_menu']); ?></h6>
+                                    <span class="fs-12 text-muted mb-1">
+                                        <?php
+                                            if($row['description'] == ''){
+                                                echo "<div class='invisible mb-1'>.</div>";
+                                            } else 
+                                            echo ucwords($row['description']);
+                                        ?> 
+                                    </span>
                                     <h6 class="card-text text-danger"><?php echo number_format($row['harga'], 0, ',', '.'); ?></h6>
                                 </div>
                             </div>

@@ -19,7 +19,7 @@
         <tr>
             <td align="center"><a class="del-menu-cart fa fa-times" data-menu-id="<?php echo $id ?>" data-user-id="<?php echo $user_id ?>"></a></td>
             <td> 
-                <span class="font-weight-bold d-block"><?php echo $row['menu_name'] ?></span>
+                <span class="font-weight-bold d-block"><?php echo ucwords($row['menu_name']); ?></span>
                 <?php
                     $sql2 = "SELECT description FROM tbl_menu WHERE id = '$menuId'";
                     $q2 = $conn->query($sql2);

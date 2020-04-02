@@ -71,7 +71,7 @@
                         </ul>
                         <div class="menu-item d-flex flex-wrap justify-content-center">
                             <?php 
-                                $sql = "SELECT * FROM tbl_menu";
+                                $sql = "SELECT * FROM tbl_menu WHERE ready = 1 AND deleted = 0 ORDER BY sequence DESC";
                                 $q = mysqli_query($conn,$sql);
 
                                 while ($row = mysqli_fetch_assoc($q)) {

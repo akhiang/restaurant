@@ -47,7 +47,7 @@
                             <a class="nav-link" href="./pesanan.php">Order List<span class="sr-only"></span></a>
                         </li>          
                         <li class="nav-item">
-                            <a class="nav-link" href="./menu.php">Menu List<span class="sr-only"></span></a>
+                            <a class="nav-link" href="./menu.php">Menu<span class="sr-only"></span></a>
                         </li>          
                     </ul>
 
