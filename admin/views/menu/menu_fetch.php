@@ -2,7 +2,7 @@
     require_once "../conn.php";
 
     $data = array();
-    $sql = "SELECT * FROM tbl_menu WHERE deleted = 0 ORDER BY sequence DESC";
+    $sql = "SELECT * FROM tbl_menu WHERE deleted = 0 ORDER BY sequence ASC";
     $result = $conn->query($sql);
 
     foreach ($result as $key => $row) {

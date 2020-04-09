@@ -9,7 +9,7 @@
       $sub_array = array();
       $sub_array[] = $row['id'];
       $sub_array[] = $row['username'];
-      $sub_array[] = $row['password'];
+      // $sub_array[] = $row['password'];
       $sub_array[] = $row['role'];
       $sub_array[] = '
          <a href="#" class="edit-user badge badge-info mr-2" data-toggle="modal" data-target="#edit-user-modal" data-userId="'.$row["id"].'"><i class="fa fa-pencil-alt p-1"></i></a>

@@ -189,7 +189,7 @@
                     <tr>
                       <th scope="col">Id</th>
                       <th scope="col">Username</th>
-                      <th scope="col">Password</th>
+                      <!-- <th scope="col">Password</th> -->
                       <th scope="col">Role</th>
                       <th scope="col">Action</th>
                     </tr>

@@ -29,7 +29,7 @@
                 <div class="menu-item justify-content-center">
                 <!-- <div class="menu-item row row-cols-1 row-cols-md-2"> -->
                     <?php 
-                        $sql = "SELECT * FROM tbl_menu WHERE deleted = 0 ORDER BY sequence DESC";
+                        $sql = "SELECT * FROM tbl_menu WHERE deleted = 0 ORDER BY sequence ASC";
                         $q = mysqli_query($conn,$sql);
                         while ($row = mysqli_fetch_assoc($q)) {
                     ?>
