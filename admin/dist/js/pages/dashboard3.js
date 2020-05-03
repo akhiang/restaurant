@@ -14,7 +14,7 @@ $(function () {
     type: "GET",
     dataType: 'JSON',
     success: function (response) {
-      var months = ['Janeuary', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       var month = [], amount = [];
       console.log(response);      
 

@@ -168,7 +168,7 @@ $(document).ready(function () {
             }
         })
     });
-    // pemesanan.php
+    // pemesanan.php end
 });
 
 function clock() {
@@ -206,7 +206,6 @@ function loadListOrderTotal() {
 function cancelListOrder() {
     var table = $('.input_table').val(),
         user = $('.input_user').val();
-    // console.log(table + '-' + user);
     $.ajax({
         type: 'POST',
         data: {

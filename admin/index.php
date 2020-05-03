@@ -283,7 +283,8 @@
                   <p class="d-flex flex-column">
                     <?php
                       $q = $conn->query("SELECT count(order_id) as num FROM tb_order 
-                                        WHERE date >= CURDATE() - 6");
+                                        WHERE date > SUBDATE(CURDATE(), INTERVAL 7 DAY) 
+                                        AND date <= CURDATE()");
                       $a = $q->fetch_assoc();
                       echo '<span class="text-bold text-lg">'.$a['num'].'</span>'
                     ?>
@@ -328,8 +329,10 @@
                 <div class="d-flex">
                   <p class="d-flex flex-column">
                     <?php
-                      $q = $conn->query("SELECT sum(total) as amount FROM tb_order 
-                                        WHERE MONTH(DATE_SUB( NOW(), INTERVAL 6 MONTH)) >= MONTH(date)");
+                      $q = $conn->query("SELECT order_status, sum(total) as amount FROM tb_order 
+                                        WHERE order_status = 'paid' AND 
+                                        date > DATE_SUB(LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH, 
+                                        INTERVAL 6 MONTH) AND date < CURRENT_DATE");
                       $a = $q->fetch_assoc();
                       echo '<span class="text-bold text-lg">Rp'.number_format($a['amount'], 0, ',', '.').'</span>'
                     ?>

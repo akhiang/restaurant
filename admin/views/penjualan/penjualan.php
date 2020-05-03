@@ -186,20 +186,23 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <div class="row mb-4">
-                  <div class="form-check">
-                    <div class="pretty p-svg p-curve">
-                      <input type="checkbox" id="date-check">
-                      <div class="state p-primary">
-                          <!-- svg path -->
-                          <svg class="svg svg-icon" viewBox="0 0 20 20">
-                              <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
-                          </svg>
-                          <label></label>
+                
+                <div class="row">
+                  <div class="my-2">
+                    <div class="form-check">
+                      <div class="pretty p-svg p-curve">
+                        <input type="checkbox" class="form-check-input" id="date-check" name="date-check">
+                        <div class="state p-primary">
+                            <!-- svg path -->
+                            <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                            </svg>
+                            <label></label>
+                        </div>
                       </div>
-                    </div>
-                  </div>              
-                  <div class="col-md-3 mb-3">
+                    </div> 
+                  </div>                               
+                  <div class="col-md-4 mb-3">
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">From</span>
@@ -207,7 +210,7 @@
                       <input type="text" class="date form-control" id="from-date" disabled>
                     </div>
                   </div>
-                  <div class="col-md-3 mb-3">
+                  <div class="col-md-4 mb-3">
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">To</span>
@@ -215,11 +218,34 @@
                       <input type="text" class="date form-control" id="to-date" value="" disabled>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <button type="button" id="filter" class="btn btn-outline-primary btn-sm">Filter</button>
-                    <button type="button" id="report" class="btn btn-outline-info btn-sm">Report</button>
-                  </div>
+                  
                 </div>
+
+                <form class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label class="" for="order-type">Order Type</label>
+                    <select class="form-control form-control-sm" id="order-type">
+                      <option value="" selected>Choose...</option>
+                      <option value="dine">Dine In</option>
+                      <option value="take">Take Away</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-6 mb-3">
+                    <label class="" for="order-status">Order Status</label>
+                    <select class="form-control form-control-sm" id="order-status">
+                      <option value="" selected>Choose...</option>
+                      <option value="paid">Paid</option>
+                      <option value="unpaid">Unpaid</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                </form>
+
+                <div class="mb-4">
+                    <button type="button" id="filter" class="btn btn-outline-primary btn-sm">Filter</button>
+                    <button type="button" id="report" class="btn btn-outline-info btn-sm mx-1">Report</button>
+                  </div>
 
                 <div class="table-responsive">
                   <table id="table-penjualan" class="table table-hover text-center table-sm w-100">
@@ -311,6 +337,9 @@
 <script src="../../dist/js/app.js"></script>
 <script>
   $(function() {
+    var e = document.getElementById("order-type");
+    var element = document.getElementById("order-status");
+
     $('#date-check').click(function() {
       if ($(this).is(':checked')) {
         $('.date').prop('disabled', false);
@@ -321,7 +350,7 @@
 
     $('.date').daterangepicker({
       singleDatePicker: true,
-      showDropdowns: true,
+      // showDropdowns: true,
       minYear: 2000,
       clearBtn: true,
       maxYear: parseInt(moment().format('YYYY'),10,),
@@ -332,19 +361,25 @@
 
     $('#filter').on('click', function() {
       if ($('#date-check').is(':checked')) {
-        var url = 'penjualan_range.php',
-            from = $('#from-date').val(), to = $('#to-date').val();
+        var is_date = true;
       } else {
-        url = 'penjualan_fetch.php'
+        is_date = false;
       }
+
+      var type = (e.options[e.selectedIndex].value);
+      var status = (element.options[element.selectedIndex].value);
+      
       $('#table-penjualan').DataTable({
         "destroy": true,
         "ajax": {
-          url: url,
           type: "POST",
+          url: 'penjualan_fetch.php',
           data: {
-            from: from,
-            to: to,
+            is_date: is_date,
+            from: $('#from-date').val(),
+            to: $('#to-date').val(),
+            type: type,
+            status: status,
           }
         },
         "order": [[0, "desc"]]
@@ -352,12 +387,19 @@
     });
 
     $('#report').on('click', function() {
+      let url = `penjualan_report.php?`;
+      var type = (e.options[e.selectedIndex].value);
+      var status = (element.options[element.selectedIndex].value);
+
       if ($('#date-check').is(':checked')) {
         var from = $('#from-date').val(), to = $('#to-date').val();
-      } else {
-        var from = '', to = '';
-      }
-      window.open(`penjualan_report.php?from=${from}&to=${to}`, `_blank`);
+        url += `from=${from}&to=${to}`;
+      } 
+
+      url += type != '' ? `&type=${type}` : '';
+      url += status != '' ? `&status=${status}` : '';
+  
+      window.open(url, `_blank`);
     });
   });
 </script>

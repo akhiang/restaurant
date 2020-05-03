@@ -71,7 +71,7 @@
                         </ul>
                         <div class="menu-item d-flex flex-wrap justify-content-center col-12">
                             <?php 
-                                $sql = "SELECT * FROM tbl_menu WHERE ready = 1 AND deleted = 0 ORDER BY sequence DESC";
+                                $sql = "SELECT * FROM tbl_menu WHERE ready = 1 AND deleted = 0 ORDER BY sequence ASC";
                                 $q = mysqli_query($conn,$sql);
                                 while ($row = mysqli_fetch_assoc($q)) {
                             ?>
@@ -195,7 +195,12 @@
             </div>
         </div>
     </div>
-
+    <script>
+        window.onbeforeunload = confirmExit;
+        function confirmExit() {
+            return "You have attempted to leave this page. Are you sure?";
+        }
+    </script>
 <?php
     require_once "../footer.php"
 ?>

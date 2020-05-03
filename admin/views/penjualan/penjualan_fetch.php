@@ -4,8 +4,27 @@
     $data = array();
     $sql = "SELECT *, m.nama_meja, u.username FROM tb_order o
             LEFT JOIN tb_meja m ON o.table_id = m.kode_meja
-            LEFT JOIN tbl_user u ON o.user_id = u.id
-            ORDER BY o.order_number DESC";
+            LEFT JOIN tbl_user u ON o.user_id = u.id 
+            WHERE order_id IS NOT NULL ";
+        
+        if ($_POST['is_date'] == 'true') {
+            $sql .= "AND date BETWEEN '".$_POST['from']."' AND '".$_POST['to']."' ";
+        }
+        
+        if (isset($_POST['type'])) {
+            if ($_POST['type'] != '') {
+                $type_id = ($_POST['type'] == 'dine') ? 1 : 2;
+                $sql .= "AND order_type_id = '$type_id' ";
+            }
+        }
+
+        if (isset($_POST['status'])) {
+            if ($_POST['status'] != '') {
+                $sql .= "AND order_status = '".$_POST['status']."' ";
+            }
+        }
+    
+    $sql .= "ORDER BY o.order_number DESC";
     $result = $conn->query($sql);
 
     foreach ($result as $key => $row) {

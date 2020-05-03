@@ -681,7 +681,15 @@ $(document).ready(function () {
 
   // PENJUALAN SECTION
     var tablePenjualan = $('#table-penjualan').DataTable({
-      "ajax": {"url": "penjualan_fetch.php"},
+      "ajax": {
+        type: 'POST',
+        url: "penjualan_fetch.php",
+        data: {
+          is_date: 0,
+          from: $('#from-date').val(),
+          to: $('#to-date').val()
+        }
+      },
       "order": [[0, "desc"]]
     });
   // END PENJUALAN SECTION
