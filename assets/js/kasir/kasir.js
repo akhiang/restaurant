@@ -4,6 +4,17 @@ $(document).ready(function () {
     loadEmptyOrder();
     loadEmptyOrderFoot();
 
+    $(window).on('scroll', function () {
+        $(window).scrollTop() ? $('.navbar').addClass('fixed-top') : $('.navbar').removeClass('fixed-top')
+    });
+
+    $('.navbar a[href^="./' + location.pathname.split("/")[3] + '"]').addClass('active');
+
+    if (location.pathname.split("/")[3] == 'payment.php') {
+
+    }
+    
+
     $(".table-container").niceScroll({
         // cursorcolor: "aquamarine"
     });

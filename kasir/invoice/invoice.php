@@ -122,7 +122,7 @@ $layout =
     '
         <section class="footer">
                 <div class="left">
-                    <h4>Thank you for your business</h4>
+                    <h5>Thank you for your business</h5>
                 </div>
                 <div class="right">
                     <table style="width:100%" id="footer">

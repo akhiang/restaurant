@@ -4,6 +4,8 @@ $(document).ready(function () {
     loadListOrder();
     loadListOrderTotal();
 
+    $('.navbar a[href^="./' + location.pathname.split("/")[3] + '"]').addClass('active');
+
     $(".spinner").inputSpinner({
         buttonsClass: "btn-outline-success rounded"
     });
