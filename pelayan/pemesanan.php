@@ -1,6 +1,6 @@
 <?php
     include "../conn.php";
-    require_once "../header.php";
+    require_once "../header-order.php";
     date_default_timezone_set("Asia/Bangkok");
 
     $user_id = $_SESSION["user_id"];
@@ -28,7 +28,7 @@
     <main class="wrapper-all">
         <div class="container-fluid" onload="clock()">
             <div class="row">
-                <div class="col-lg-5 bg-light py-4">
+                <div class="col-lg-5 bg-light py-4 d-none d-lg-block">
                     <div class="order-list-container bg-white rounded p-3">
                         <div class="order-list-head pb-2">
                             <div class="row">

@@ -260,12 +260,6 @@ function emptyCart(id) {
 }
 
 $(function () {
-    // $(".navbar .nav-link").on('click', function() {
-    //     var cur = $(this).parent().index();
-    //     $('.nav-link').removeClass('active');
-    //     $('.navbar .nav-link').eq(cur).addClass('active');
-    // });
-
     $(window).on('scroll', function () {
         $(window).scrollTop() ? $('.navbar').addClass('fixed-top') : $('.navbar').removeClass('fixed-top')
     });
