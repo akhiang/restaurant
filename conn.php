@@ -6,7 +6,7 @@
 
     function updateTable($table_id){
         global $conn;
-        if($table_id !== ''){
+        if($table_id !== '0'){
         // echo 'tidak kosong';
             $q = $conn->query("UPDATE tb_meja set status = 1 WHERE kode_meja = $table_id");
         }  

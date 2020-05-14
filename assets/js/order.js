@@ -54,6 +54,7 @@ $(document).ready(function () {
 
     $('#cancel-order-btn').on('click', function () {
         var orderNumber = $(this).attr('data-order-num');
+        var tableId = $(this).attr('data-table-id');
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -68,11 +69,12 @@ $(document).ready(function () {
                     type: 'POST',
                     url: 'order-list-detail-cancel.php',
                     data: {
-                        orderNumber: orderNumber
+                        orderNumber: orderNumber,
+                        tableId: tableId
                     },
                     success: function (response) {
-                        // location.reload();
-                        // window.location.href = 'order-list.php';
+                        location.reload();
+                        window.location.href = 'order-list.php';
                     }
                 });
             }
@@ -100,8 +102,8 @@ $(document).ready(function () {
                 qty: qty
             },
             success: function (response) {
-                loadCart();
-                loadCartTotal();
+                // loadCart();
+                // loadCartTotal();
             }
         });
     });
@@ -272,7 +274,7 @@ $(document).ready(function () {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         }).then(() => {
-                            window.location.href = 'order-list.php';
+                            // window.location.href = 'order-list.php';
                         })
                     }
                 }
@@ -299,7 +301,19 @@ function addCart(id) {
         cache: false,
         data: data,
         success: function (response) {
-            if (response == 'success') {
+            if (response == 'ingredient') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Can\'t add menu',
+                    text: 'Please check the menu\'s ingredient',
+                })
+            } else if (response == 'quantity') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Can\'t add menu',
+                    text: 'Please check the ingredient inventory',
+                })
+            } else if (response == 'success') {
                 toast();
             }
         }

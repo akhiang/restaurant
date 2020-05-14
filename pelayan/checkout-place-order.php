@@ -57,15 +57,18 @@
                     $q = $conn->query("SELECT * FROM tb_cart_detail WHERE user_id = '$user_id'");
                     if ($q->num_rows > 0) {
                         foreach ($q as $key => $cart) {
+                            var_dump($cart);
                             $cartMenuId = $cart['menu_id'];
                             $cartMenuQty = $cart['qty'];
                             $cartMenuName = $cart['menu_name'];
                             $cartMenuPrice = $cart['price'];
 
-                            $sameItem = $conn->query("SELECT * FROM tb_order_detail WHERE menu_id = '$cartMenuId' AND cancel = 0");
-                            if ($sameItem->num_rows > 0) {       
-                                $sql = "UPDATE tb_order_detail SET qty = qty + $cartMenuQty WHERE menu_id = '$cartMenuId'";
+                            $sameItem = $conn->query("SELECT * FROM tb_order_detail WHERE order_number = '$orderNumber' AND menu_id = '$cartMenuId' AND cancel = 0");
+                            if ($sameItem->num_rows > 0) {
+                                // echo 'same';
+                                $sql = "UPDATE tb_order_detail SET qty = qty + $cartMenuQty WHERE order_number = '$orderNumber' AND menu_id = '$cartMenuId' AND cancel = 0";
                             } else {
+                                // echo 'new';
                                 $sql = "INSERT INTO tb_order_detail (id, order_number, menu_id, menu_name, qty, price, cancel) VALUES
                                     ('', '$orderNumber', '$cartMenuId', '$cartMenuName', $cartMenuQty , '$cartMenuPrice', 0)";
                             }

@@ -32,6 +32,7 @@
                         $result = mysqli_num_rows($q);
                         if($result > 0) {
                             $row = $q->fetch_assoc();
+                            $tableId = $row['table_id'];
                 ?>
                             <table class="table table-bordered">
                                 <div class="caption p-3">
@@ -80,7 +81,7 @@
                                             </div>                        
                                         </td>
                                         <td> 
-                                            <span class="font-weight-bold d-block"><?php echo $row2['nama_menu'] ?></span>
+                                            <span class="font-weight-bold d-block"><?php echo ucwords($row2['nama_menu']) ?></span>
                                             <span class="text-muted fs-12"><?php echo ucwords($row2['description']) ?></span>
                                         </td>
                                         <td align="center"> 
@@ -123,7 +124,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                            <button type="button" class="btn btn-danger btn-sm" id="cancel-order-btn" data-order-num="<?= $orderNumber ?>">Cancel Order</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="cancel-order-btn" data-order-num="<?= $orderNumber ?>" data-table-id="<?= $tableId ?>">Cancel Order</button>
                             <a href="./order-list.php" class="btn btn-success btn-sm">Back</a>
                 <?php
                                 }
