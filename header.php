@@ -49,6 +49,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./menu.php">Menu<span class="sr-only"></span></a>
                         </li>          
+                        <li class="nav-item">
+                            <a class="nav-link" href="./cart.php">Cart<span class="sr-only"></span></a>
+                        </li>          
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
