@@ -32,9 +32,10 @@
                     <object class="d-inline-block align-top" data="../assets/images/background/bakso.svg" type="image/svg+xml"  style="width: 50px; height: 50px;"></object>
                 </a>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item d-lg-none d-xl-none">
-                        <a class="nav-link">
+                    <li class="nav-item">
+                        <a href="./cart.php" class="nav-link">
                             <i class="fa fa-shopping-cart fa-1x"></i>
+                            <!-- <span class="badge badge-light">9</span> -->
                         </a>
                     </li>  
                 </ul>

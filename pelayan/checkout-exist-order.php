@@ -21,24 +21,24 @@
                 $nama_meja =  $row2['nama_meja'];
             }
     ?>
-        <div class="card" data-no-trans="<?php echo $row['order_number'] ?>"> 
-            <div class="card-header d-flex align-items-center">
-                <div>
-                    <span class="text-muted fs-12">Order Number</span>
-                    <h6 class="m-0"><?php echo $row['order_number'] ?></h6>                            
+            <div class="card mb-3" data-order-number="<?= $row['order_number'] ?>"> 
+                <div class="card-header d-flex align-items-center">
+                    <div>
+                        <span class="text-muted fs-12">Order Number</span>
+                        <h6 class="m-0"><?php echo $row['order_number'] ?></h6>                            
+                    </div>
+                </div>
+                <div class="card-body row">
+                    <div class="col-6">
+                        <span class="text-muted fs-12">Customer</span>
+                        <h6><?= ucwords($row['customer_name']); ?></h6>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-muted fs-12">Table</span>
+                        <h6><?= $nama_meja; ?></h6>
+                    </div>
                 </div>
             </div>
-            <div class="card-body row">
-                <div class="col-6">
-                    <span class="text-muted fs-12">Customer</span>
-                    <h6><?php echo ucwords($row['customer_name']); ?></h6>
-                </div>
-                <div class="col-6">
-                    <span class="text-muted fs-12">Table</span>
-                    <h6><?php echo $nama_meja; ?></h6>
-                </div>
-            </div>
-        </div>
     <?php
         }
     } else {

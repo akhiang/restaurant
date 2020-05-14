@@ -36,6 +36,6 @@
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/pelayan-index.js"></script>
     <script src="../assets/js/pelayan-add-order.js"></script>
-    <!-- <script src="assets/js/mainListOrder.js"></script> -->
+    <script src="../assets/js/order.js"></script>
 </body>
 </html>

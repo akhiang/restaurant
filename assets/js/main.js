@@ -1,17 +1,17 @@
 $(document).ready(function () {
 
-    clock();
+    // clock();
     loadListOrder();
     loadListOrderTotal();
 
     $('.navbar a[href^="./' + location.pathname.split("/")[3] + '"]').addClass('active');
 
-    $(".spinner").inputSpinner({
+    $(".spin").inputSpinner({
         buttonsClass: "btn-outline-success rounded"
     });
 
     $(".order-list-body").niceScroll();
-    $(".menu-container").niceScroll();
+    // $(".menu-container").niceScroll();
 
     // $('#menu').isotope('layout');
 

@@ -2,7 +2,7 @@
     include "../conn.php";
 
     $no_trans = $_POST['no_trans'];
-    $sql = "SELECT order_id, order_number, order_status, date, time, order_type_id, table_id, name
+    $sql = "SELECT order_id, order_number, order_status, date, time, order_type_id, table_id, customer_name, name
             FROM tb_order O 
             LEFT JOIN tb_tipe_pesanan T ON O.order_type_id = T.id 
             WHERE order_number = '$no_trans'";

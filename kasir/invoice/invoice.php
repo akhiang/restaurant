@@ -53,10 +53,14 @@ $layout =
                     </table>
                 </div>
                 <div class="right">
-                    <table style="width:100%" class="pt-3">
+                    <table style="width:100%" class="">
                         <tr>
                             <td><h5>Order Number</h5></td>
                             <td><h5>'.$order_number.'</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Customer</h5></td>
+                            <td><h5>'.$d["customer_name"].'</h5></td>
                         </tr>
                         <tr>
                             <td><h5>Date</h5></td>
@@ -85,7 +89,7 @@ $layout =
 
     $sql = "SELECT *, nama_menu FROM tb_order_detail O
         JOIN tbl_menu M ON O.menu_id = M.id
-        WHERE order_number = '$order_number'";
+        WHERE order_number = '$order_number' AND cancel = 0";
     $q = mysqli_query($conn,$sql);
     $no = 1;
     while ($row = mysqli_fetch_assoc($q)) {
@@ -109,7 +113,7 @@ $layout =
             </section>
     ';
 
-    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$order_number'";
+    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$order_number' AND cancel = 0";
     $q = mysqli_query($conn,$sql);
     while ($row = mysqli_fetch_assoc($q)) {
         $amount = $row['price'] * $row['qty'];

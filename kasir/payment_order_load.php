@@ -6,7 +6,7 @@
     // $sql = "SELECT * FROM tb_order_detail_temp WHERE order_number = '$no_trans'";
     $sql = "SELECT *, nama_menu FROM tb_order_detail O
         JOIN tbl_menu M ON O.menu_id = M.id
-        WHERE order_number = '$no_trans'";  
+        WHERE order_number = '$no_trans' AND cancel = 0";  
     $q = mysqli_query($conn,$sql);
     $result = mysqli_num_rows($q);
 

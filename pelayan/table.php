@@ -45,7 +45,7 @@
                                                         echo "<h5>Available</h5>";} ?>
                                                 <span class="ml-3 ml-auto">
                                                     <?php if($row['status'] == 0) { ?>  
-                                                        <a href="#" class="view-order btn btn-sm" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['order_number']; ?>" data-toggle="modal" data-target="#orderListModal"><i class="fa fa-eye"></i></a>
+                                                        <a href="#" class="view-order btn btn-sm" data-meja-name="<?php echo $row['nama_meja'] ?>" data-no-trans="<?php echo $row2['order_number']; ?>"><i class="fa fa-eye"></i></a>
                                                     <?php } ?>
                                                 </span>
                                             </div>
@@ -59,29 +59,15 @@
                                                                 <?php echo '#'.$row2['order_number'];?>
                                                             </span>
                                                         </div>
-                                                    </div>                          
+                                                    </div>                                                                                                
                                                     <div class="col-6">
-                                                        <div class="order-action">
-                                                            <?php 
-                                                                if ($status == 0) {
-                                                            ?>
-                                                                <form action="add_order.php" method="post" class="d-flex" id="table-add-form">
-                                                                    <input type="hidden" name="meja_id" value="<?php echo $row['kode_meja'] ?>">
-                                                                    <input type="hidden" name="tipe_id" value="<?php echo $row2['tipe_pesanan_id'] ?>">
-                                                                    <input type="hidden" name="number" value="<?php echo $row2['order_number'] ?>">
-                                                                    <button type="submit" name="submit" class="btn btn-add-order btn-sm ml-auto">Add Order</button>
-                                                                </form>
-                                                            <?php
-                                                                } else {
-                                                            ?>
-                                                                <form action="pemesanan.php" method="post" class="d-flex" id="table-new-form-<?= $row['kode_meja'] ?>">
-                                                                    <button type="button" class="btn btn-new-order btn-sm ml-auto" data-table="<?= $row['kode_meja'] ?>" data-toggle="modal" data-target="#newOrderModal">New Order</button>   
-                                                                </form>
-                                                            <?php
-                                                                }
-                                                            ?> 
+                                                        <div class="order-number">
+                                                            <span class="text-muted d-block title">Customer</span>
+                                                            <span class="font-weight-bold">
+                                                                <?= $row2['customer_name'];?>
+                                                            </span>
                                                         </div>
-                                                    </div>                          
+                                                    </div>                                                                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -97,51 +83,6 @@
         </div>
     </main>
 
-    <!-- Modal -->
-    <div class="modal fade" id="orderListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Order List</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            <?php echo $row['nama_meja'] ?>
-                <div id="table-view-order"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="newOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Order</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="POST" action="pemesanan.php" id="table-new-order-form">
-                    <div class="modal-body">
-                        Add new order ?
-                        <div id="table-new-order-conf"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success" id="btn-new-order-modal">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
 <?php
     require_once "../footer.php";
 ?>

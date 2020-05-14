@@ -7,6 +7,16 @@ body {
     font-family: 'Fira Sans', sans-serif;
 }
 
+.dropdown-toggle::after {
+    display: none;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 30px;
+}
+
 .bg-white {
     background-color: #fff;
 }
@@ -29,6 +39,14 @@ body {
 
 .fs-13 {
     font-size: 13px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-15 {
+    font-size: 15px;
 }
 
 .fs-17 {
@@ -194,11 +212,7 @@ nav.fixed-top {
 
 /* End List Order */
 
-/* Menu */
-
-.menu-container {
-    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
-}
+/* order.php */
 
 .menu-filter {
     width: 100%;
@@ -210,8 +224,6 @@ nav.fixed-top {
 
 .menu-filter li {
     display: inline-block;
-    padding: 3px 14px;
-    margin: 0 10px;
 }
 
 .menu-filter li span {
@@ -219,15 +231,97 @@ nav.fixed-top {
     font-weight: 500;
     font-size: 16px;
     display: inline-block;
-    color: #11b48e;
     cursor: pointer;
+    padding: 3px 14px;
+    margin: 0 10px;
 }
 
-.menu-filter li span:hover {
-    color: #207561;
+.menu-filter li span.active {
+    color: white;
+    background-color: #11b48e;
+    border-radius: 8px;
 }
 
-/* End Menu */
+.andro_product.andro_product-list {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.andro_product {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #F0F2F3;
+    box-shadow: 0 3px 24px rgba(0,0,0,.04);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(18,18,18,0.1);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(18,18,18,0.1);
+    box-shadow: 5px 5px 10px 0px rgba(18,18,18,0.1);
+}
+
+.andro_product.andro_product-list .andro_product-thumb {
+    width: 125px;
+    margin-right: 15px;
+}
+
+.andro_product .andro_product-thumb {
+    margin: 0 0 20px;
+    overflow: hidden;
+}
+
+.andro_product.andro_product-list .andro_product-body {
+    flex: 1;
+}
+
+.andro_product.andro_product-list .andro_rating-wrapper {
+    margin-bottom: 10px;
+}
+
+.andro_product .andro_rating-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.andro_product .andro_product-body h5 {
+    word-break: break-word;
+}
+
+.andro_product.andro_product-list .andro_product-footer {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.andro_product .andro_product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.andro_product-price span {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.andro_product .andro_product-thumb img {
+    transition: .3s;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.spinner-wrap {
+    max-width: 120px;
+}
+
+/* End order.php */
+
+
 
 /* Card */
 
@@ -235,22 +329,9 @@ nav.fixed-top {
     box-shadow: 3px 5px 7px rgba(0, 0, 0, .2);
 }
 
-.spinner {
-    border: none;
-    margin: 0 15px;
-    border-bottom: 2px solid #11b48e;
-    outline: none;
-}
-
-.spinner:focus {
-    box-shadow: none !important;
-    border-bottom: 2px solid #207561;
-}
-
 /* End Card */
 
 @media screen and (max-width: 991px) {
-
     .navbar-collapse,
     .dropdown-menu {
         text-align: center;
@@ -267,5 +348,75 @@ nav.fixed-top {
 
     .fixed-top .navbar-collapse {
         background: transparent;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Table Responsive */
+    .andro_responsive-table thead {
+        display: none;
+    }
+    .andro_responsive-table td {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-align: right;
+        padding: 10px;
+        border-bottom: 0;
+    }
+    .andro_responsive-table tr.total td::before{
+        display: none;
+    }
+    .andro_responsive-table tr.total td:first-child{
+        border-top: 0;
+        border-right: 0;
+    }
+    .andro_responsive-table tr.total td:last-child{
+        border-left: 0;
+        border-top: 0;
+    }
+    /* .andro_responsive-table tr.total td:nth-child(2){
+        display: none;
+    } */
+    .andro_responsive-table tr.total td{
+        width: auto;
+        text-align: left;
+    }
+    .andro_responsive-table tr.total{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    .andro_responsive-table td::before {
+        content: attr(data-title) ": ";
+        font-weight: 700;
+        float: left;
+    }
+    .andro_responsive-table td.remove::before {
+        display: none;
+    }
+    .andro_responsive-table td.space::before {
+        display: none;
+    }
+    .andro_responsive-table tr {
+        border-bottom: 1px solid #F0F2F3;
+    }
+    /* End Table Responsive */
+}
+
+@media screen and (max-width: 560px) {
+    .andro_product.andro_product-list .andro_product-thumb {
+        width: auto;
+        margin-right: 0;
+    }
+
+    .andro_product.andro_product-list {
+        display: block;
     }
 }

@@ -5,7 +5,7 @@
     $tax = 0;
     $total = 0;
     $no_trans = $_POST['no_trans'];
-    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$no_trans'";
+    $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$no_trans' AND cancel = 0";
     $q = $conn->query($sql);
     // var_dump($q);
     // $result = mysqli_num_rows($q);
