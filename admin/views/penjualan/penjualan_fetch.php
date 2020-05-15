@@ -34,6 +34,7 @@
         $sub_array[] = $row['order_type_id'] == 1 ? '<span class="badge badge-primary">Dine In</span>' : '<span class="badge badge-info">Take Away</span>';
         $sub_array[] = orderStatus($row['order_status']);
         $sub_array[] = $row['table_id'] == 0 ? '-' : $row['nama_meja'];
+        $sub_array[] = $row['customer_name'];
         $sub_array[] = $row['date'];
         $sub_array[] = number_format($row['total'], 0, ',', '.');
         $sub_array[] = '

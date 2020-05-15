@@ -256,6 +256,7 @@
                         <th scope="col">Order Type</th>
                         <th scope="col">Order Status</th>
                         <th scope="col">Table</th>
+                        <th scope="col">Customer</th>
                         <th scope="col">Date</th>
                         <th scope="col">Total</th>
                         <th scope="col">Action</th>

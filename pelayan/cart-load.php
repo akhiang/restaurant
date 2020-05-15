@@ -18,7 +18,7 @@
     ?>
         
         <tr>
-            <td align="center" width="5%"><a class="del-menu-cart fa fa-times" data-menu-id="<?= $id ?>" data-user-id="<?php echo $user_id ?>"></a></td>
+            <td align="center" width="5%"><a class="del-menu-cart fa fa-times" data-cart-id="<?= $id ?>" data-user-id="<?php echo $user_id ?>"></a></td>
             <td> 
                 <span class="font-weight-bold d-block"><?php echo ucwords($row['menu_name']); ?></span>
                 <?php
@@ -42,7 +42,9 @@
         }
     } else {
 ?>
-
+    <tr class="text-center">
+        <td colspan="5">Your cart is empty</td>
+    </tr>
 <?php
     
     }

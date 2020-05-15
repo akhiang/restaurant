@@ -88,7 +88,7 @@ $(document).ready(function () {
     // ubah qty menu di cart
     $('#cart-table').on('change', '.qty-menu-cart', function () {
         var qty = $(this).val();
-        var menu_id = $(this).attr('data-menu-id');
+        var cart_id = $(this).attr('data-menu-id');
         var user_id = $(this).attr('data-user-id');
 
         if (qty == '') $(this).val(1);
@@ -97,20 +97,34 @@ $(document).ready(function () {
             type: 'POST',
             url: 'cart-change-qty.php',
             data: {
-                menu_id: menu_id,
+                cart_id: cart_id,
                 user_id: user_id,
                 qty: qty
             },
-            success: function (response) {
-                // loadCart();
-                // loadCartTotal();
+            success: function (response) {                
+                if (response == 'ingredient') {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Can\'t add menu',
+                        text: 'Please check the menu\'s ingredient',
+                    })
+                } else if (response == 'quantity') {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Can\'t add menu',
+                        text: 'Please check the ingredient inventory',
+                    })
+                } else if (response == 'success') {
+                    loadCart();
+                    loadCartTotal();
+                }
             }
         });
     });
 
     // hapus menu di cart
     $('#cart-table').on('click', '.del-menu-cart', function () {
-        var id = $(this).attr('data-menu-id');
+        var id = $(this).attr('data-cart-id');
         var user_id = $(this).attr('data-user-id');
 
         Swal.fire({
@@ -274,7 +288,7 @@ $(document).ready(function () {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         }).then(() => {
-                            // window.location.href = 'order-list.php';
+                            window.location.href = 'order-list.php';
                         })
                     }
                 }
