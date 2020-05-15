@@ -1,28 +1,18 @@
 <?php
     include "../conn.php";
     require_once "../header-order.php";
-    date_default_timezone_set("Asia/Bangkok");
 
-    $user_id = $_SESSION["user_id"];
-
-    if (isset($_POST["_token"])) {
-        // var_dump($_POST);
-        $tipe = $_POST['tipe_id'];
-        $sql = "SELECT * FROM tb_tipe_pesanan WHERE id = '$tipe'";  
-        $q = $conn->query($sql);
-        $data = $q->fetch_assoc();
-
-        if($tipe == 2){
-            $kode_meja = '';
-            $nama_meja = '-';
-        } else {
-            $kode_meja = $_POST['id_meja'];
-            $sql = "SELECT * FROM tb_meja WHERE kode_meja = '$kode_meja'";  
-            $q = $conn->query($sql);
-            $meja = $q->fetch_assoc();
-            $nama_meja = $meja['nama_meja'];
-        }
-    }
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+		if ($_SESSION['role'] == "kasir") {
+			header("location: ../kasir/index.php");
+		}
+		else if ($_SESSION['role'] == "admin") {
+			header("location: ../admin/index.php");
+		}
+	}
+	else {
+		header('location: ../index.php');
+	}
 ?>
 
     <main class="wrapper-all">

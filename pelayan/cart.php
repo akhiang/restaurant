@@ -1,9 +1,18 @@
 <?php
     include "../conn.php";
     require_once "../header.php";
-    date_default_timezone_set("Asia/Bangkok");
-
-    $user_id = $_SESSION["user_id"];
+    
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+		if ($_SESSION['role'] == "kasir") {
+			header("location: ../kasir/index.php");
+		}
+		else if ($_SESSION['role'] == "admin") {
+			header("location: ../admin/index.php");
+		}
+	}
+	else {
+		header('location: ../index.php');
+	}
 ?>
 
     <main class="wrapper-all">
