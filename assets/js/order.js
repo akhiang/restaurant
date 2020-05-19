@@ -81,6 +81,20 @@ $(document).ready(function () {
         })      
     });
     
+    $('.order-list-menu-note').on('click', function () {
+        var id = $(this).attr('data-cart-id')
+        $.ajax({
+            type: 'POST',
+            data: {
+                id: id,
+            },
+            url: 'order-list-get-menu-note.php',
+            success: function (response) {
+                response = $.parseJSON(response);
+                $('#checkout-menu-note').val(response.note);
+            }
+        });
+    });
     // end order-list-detail.php
 
     //  Cart.php
@@ -122,8 +136,39 @@ $(document).ready(function () {
         });
     });
 
+    $('#cart-table').on('click', '.note-menu-cart', function() {
+        var id = $(this).attr('data-cart-id');
+        $.ajax({
+            type: 'POST',
+            url: 'cart-note.php',
+            data: {
+                id: id,
+            },
+            success: function (response) {
+                $('#menu-note-modal').html(response);
+            }
+        });
+    })
+
+    $('#menu-note-modal').on('change', '.note', function () {
+        var id = $(this).attr('data-cart-id');
+            note = $(this).val();
+        
+        $.ajax({
+            type: 'POST',
+            url: 'cart-note-save.php',
+            data: {
+                id: id,
+                note: note,
+            },
+            success: function (response) {
+                //
+            }
+        });
+    })
+
     // hapus menu di cart
-    $('#cart-table').on('click', '.del-menu-cart', function () {
+    $('#cart-table').on('click', '.del-menu-cart', function() {
         var id = $(this).attr('data-cart-id');
         var user_id = $(this).attr('data-user-id');
 
@@ -152,7 +197,7 @@ $(document).ready(function () {
                             'success'
                         )
                     }
-                });            
+                });
             }
         })
     });
@@ -221,6 +266,39 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#checkout-order-table-body').on('click', '.checkout-menu-pen', function () {
+        var id = $(this).attr('data-cart-id')
+        $.ajax({
+            type: 'POST',
+            data: {
+                id: id,
+            },
+            url: 'checkout-get-menu-note.php',
+            success: function (response) {
+                response = $.parseJSON(response);
+                $('#checkout-menu-note').val(response.note);
+                $('#checkout-menu-note').attr('data-cart-id', response.id);
+            }
+        });
+    });
+
+    $('#exampleModal').on('change', '.note', function () {
+        var id = $(this).attr('data-cart-id');
+        note = $(this).val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'cart-note-save.php',
+            data: {
+                id: id,
+                note: note,
+            },
+            success: function (response) {
+                //
+            }
+        });
+    })
 
     $('#checkout-form').validate({
         errorElement: "small",

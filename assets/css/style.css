@@ -193,9 +193,6 @@ nav.fixed-top {
     width: 250px;
 }
 
-/* .table-fixed td:nth-child(3) {
-    width: 100px;
-} */
 .table-fixed td:nth-child(3) {
     width: 200px;
 }
@@ -205,8 +202,13 @@ nav.fixed-top {
     width: 200px;
 }
 
-.order-list-container .table .fa {
+.order-list-container #cart-table td:first-child .fa {
     color: #ea5e5e;
+    cursor: pointer;
+}
+
+.order-list-container #cart-table td:nth-child(2) .fa {
+    color: #015c41;
     cursor: pointer;
 }
 
@@ -321,7 +323,9 @@ img {
 
 /* End order.php */
 
-
+#checkout-order-table-body i {
+    color: #015c41;
+}
 
 /* Card */
 
@@ -375,9 +379,7 @@ img {
         border-left: 0;
         border-top: 0;
     }
-    /* .andro_responsive-table tr.total td:nth-child(2){
-        display: none;
-    } */
+
     .andro_responsive-table tr.total td{
         width: auto;
         text-align: left;

@@ -27,6 +27,7 @@
                     $r = $q2->fetch_assoc();                                          
                 ?>
                 <span class="text-muted fs-11"><?php echo ucwords($r['description']); ?></span><br>                
+                <a href="#" class="note-menu-cart" data-toggle="modal" data-target="#noteModal" data-cart-id="<?= $id ?>"><i class="fa fa-pen"></i></a>
             </td>
             <td align="center" width="15%"> 
                 <span><?php echo number_format($row['price'], 0, ',', '.'); ?></span>

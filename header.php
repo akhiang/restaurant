@@ -41,10 +41,10 @@
                             <a class="nav-link" href="./index.php">Home<span class="sr-only"></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./table.php">Table<span class="sr-only"></span></a>
+                            <a class="nav-link" href="./table.php">Meja<span class="sr-only"></span></a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="./order-list.php">Order List<span class="sr-only"></span></a>
+                            <a class="nav-link" href="./order-list.php">Daftar Order<span class="sr-only"></span></a>
                         </li>          
                         <li class="nav-item">
                             <a class="nav-link" href="./menu.php">Menu<span class="sr-only"></span></a>

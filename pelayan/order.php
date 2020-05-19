@@ -1,6 +1,6 @@
 <?php
     include "../conn.php";
-    require_once "../header-order.php";
+    require_once "../header.php";
 
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		if ($_SESSION['role'] == "kasir") {
@@ -12,19 +12,20 @@
 	}
 	else {
 		header('location: ../index.php');
-	}
+    }
+    
+    $user_id = $_SESSION['user_id'];
 ?>
 
     <main class="wrapper-all">
         <div class="container-fluid">
-            
                 <div class="col-lg-12 bg-light p-5">
                     <ul class="menu-filter">
-                        <li><span data-filter="*" class="current active">All</span></li>
+                        <li><span data-filter="*" class="current active">Semua</span></li>
                         <li><span data-filter=".bakso">Bakso</span></li>
-                        <li><span data-filter=".mie">Noodle</span></li>
+                        <li><span data-filter=".mie">Mie</span></li>
                         <li><span data-filter=".snack">Snack</span></li>
-                        <li><span data-filter=".Minuman">Drink</span></li>
+                        <li><span data-filter=".Minuman">Minuman</span></li>
                     </ul>
                     <div class="menu-container px-4" style="height: calc(100vh - 7.5rem); overflow: auto;">                        
                         <div class="row menu-item">                            
@@ -61,9 +62,9 @@
                                                         <input type="hidden" name="hidden_id" id="id<?php echo $row['id'] ?>" value="<?php echo $row["id"]; ?>" />
                                                         <input type="hidden" name="hidden_name" id="name<?php echo $row['id'] ?>" value="<?php echo $row["nama_menu"]; ?>" />
                                                         <input type="hidden" name="hidden_price" id="harga<?php echo $row['id'] ?>" value="<?php echo $row["harga"]; ?>" />
-                                                        <input type="hidden" name="hidden_qty" id="qty<?=$row['id'] ?>" value="1" />                                                        
+                                                        <input type="hidden" name="hidden_qty" id="qty<?=$row['id'] ?>" value="0" />                                                        
                                                         <button type="button" onclick="addCart(<?php echo $row['id'] ?>)" class="add-cart btn btn-success btn-sm" 
-                                                            data-menu-id="<?php echo $row['id'] ?>">Add<i class="fas fa-shopping-cart ml-2"></i></button>
+                                                            data-menu-id="<?php echo $row['id'] ?>">Tambah<i class="fas fa-shopping-cart ml-2"></i></button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -78,49 +79,6 @@
             
         </div>
     </main>
-
-    <!-- Modal -->
-    <div class="modal fade" id="cancelOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Cancel Order</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to cancel this order?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="cancel-order" onclick="cancelListOrder()">Yes, cancel order</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">No, keep the order</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="placeOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Place Order</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to place this order?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success" id="place-order" data-user-id="<?php echo $user_id ?>"
-                        data-tipe="<?php echo $tipe; ?>" data-meja-id="<?php echo $kode_meja; ?>" data-dismiss="modal">Place order</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="baksoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,9 +120,7 @@
             </div>
         </div>
     </div>
-    <script>
-        
-    </script>
+
 <?php
     require_once "../footer.php"
 ?>

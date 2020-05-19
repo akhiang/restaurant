@@ -30,6 +30,7 @@
                             $r = $q2->fetch_assoc();                                          
                         ?>
                         <span class="text-muted fs-13"><?= ucwords($r['description']); ?></span><br>
+                        <a href="#" class="checkout-menu-pen" data-toggle="modal" data-target="#exampleModal" data-cart-id="<?= $row['id'] ?>"><i class="fa fa-pen"></i></a>
                     </div>
                 </div>
             </td>

@@ -82,7 +82,8 @@
                                         </td>
                                         <td> 
                                             <span class="font-weight-bold d-block"><?php echo ucwords($row2['nama_menu']) ?></span>
-                                            <span class="text-muted fs-12"><?php echo ucwords($row2['description']) ?></span>
+                                            <span class="text-muted fs-12"><?php echo ucwords($row2['description']) ?></span><br>
+                                            <a href="#" class="order-list-menu-note" data-toggle="modal" data-target="#orderNoteModal" data-cart-id="<?= $row2['id'] ?>" style="color: #015c41"><i class="fa fa-pen"></i></a>
                                         </td>
                                         <td align="center"> 
                                             <?php echo $row2['qty'] ?>
@@ -151,6 +152,28 @@
 			</div>
 		</div>
 	</main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="orderNoteModal" tabindex="-1" role="dialog" aria-labelledby="orderNoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Menu Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">                    
+                        <textarea class="note form-control" id="checkout-menu-note" readonly></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="pesananList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

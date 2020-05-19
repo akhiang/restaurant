@@ -19,7 +19,7 @@
             $amount = $row['price'] * $row['qty'];
             $subtotal += $amount;
         }
-        $tax = $subtotal * 0.01;
+        $tax = $subtotal * 0.1;
         $total = $subtotal + $tax;
     ?>
         

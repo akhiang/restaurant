@@ -2,18 +2,12 @@
     require_once "../conn.php";
 
     $cart_id = $_POST['cart_id'];
-    // var_dump($menu_id);
     $user_id = $_POST['user_id'];
     $qty = $_POST['qty'];
 
     $oldQty = $conn->query("SELECT menu_id, qty FROM tb_cart_detail WHERE id = '$cart_id' AND user_id = '$user_id'")->fetch_assoc();
-    
-    // print_r($oldQty);
-    // var_dump($qty);
 
     if ($qty > $oldQty['qty']) {
-        // echo '+';
-        // echo $oldQty[''];
         $selisih = $qty - $oldQty['qty'];
         $q = $conn->query("SELECT ingredient_id, use_qty FROM tb_menu_ingredient WHERE menu_id = $oldQty[menu_id]");
         if ($q->num_rows > 0) {
@@ -65,11 +59,9 @@
             }
         }
     } else if ($qty < $oldQty['qty']) {
-        // echo '-';
-        // echo $selisih;
         $selisih = $oldQty['qty'] - $qty;
         $menu = $conn->query("SELECT * FROM tb_cart_detail WHERE id = '$cart_id' AND user_id = '$user_id'")->fetch_assoc();
-        // var_dump($menu);
+    
         $q4 = $conn->query("SELECT ingredient_id, use_qty FROM tb_menu_ingredient WHERE menu_id = '$menu[menu_id]'");
         if ($q4->num_rows > 0) {
             foreach ($q4 as $key => $row) {

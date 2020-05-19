@@ -33,7 +33,7 @@
 							<object data="../assets/images/chair.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="table.php" class="btn btn-success btn-sm">Table</a>
+							<a href="table.php" class="btn btn-success btn-sm">Meja</a>
 						</div>
 					</div>
 					<div class="card text-center">
@@ -41,7 +41,7 @@
 							<object data="../assets/images/food.svg" type="image/svg+xml"  style="width: 100px; height: 90px;"></object>
 						</div>
 						<div class="card-body">
-							<a href="pesanan.php" class="btn btn-success btn-sm">Order List</a>
+							<a href="./order-list.php" class="btn btn-success btn-sm">Order List</a>
 						</div>
 					</div>
 					<div class="card text-center">

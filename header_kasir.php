@@ -54,9 +54,6 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user mr-3"></i><?php echo $_SESSION['username']; ?>
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-cog mr-3"></i><?= $_SESSION['role']; ?>
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt mr-3"></i>Logout</button>
                             </div>

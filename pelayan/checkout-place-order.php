@@ -27,8 +27,8 @@
                 $number++;
                 $kode = sprintf('%06s',$number);
 
-                $sql = "INSERT INTO tb_order_detail (order_number, menu_id, menu_name, qty, price, cancel) 
-                        SELECT '$kode', menu_id, menu_name, qty, price, 0 FROM tb_cart_detail WHERE user_id = '$user_id'";
+                $sql = "INSERT INTO tb_order_detail (order_number, menu_id, menu_name, note, qty, price, cancel) 
+                        SELECT '$kode', menu_id, menu_name, note, qty, price, 0 FROM tb_cart_detail WHERE user_id = '$user_id'";
                 $q = $conn->query($sql);
 
                 $sql = "SELECT * FROM tb_order_detail WHERE order_number = '$kode'";
@@ -47,7 +47,7 @@
                 $conn->query("DELETE FROM tb_cart_detail WHERE user_id = '$user_id'");
 
                 if ($orderType == 1) {                    
-                    $conn->query("UPDATE tb_meja set status = 0 WHERE kode_meja = $orderTable");
+                    $conn->query("UPDATE tb_meja SET status = 0 WHERE kode_meja = $orderTable");
                 }
 
                 $status = 'success';
@@ -57,20 +57,19 @@
                     $q = $conn->query("SELECT * FROM tb_cart_detail WHERE user_id = '$user_id'");
                     if ($q->num_rows > 0) {
                         foreach ($q as $key => $cart) {
-                            var_dump($cart);
+                            
                             $cartMenuId = $cart['menu_id'];
                             $cartMenuQty = $cart['qty'];
                             $cartMenuName = $cart['menu_name'];
+                            $cartMenuNote = $cart['note'];
                             $cartMenuPrice = $cart['price'];
 
                             $sameItem = $conn->query("SELECT * FROM tb_order_detail WHERE order_number = '$orderNumber' AND menu_id = '$cartMenuId' AND cancel = 0");
-                            if ($sameItem->num_rows > 0) {
-                                // echo 'same';
-                                $sql = "UPDATE tb_order_detail SET qty = qty + $cartMenuQty WHERE order_number = '$orderNumber' AND menu_id = '$cartMenuId' AND cancel = 0";
-                            } else {
-                                // echo 'new';
-                                $sql = "INSERT INTO tb_order_detail (id, order_number, menu_id, menu_name, qty, price, cancel) VALUES
-                                    ('', '$orderNumber', '$cartMenuId', '$cartMenuName', $cartMenuQty , '$cartMenuPrice', 0)";
+                            if ($sameItem->num_rows > 0) {                                
+                                $sql = "UPDATE tb_order_detail SET qty = qty + $cartMenuQty, note = '$cartMenuNote' WHERE order_number = '$orderNumber' AND menu_id = '$cartMenuId' AND cancel = 0";
+                            } else {                                
+                                $sql = "INSERT INTO tb_order_detail (id, order_number, menu_id, menu_name, note, qty, price, cancel) VALUES
+                                    ('', '$orderNumber', '$cartMenuId', '$cartMenuName', '$cartMenuNote', $cartMenuQty , '$cartMenuPrice', 0)";
                             }
                             $conn->query($sql);
                         }                        

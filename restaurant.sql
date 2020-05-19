@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2020 at 03:56 PM
+-- Generation Time: May 19, 2020 at 09:18 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.1.30
 
@@ -46,24 +46,27 @@ CREATE TABLE `tbl_menu` (
 --
 
 INSERT INTO `tbl_menu` (`id`, `kode_menu`, `nama_menu`, `description`, `jenis`, `harga`, `gambar`, `ready`, `sequence`, `deleted`) VALUES
-(1, 'M001', 'Bakso Urat', 'mie kuning & mie putih', 'bakso', '15000', 'k.jpeg', 1, 1, 0),
-(2, 'M002', 'Es Cappucino', '', 'Minuman', '4000', 'menu_escappp.jpeg', 1, 0, 0),
-(3, 'M003', 'Bakso Telur', 'mie kuning & mie putih', 'bakso', '15000', 'menu_bstelur.jpeg', 1, 0, 0),
-(5, 'M005', 'Bakso Mercon', 'mie kuning & mie putih', 'bakso', '17000', 'menu_bsmercon.jpg', 1, 0, 0),
-(6, 'M006', 'Es Extra Joss', '', 'Minuman', '4000', 'menu_esxtrajoss.jpeg', 1, 0, 0),
-(7, 'M007', 'Bakso Granat', '', 'bakso', '17000', 'menu_bsgranat.jpg', 1, 0, 0),
-(8, 'M008', 'Es Nutri Sari', '', 'Minuman', '3000', 'menu_esnutri.jpeg', 1, 0, 0),
-(9, 'M009', 'Kentang Goreng', '', 'snack', '10000', 'menu_kentang.jpg', 1, 0, 0),
-(10, 'M010', 'Extra Joss Susu', '', 'Minuman', '7000', 'menu_josssusu.jpg', 1, 0, 0),
-(11, 'M011', 'Es Susu', '', 'Minuman', '4000', 'menu_essusu.jpg', 1, 0, 0),
-(12, 'M012', 'Sosis', '', 'snack', '10000', 'menu_sosis.jpg', 1, 0, 0),
-(13, 'M013', 'Es Tawar', '', 'Minuman', '1000', 'menu_estwr.jpeg', 1, 0, 0),
-(14, 'M014', 'Es Jeruk Kecil', '', 'Minuman', '3000', 'menu_esjrkkcl.jpg', 1, 0, 0),
-(15, 'M015', 'Mineral', '', 'Minuman', '3000', 'menu_mineral.jpeg', 1, 0, 0),
-(16, 'M016', 'Mie Kuning', '', 'mie', '2000', 'menu_miekuning.jpeg', 1, 0, 0),
-(17, 'M017', 'Mie Putih', '', 'mie', '3000', 'menu_mieputih.jpeg', 1, 0, 0),
-(102, 'M018', 'bakso urat', 'mie kuning', 'bakso', '15000', 'k.jpeg', 1, 1, 0),
-(113, 'M019', 'asd', '', 'bakso', '14', '2.jpg', 1, 9, 1);
+(1, 'M001', 'bakso urat', 'mie kuning & mie putih', 'bakso', '13636', 'menu_bsurat.jpeg', 1, 1, 0),
+(2, 'M002', 'Es Cappucino', '---', 'Minuman', '3636', 'menu_escappp.jpeg', 1, 4, 0),
+(3, 'M003', 'Bakso Telur', 'mie kuning & mie putih', 'bakso', '13636', 'menu_bstelur.jpeg', 1, 2, 0),
+(5, 'M005', 'Bakso Mercon', 'mie kuning & mie putih', 'bakso', '17000', 'menu_bsmercon.jpg', 1, 3, 0),
+(6, 'M006', 'Es Extra Joss', '---', 'Minuman', '3636', 'menu_esxtrajoss.jpeg', 1, 4, 0),
+(7, 'M007', 'Bakso Granat', '', 'bakso', '17000', 'menu_bsgranat.jpg', 1, 3, 1),
+(8, 'M008', 'Es Nutri Sari', '', 'Minuman', '3000', 'menu_esnutri.jpeg', 1, 3, 0),
+(9, 'M009', 'Kentang Goreng', '', 'snack', '10000', 'menu_kentang.jpg', 1, 3, 0),
+(10, 'M010', 'Extra Joss Susu', '', 'Minuman', '7000', 'menu_josssusu.jpg', 1, 3, 0),
+(11, 'M011', 'Es Susu', '', 'Minuman', '4000', 'menu_essusu.jpg', 1, 3, 0),
+(12, 'M012', 'Sosis', '', 'snack', '10000', 'menu_sosis.jpg', 1, 3, 0),
+(13, 'M013', 'Es Tawar', '', 'Minuman', '1000', 'menu_estwr.jpeg', 1, 3, 0),
+(14, 'M014', 'Es Jeruk Kecil', '', 'Minuman', '3000', 'menu_esjrkkcl.jpg', 1, 3, 0),
+(15, 'M015', 'Mineral', '---', 'Minuman', '3000', 'menu_mineral.jpeg', 1, 3, 0),
+(16, 'M016', 'Mie Kuning', '', 'mie', '2000', 'menu_miekuning.jpeg', 1, 3, 1),
+(17, 'M017', 'Mie Putih', '', 'mie', '3000', 'menu_mieputih.jpeg', 1, 3, 1),
+(102, 'M018', 'bakso urat', 'mie kuning', 'bakso', '13636', 'menu_bsurat.jpeg', 1, 1, 0),
+(113, 'M019', 'asd', '', 'bakso', '14', '2.jpg', 1, 9, 1),
+(114, 'M020', 'bakso urat', 'mie putih', 'bakso', '13636', 'menu_bsurat.jpeg', 1, 1, 0),
+(115, 'M021', 'bakso telur', 'mie putih', 'bakso', '13636', 'menu_bstelur.jpeg', 1, 2, 0),
+(116, 'M022', 'bakso telur', 'mie kuning', 'bakso', '13636', 'menu_bstelur.jpeg', 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -107,17 +110,20 @@ CREATE TABLE `tb_bahan` (
 --
 
 INSERT INTO `tb_bahan` (`id`, `name`, `unit`, `qty`, `deleted`) VALUES
-(1, 'mie kuning', 'gram', 60, 0),
-(2, 'mie putih', 'gram', 65, 0),
+(1, 'mie kuning', 'gram', 15, 0),
+(2, 'mie putih', 'gram', 34, 0),
 (3, 'nutri sari', 'pcs', 100, 0),
-(4, 'bakso kecil', 'pcs', 73, 0),
-(5, 'bakso urat', 'pcs', 93, 0),
+(4, 'bakso kecil', 'pcs', 15, 0),
+(5, 'bakso urat', 'pcs', 66, 0),
 (7, 'bakso mercon', 'pcs', 100, 0),
-(8, 'bakso telur', 'pcs', 98, 0),
-(9, 'bakso granat', 'pcs', 1000, 0),
-(10, 'cappucino', 'bks', 98, 0),
-(11, 'extra joss', 'bks', 1000, 0),
-(12, 'nutri sari', 'bks', 99, 0);
+(8, 'bakso telur', 'pcs', 50, 0),
+(9, 'bakso granat', 'pcs', 1000, 1),
+(10, 'cappucino', 'bks', 100, 0),
+(11, 'extra joss', 'bks', 50, 0),
+(12, 'nutri sari', 'bks', 94, 0),
+(13, 'teh es', 'gelas ', 30, 0),
+(14, 'es jeruk kecil', 'gelas', 50, 0),
+(15, 'es tawar', 'gelas', 27, 0);
 
 -- --------------------------------------------------------
 
@@ -147,7 +153,11 @@ INSERT INTO `tb_bills` (`id`, `order_number`, `date`, `time`, `total`, `pay`) VA
 (26, '00011', '2020-03-27', '01:50:48', 4400, 0),
 (27, '00012', '2020-03-27', '01:52:12', 4400, 5000),
 (28, '00014', '2020-03-31', '01:57:28', 49500, 5),
-(29, '00015', '2020-04-09', '08:52:12', 33000, 4);
+(29, '00015', '2020-04-09', '08:52:12', 33000, 4),
+(30, '000001', '2020-05-14', '07:58:25', 80300, 10),
+(31, '000002', '2020-05-15', '01:03:33', 33000, 4),
+(32, '000005', '2020-05-15', '01:20:08', 15000, 2),
+(33, '000006', '2020-05-15', '02:02:24', 18300, 2);
 
 -- --------------------------------------------------------
 
@@ -159,41 +169,11 @@ CREATE TABLE `tb_cart_detail` (
   `user_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   `menu_name` varchar(30) NOT NULL,
+  `note` text NOT NULL,
   `qty` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_cart_detail`
---
-
-INSERT INTO `tb_cart_detail` (`user_id`, `menu_id`, `menu_name`, `qty`, `price`, `id`) VALUES
-(3, 3, 'Bakso Telur', 1, 15000, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_cart_detail_modifier`
---
-
-CREATE TABLE `tb_cart_detail_modifier` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `menu_id` varchar(11) NOT NULL,
-  `cart_item_id` int(11) NOT NULL,
-  `modifier_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_cart_detail_modifier`
---
-
-INSERT INTO `tb_cart_detail_modifier` (`id`, `user_id`, `menu_id`, `cart_item_id`, `modifier_id`, `qty`) VALUES
-(17, 4, 'M001', 108, 1, 0),
-(18, 4, 'M001', 109, 1, 0),
-(19, 4, 'M001', 109, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -212,7 +192,7 @@ CREATE TABLE `tb_meja` (
 --
 
 INSERT INTO `tb_meja` (`kode_meja`, `nama_meja`, `status`) VALUES
-(1, 'M01', 1),
+(1, 'M01', 0),
 (2, 'M02', 1),
 (3, 'M03', 1),
 (4, 'M04', 1),
@@ -244,19 +224,23 @@ CREATE TABLE `tb_menu_ingredient` (
 
 INSERT INTO `tb_menu_ingredient` (`id`, `menu_id`, `ingredient_id`, `use_qty`) VALUES
 (1, 1, 1, 5),
-(2, 1, 2, 5),
+(2, 1, 2, 4),
 (4, 1, 4, 3),
 (5, 1, 5, 1),
 (7, 2, 10, 1),
 (8, 3, 1, 5),
-(9, 3, 2, 5),
+(9, 3, 2, 4),
 (10, 3, 4, 3),
 (11, 3, 8, 1),
 (12, 6, 11, 1),
 (13, 8, 12, 1),
 (14, 102, 1, 10),
 (15, 102, 4, 3),
-(16, 102, 5, 1);
+(16, 102, 5, 1),
+(17, 114, 2, 8),
+(18, 114, 5, 1),
+(19, 114, 4, 4),
+(20, 15, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -293,6 +277,7 @@ CREATE TABLE `tb_order` (
   `order_type_id` int(11) NOT NULL,
   `table_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `customer_name` varchar(30) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `subtotal` int(11) NOT NULL,
@@ -304,22 +289,17 @@ CREATE TABLE `tb_order` (
 -- Dumping data for table `tb_order`
 --
 
-INSERT INTO `tb_order` (`order_id`, `order_number`, `order_status`, `order_type_id`, `table_id`, `user_id`, `date`, `time`, `subtotal`, `tax`, `total`) VALUES
-(7, '00001', 'cancelled', 2, 0, 4, '2020-02-04', '11:58:34', 15000, 1500, 16500),
-(8, '00002', 'cancelled', 1, 1, 4, '2020-03-13', '12:15:07', 19000, 1900, 20900),
-(9, '00003', 'cancelled', 1, 1, 4, '2020-03-13', '12:24:54', 19000, 1900, 20900),
-(10, '00004', 'cancelled', 1, 11, 4, '2020-03-13', '12:26:35', 19000, 1900, 20900),
-(11, '00005', 'cancelled', 1, 10, 4, '2020-03-21', '12:35:04', 23000, 2300, 25300),
-(12, '00006', 'paid', 1, 9, 4, '2020-03-21', '12:50:13', 34000, 3400, 37400),
-(13, '00007', 'paid', 2, 0, 4, '2020-03-21', '01:03:32', 19000, 1900, 20900),
-(14, '00008', 'paid', 2, 0, 4, '2020-03-21', '11:06:21', 12000, 1200, 13200),
-(15, '00009', 'paid', 2, 0, 4, '2020-03-21', '03:49:20', 3000, 300, 3300),
-(16, '00010', 'paid', 2, 0, 4, '2020-03-27', '01:12:12', 30000, 3000, 33000),
-(17, '00011', 'paid', 2, 0, 4, '2020-03-27', '01:50:29', 4000, 400, 4400),
-(18, '00012', 'paid', 2, 0, 4, '2020-03-27', '01:51:59', 4000, 400, 4400),
-(19, '00013', 'cancelled', 1, 1, 4, '2020-03-31', '01:38:34', 15000, 1500, 16500),
-(20, '00014', 'paid', 1, 1, 4, '2020-03-31', '01:51:23', 45000, 4500, 49500),
-(21, '00015', 'paid', 1, 1, 4, '2020-04-03', '12:25:46', 30000, 3000, 33000);
+INSERT INTO `tb_order` (`order_id`, `order_number`, `order_status`, `order_type_id`, `table_id`, `user_id`, `customer_name`, `date`, `time`, `subtotal`, `tax`, `total`) VALUES
+(5, '000001', 'paid', 1, 1, 4, 'Test', '2020-05-14', '03:54:19', 73000, 7300, 80300),
+(6, '000002', 'paid', 2, 0, 4, 'Test2', '2020-05-14', '04:07:35', 30000, 3000, 33000),
+(7, '000003', 'cancelled', 2, 0, 4, 'Test3', '2020-05-15', '03:29:28', 46000, 4600, 50600),
+(8, '000004', 'cancelled', 1, 1, 4, 'Test4', '2020-05-15', '11:25:26', 105000, 10500, 115500),
+(9, '000005', 'paid', 1, 1, 4, 'pia', '2020-05-15', '01:19:14', 13636, 1364, 15000),
+(10, '000006', 'paid', 1, 1, 4, 'test', '2020-05-15', '01:57:11', 16636, 1664, 18300),
+(11, '000007', 'cancelled', 2, 0, 4, 're', '2020-05-15', '02:07:39', 13636, 1364, 15000),
+(12, '000008', 'unpaid', 2, 0, 4, '19', '2020-05-19', '01:06:56', 13636, 1364, 15000),
+(13, '000009', 'unpaid', 1, 1, 4, '19/05', '2020-05-19', '01:56:38', 30272, 3027, 33299),
+(14, '000010', 'unpaid', 2, 0, 4, 'sd', '2020-05-19', '02:15:48', 3000, 300, 3300);
 
 -- --------------------------------------------------------
 
@@ -328,61 +308,57 @@ INSERT INTO `tb_order` (`order_id`, `order_number`, `order_status`, `order_type_
 --
 
 CREATE TABLE `tb_order_detail` (
+  `id` int(11) NOT NULL,
   `order_number` varchar(50) NOT NULL,
   `menu_id` varchar(10) NOT NULL,
   `menu_name` varchar(30) NOT NULL,
+  `note` text NOT NULL,
   `qty` int(11) NOT NULL,
   `price` int(11) NOT NULL,
-  `id` int(11) NOT NULL
+  `cancel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_order_detail`
 --
 
-INSERT INTO `tb_order_detail` (`order_number`, `menu_id`, `menu_name`, `qty`, `price`, `id`) VALUES
-('00001', '1', 'Bakso Urat', 1, 15000, 30),
-('00002', '1', 'Bakso Urat', 1, 15000, 34),
-('00002', '2', 'Es Cappucino', 1, 4000, 35),
-('00003', '1', 'Bakso Urat', 1, 15000, 36),
-('00003', '2', 'Es Cappucino', 1, 4000, 37),
-('00004', '1', 'Bakso Urat', 1, 15000, 39),
-('00004', '2', 'Es Cappucino', 1, 4000, 40),
-('00005', '1', 'Bakso Urat', 1, 15000, 42),
-('00005', '2', 'Es Cappucino', 2, 4000, 43),
-('00006', '1', 'Bakso Urat', 2, 15000, 45),
-('00006', '2', 'Es Cappucino', 1, 4000, 46),
-('00007', '3', 'Bakso Telur', 1, 15000, 48),
-('00007', '2', 'Es Cappucino', 1, 4000, 49),
-('00008', '6', 'Es Extra Joss', 1, 4000, 50),
-('00008', '6', 'Es Extra Joss', 1, 4000, 51),
-('00008', '6', 'Es Extra Joss', 1, 4000, 52),
-('00009', '8', 'Es Nutri Sari', 1, 3000, 53),
-('00010', '1', 'Bakso Urat', 1, 15000, 54),
-('00010', '3', 'Bakso Telur', 1, 15000, 55),
-('00011', '2', 'Es Cappucino', 1, 4000, 57),
-('00012', '2', 'Es Cappucino', 1, 4000, 58),
-('00013', '1', 'Bakso Urat', 1, 15000, 59),
-('00014', '1', 'Bakso Urat', 1, 15000, 60),
-('00014', '102', 'bakso urat', 1, 30000, 61),
-('00015', '1', 'Bakso Urat', 1, 15000, 62),
-('00015', '102', 'bakso urat', 1, 15000, 63);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_order_modifier`
---
-
-CREATE TABLE `tb_order_modifier` (
-  `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `order_item_id` int(11) NOT NULL,
-  `modifier_id` int(11) NOT NULL,
-  `modifier_name` varchar(20) NOT NULL,
-  `qty` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tb_order_detail` (`id`, `order_number`, `menu_id`, `menu_name`, `note`, `qty`, `price`, `cancel`) VALUES
+(14, '000001', '7', 'Bakso Granat', '', 2, 17000, 1),
+(15, '000001', '9', 'Kentang Goreng', '', 4, 10000, 0),
+(17, '000001', '8', 'Es Nutri Sari', '', 5, 3000, 1),
+(18, '000001', '1', 'Bakso Urat', '', 5, 15000, 0),
+(19, '000001', '8', 'Es Nutri Sari', '', 4, 3000, 0),
+(20, '000002', '1', 'Bakso Urat', '', 4, 15000, 0),
+(21, '000002', '3', 'Bakso Telur', '', 3, 15000, 0),
+(23, '000002', '2', 'Es Cappucino', '', 1, 4000, 1),
+(24, '000002', '6', 'Es Extra Joss', '', 4, 4000, 1),
+(25, '000002', '17', 'Mie Putih', '', 1, 3000, 1),
+(26, '000002', '17', 'Mie Putih', '', 2, 3000, 1),
+(27, '000003', '1', 'Bakso Urat', '', 4, 15000, 1),
+(28, '000003', '3', 'Bakso Telur', '', 3, 15000, 1),
+(29, '000003', '2', 'Es Cappucino', '', 1, 4000, 1),
+(30, '000003', '6', 'Es Extra Joss', '', 5, 4000, 1),
+(31, '000003', '8', 'Es Nutri Sari', '', 4, 3000, 1),
+(34, '000003', '2', 'Es Cappucino', '', 2, 4000, 1),
+(35, '000003', '6', 'Es Extra Joss', '', 4, 4000, 1),
+(36, '000003', '102', 'bakso urat', '', 2, 15000, 1),
+(37, '000003', '6', 'Es Extra Joss', '', 4, 4000, 0),
+(38, '000003', '2', 'Es Cappucino', '', 1, 4000, 1),
+(39, '000003', '2', 'Es Cappucino', '', 1, 4000, 1),
+(40, '000003', '2', 'Es Cappucino', '', 1, 4000, 1),
+(41, '000003', '1', 'Bakso Urat', '', 1, 15000, 0),
+(42, '000003', '3', 'Bakso Telur', '', 1, 15000, 0),
+(43, '000004', '1', 'Bakso Urat', '', 7, 15000, 0),
+(44, '000005', '1', 'bakso urat', '', 1, 13636, 0),
+(45, '000006', '102', 'bakso urat', '', 1, 13636, 0),
+(46, '000006', '15', 'Mineral', '', 1, 3000, 0),
+(48, '000007', '102', 'bakso urat', '', 1, 13636, 0),
+(49, '000008', '1', 'bakso urat', 'bykin kuah bang\n', 1, 13636, 0),
+(50, '000008', '102', 'bakso urat', 'skuyy', 0, 13636, 0),
+(51, '000008', '8', 'Es Nutri Sari', 'lbh manis', 0, 3000, 0),
+(52, '000009', '1', 'bakso urat', '2 porsi jumbo', 2, 13636, 0),
+(53, '000009', '15', 'Mineral', '', 1, 3000, 0),
+(54, '000010', '15', 'Mineral', 'dingin', 1, 3000, 0);
 
 -- --------------------------------------------------------
 
@@ -438,12 +414,6 @@ ALTER TABLE `tb_cart_detail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_cart_detail_modifier`
---
-ALTER TABLE `tb_cart_detail_modifier`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tb_meja`
 --
 ALTER TABLE `tb_meja`
@@ -474,12 +444,6 @@ ALTER TABLE `tb_order_detail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_order_modifier`
---
-ALTER TABLE `tb_order_modifier`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tb_tipe_pesanan`
 --
 ALTER TABLE `tb_tipe_pesanan`
@@ -493,37 +457,31 @@ ALTER TABLE `tb_tipe_pesanan`
 -- AUTO_INCREMENT for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tb_bills`
 --
 ALTER TABLE `tb_bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `tb_cart_detail`
 --
 ALTER TABLE `tb_cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
---
--- AUTO_INCREMENT for table `tb_cart_detail_modifier`
---
-ALTER TABLE `tb_cart_detail_modifier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `tb_menu_ingredient`
 --
 ALTER TABLE `tb_menu_ingredient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tb_modifier`
@@ -535,19 +493,13 @@ ALTER TABLE `tb_modifier`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tb_order_detail`
 --
 ALTER TABLE `tb_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `tb_order_modifier`
---
-ALTER TABLE `tb_order_modifier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `tb_tipe_pesanan`
