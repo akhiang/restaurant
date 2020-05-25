@@ -25,7 +25,7 @@
         }
     
     $sql .= "ORDER BY o.order_number DESC";
-    $result = $conn->query($sql);
+    $result = $conn->query($sql);    
 
     foreach ($result as $key => $row) {
         $sub_array = array();

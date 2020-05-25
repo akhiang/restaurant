@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Table</title>
+    <title>Sales History</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -12,12 +12,18 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+    <!-- Checkbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
@@ -97,22 +103,22 @@
                 with font-awesome or any other icon font library -->
             <li class="nav-item mt-3">
                 <a href="../../index.php" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Dashboard
-                    </p>
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="../menu/menu.php" class="nav-link">
-                <i class="nav-icon fas fa-utensils"></i>
-                <p>
-                    Menu
-                </p>
+                    <i class="nav-icon fas fa-utensils"></i>
+                    <p>
+                        Menu
+                    </p>
                 </a>
             </li>
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
                     <i class="nav-icon fas fa-egg"></i>
                     <p>
                         Ingredient
@@ -121,13 +127,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="../bahan/bahan.php" class="nav-link">
+                        <a href="./bahan.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Ingredient</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../bahan/sales_history.php" class="nav-link">
+                        <a href="#" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Sales History</p>
                         </a>
@@ -135,7 +141,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="../meja/meja.php" class="nav-link">
                 <i class="nav-icon fas fa-chair"></i>
                 <p>
                     Table
@@ -172,7 +178,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Table</h1>
+                <h1 class="m-0 text-dark">Sales History</h1>
             </div><!-- /.col -->
             <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -192,16 +198,71 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
+
+                <div class="row">
+                    <div class="my-2">
+                        <div class="form-check">
+                        <div class="pretty p-svg p-curve">
+                            <input type="checkbox" class="form-check-input" id="date-check" name="date-check">
+                            <div class="state p-primary">
+                                <!-- svg path -->
+                                <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                                </svg>
+                                <label></label>
+                            </div>
+                        </div>
+                        </div> 
+                    </div>                               
+                    <div class="col-md-4 mb-3">
+                        <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">From</span>
+                        </div>
+                        <input type="text" class="date form-control" id="from-date" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">To</span>
+                        </div>
+                        <input type="text" class="date form-control" id="to-date" value="" disabled>
+                        </div>
+                    </div>                  
+                </div>
+<!-- 
+                <form class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label class="" for="ing-name">Ingredient Name</label>
+                        <select class="form-control form-control-sm" id="ing-name">
+                            <option value="" selected>Choose...</option>
+                            <?php
+                                require_once "../conn.php";
+                                $ingredient = $conn->query("SELECT * FROM tb_bahan");
+                                foreach ($ingredient as $key => $value) {
+                            ?>
+                                    <option value="<?= $value['id'] ?>"><?= ucwords($value['name']) ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                    </div>       
+                </form> -->
+
+                <div class="mb-4">
+                    <button type="button" id="filter" class="btn btn-outline-primary btn-sm">Filter</button>
+                    <button type="button" id="report" class="btn btn-outline-info btn-sm mx-1">Report</button>                    
+                </div>
+
                     <div class="table-responsive">
-                        <table id="table-meja" class="table table-hover table-sm text-center w-100">
+                        <table id="table-ing-history" class="table table-hover table-sm text-center w-100">
                             <thead>
-                                <button class="btn btn-info mb-3" data-toggle="modal" data-target="#add-meja-modal">
-                                <i class="fa fa-plus mr-2"></i>Create</button>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Unit</th>                                    
+                                    <th scope="col">Used</th>                
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -232,98 +293,27 @@
     </div>
     <!-- ./wrapper -->
 
-<div class="modal fade" id="add-meja-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form class="add-meja-form" id="add-meja-form">
-                <div class="modal-body">
-                    <?php
-                        require_once "../conn.php";
-                        $sql = "SELECT MAX(kode_meja) as kode from tb_meja";
-                        $q = $conn->query($sql);
-                        $data = mysqli_fetch_assoc($q);
-                        $kode = $data['kode'];
-                        $kode++;
-                    ?>
-                    <input type="hidden" name="kode_meja" value="<?php echo $kode ?>">
-                    <div class="form-group">
-                        <label class="col-form-label">Name</label>
-                        <input type="text" class="form-control form-control-sm" name="nama_meja" autocomplete="off">
-                        <small class="form-text text-muted">
-                            (Exa. M01, M02)
-                        </small>
-                    </div>  
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn-meja-menu btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="edit-meja-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Meja</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="edit-meja-form">
-                <div class="modal-body">
-                    <input type="hidden"name="kode_meja">
-                    <div class="form-group">
-                        <label class="col-form-label">Nama Meja</label>
-                        <input type="text" class="form-control form-control-sm" name="nama_meja" autocomplete="off">
-                    </div> 
-                    <div class="form-group">
-                        <label class="col-form-label">Status</label>
-                        <select class="form-control form-control-sm" name="status">
-                            <option value="1" selected="">Tersedia</option>
-                            <option value="0">Terisi</option>
-                        </select>
-                    </div>  
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn-edit-meja btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <!-- Modal -->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="../../../logout.php" method="post">
-        <div class="modal-body">
-          Are you sure you want to Logout?
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger">Logout</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form action="../../../logout.php" method="post">
+            <div class="modal-body">
+            Are you sure you want to Logout?
+            </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">Logout</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </form>
         </div>
-      </form>
     </div>
-  </div>
 </div>
 
 <!-- jQuery -->
@@ -340,13 +330,75 @@
 <script src="../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
+<!-- daterangepicker -->
+<script src="../../plugins/moment/moment.min.js"></script>
+<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="../../dist/js/app.js"></script>
+<script>
+    $(function() {
+        $('#date-check').click(function() {
+            if ($(this).is(':checked')) {
+                $('.date').prop('disabled', false);
+            } else {
+                $('.date').prop('disabled', true);
+            }
+        });
+
+        $('.date').daterangepicker({
+            singleDatePicker: true,
+            // showDropdowns: true,
+            minYear: 2000,
+            clearBtn: true,
+            maxYear: parseInt(moment().format('YYYY'),10,),
+            locale: {
+                format: 'YYYY-MM-D'
+            }
+        });
+
+        $('#filter').on('click', function() {
+            if ($('#date-check').is(':checked')) {
+                var is_date = true;
+            } else {
+                is_date = false;
+            }
+
+            // var element = document.getElementById("ing-name");            
+            // var name = (element.options[element.selectedIndex].value);            
+            
+            $('#table-ing-history').DataTable({
+                "destroy": true,
+                "ajax": {
+                    type: "POST",
+                    url: 'sales_history_fetch.php',
+                    data: {
+                        is_date: is_date,
+                        from: $('#from-date').val(),
+                        to: $('#to-date').val(),
+                    }
+                },
+            });
+        });
+
+        $('#report').on('click', function() {
+            let url = `sales_history_report.php?`;
+
+            if ($('#date-check').is(':checked')) {
+                var from = $('#from-date').val(), to = $('#to-date').val();
+                url += `from=${from}&to=${to}`;
+            }         
+            window.open(url, `_blank`);
+        });
+    })
+</script>
+
 </body>
 </html>

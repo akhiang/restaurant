@@ -109,19 +109,34 @@
             </li>
             <li class="nav-item">
                 <a href="../menu/menu.php" class="nav-link">
-                <i class="nav-icon fas fa-utensils"></i>
-                <p>
-                    Menu
-                </p>
+                    <i class="nav-icon fas fa-utensils"></i>
+                    <p>
+                        Menu
+                    </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="../bahan/bahan.php" class="nav-link active">
-                <i class="nav-icon fas fa-egg"></i>
-                <p>
-                    Ingredient
-                </p>
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                    <i class="nav-icon fas fa-egg"></i>
+                    <p>
+                        Ingredient
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Ingredient</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./sales_history.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Usage</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="../meja/meja.php" class="nav-link">

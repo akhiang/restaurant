@@ -120,13 +120,28 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="../bahan/bahan.php" class="nav-link">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-egg"></i>
               <p>
-                  Ingredient
+                Ingredient
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../bahan/bahan.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingredient</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../bahan/sales_history.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sales History</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="../meja/meja.php" class="nav-link">
@@ -217,8 +232,7 @@
                       </div>
                       <input type="text" class="date form-control" id="to-date" value="" disabled>
                     </div>
-                  </div>
-                  
+                  </div>                  
                 </div>
 
                 <form class="form-row">
@@ -243,9 +257,9 @@
                 </form>
 
                 <div class="mb-4">
-                    <button type="button" id="filter" class="btn btn-outline-primary btn-sm">Filter</button>
-                    <button type="button" id="report" class="btn btn-outline-info btn-sm mx-1">Report</button>
-                  </div>
+                  <button type="button" id="filter" class="btn btn-outline-primary btn-sm">Filter</button>
+                  <button type="button" id="report" class="btn btn-outline-info btn-sm mx-1">Report</button>
+                </div>
 
                 <div class="table-responsive">
                   <table id="table-penjualan" class="table table-hover text-center table-sm w-100">

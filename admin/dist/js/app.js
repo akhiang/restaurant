@@ -330,6 +330,12 @@ $(document).ready(function () {
     },
   });
 
+  var tableHistory = $('#table-ing-history').DataTable({
+    "ajax": {
+      "url": "sales_history_fetch.php"
+    },
+  });
+
   $('form[id="add-ing-form"]').validate({
     rules: {
       name: {
